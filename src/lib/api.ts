@@ -4,17 +4,25 @@ export interface ContentMeta {
   date: string;
   tags: string[];
   summary: string;
-  type: "article" | "newsletter";
+  form: "article" | "newsletter"; // article >= 500 words, newsletter < 500 words
+  wordCount: number;
 }
 
 export interface ContentItem extends ContentMeta {
   body: string;
 }
 
-export async function getFeed(): Promise<ContentMeta[]> {
-  const res = await fetch("/api/feed");
+export async function getAllContent(): Promise<ContentMeta[]> {
+  const res = await fetch("/api/content");
   const data = await res.json();
   return data.items;
+}
+
+export async function getContentBySlug(slug: string): Promise<ContentItem | null> {
+  const res = await fetch(`/api/content/${slug}`);
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data.item;
 }
 
 export async function getArticles(): Promise<ContentMeta[]> {
@@ -23,24 +31,10 @@ export async function getArticles(): Promise<ContentMeta[]> {
   return data.items;
 }
 
-export async function getArticle(slug: string): Promise<ContentItem | null> {
-  const res = await fetch(`/api/content/articles/${slug}`);
-  if (!res.ok) return null;
-  const data = await res.json();
-  return data.item;
-}
-
 export async function getNewsletterIssues(): Promise<ContentMeta[]> {
   const res = await fetch("/api/content/newsletter");
   const data = await res.json();
   return data.items;
-}
-
-export async function getNewsletterIssue(slug: string): Promise<ContentItem | null> {
-  const res = await fetch(`/api/content/newsletter/${slug}`);
-  if (!res.ok) return null;
-  const data = await res.json();
-  return data.item;
 }
 
 export async function getProfile(): Promise<string> {
@@ -49,14 +43,14 @@ export async function getProfile(): Promise<string> {
   return data.markdown;
 }
 
-export async function getLikes(type: string, slug: string): Promise<number> {
-  const res = await fetch(`/api/likes/${type}/${slug}`);
+export async function getLikes(form: string, slug: string): Promise<number> {
+  const res = await fetch(`/api/likes/${form}/${slug}`);
   const data = await res.json();
   return data.count;
 }
 
-export async function addLike(type: string, slug: string): Promise<number> {
-  const res = await fetch(`/api/likes/${type}/${slug}`, { method: "POST" });
+export async function addLike(form: string, slug: string): Promise<number> {
+  const res = await fetch(`/api/likes/${form}/${slug}`, { method: "POST" });
   const data = await res.json();
   return data.count;
 }

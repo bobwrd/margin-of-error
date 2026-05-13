@@ -4,6 +4,7 @@ title: On the End of Globalisation
 date: 2026-04-10
 tags: economics, trade, globalisation
 summary: The era of frictionless global trade is not ending — it is fragmenting into blocs. What that means for smaller economies like Singapore.
+form: article
 ---
 
 For decades, the prevailing assumption was simple: open borders for goods, capital, and people produce prosperity. Comparative advantage meant countries specialised; supply chains stretched across continents; prices fell. The Washington Consensus packaged this into policy.

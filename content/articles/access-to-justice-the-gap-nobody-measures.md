@@ -4,6 +4,7 @@ title: Access to Justice — The Gap Nobody Measures
 date: 2026-05-01
 tags: law, access to justice, policy
 summary: Most legal systems track case outcomes, not whether people could get to court in the first place. That gap in measurement is a gap in accountability.
+form: article
 ---
 
 When we talk about the rule of law, we usually mean two things: that laws are predictably applied, and that no one is above them. Both are important. But they assume something prior — that people can actually access the legal system when they need it.

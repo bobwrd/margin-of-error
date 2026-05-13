@@ -6,22 +6,19 @@ interface ContentCardProps {
 }
 
 export default function ContentCard({ item }: ContentCardProps) {
-  const href =
-    item.type === "article"
-      ? `/articles/${item.slug}`
-      : `/newsletter/${item.slug}`;
+  const href = `/${item.form === "article" ? "articles" : "newsletter"}/${item.slug}`;
 
   return (
     <article className="py-6 border-b border-border last:border-0">
       <div className="flex items-center gap-2 mb-2">
         <span
           className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-            item.type === "newsletter"
+            item.form === "newsletter"
               ? "bg-primary/10 text-primary"
               : "bg-secondary text-muted-foreground"
           }`}
         >
-          {item.type === "newsletter" ? "Newsletter" : "Article"}
+          {item.form === "newsletter" ? "Short-form" : "Long-form"}
         </span>
         {item.date && (
           <time className="text-xs text-muted-foreground">
@@ -32,6 +29,9 @@ export default function ContentCard({ item }: ContentCardProps) {
             })}
           </time>
         )}
+        <span className="text-xs text-muted-foreground">
+          {item.wordCount.toLocaleString()} words
+        </span>
       </div>
       <Link to={href} className="group">
         <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-snug mb-1">

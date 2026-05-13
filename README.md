@@ -6,14 +6,16 @@ This file provides guidance when working with code in this repository. The READM
 
 ## Content Tasks
 
-### Add a new article
+All written content lives in `content/articles/` — both long-form and short-form pieces.
+
+### Add a new piece
 
 1. Create `content/articles/<slug>.md`
-2. Add frontmatter at the top:
+2. Add frontmatter:
    ```
    ---
-   slug: my-article-slug
-   title: My Article Title
+   slug: my-slug
+   title: My Title
    date: 2026-05-13
    tags: economics, law
    summary: One sentence summary.
@@ -21,13 +23,19 @@ This file provides guidance when working with code in this repository. The READM
 
    Body content in Markdown here.
    ```
-3. The article is live immediately — no restart needed.
+3. The piece is live immediately — no restart needed.
 
-### Add a new newsletter issue
+### Long-form vs short-form
 
-1. Create `content/newsletter/<slug>.md`
-2. Same frontmatter format as articles. The `type` field is set automatically based on the folder.
-3. Live immediately.
+Form is determined automatically by word count:
+- **Short-form**: fewer than 500 words → `form: newsletter`
+- **Long-form**: 500+ words → `form: article`
+
+To override (flag a shorter piece as long-form, or vice versa), add `form: article` or `form: newsletter` to the frontmatter:
+```
+form: article   # always treated as long-form, regardless of word count
+form: newsletter # always treated as short-form, regardless of word count
+```
 
 ### Add or edit a new static page (e.g. a "Tools" page)
 
@@ -76,9 +84,7 @@ This is a **Zo Site** - a web application running on a user's Zo computer that c
 ├── zosite.json            # Zo deployment config
 ├── data.sqlite            # SQLite DB (auto-created; likes, contacts, signups)
 ├── content/               # All written content — edit by hand
-│   ├── articles/          # One .md file per article
-│   ├── newsletter/        # One .md file per newsletter issue
-│   └── profile.md         # Profile page content
+│   └── articles/          # One .md file per article
 ├── public/                # Static assets
 └── src/
     ├── main.tsx

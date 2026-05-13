@@ -60,7 +60,8 @@ interface ContentMeta {
   date: string;
   tags: string[];
   summary: string;
-  type: "article" | "newsletter";
+  form: "article" | "newsletter";
+  wordCount: number;
 }
 
 interface ContentItem extends ContentMeta {
@@ -76,7 +77,8 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
       date: "",
       tags: [],
       summary: "",
-      type: "article",
+      form: "article",
+      wordCount: raw.split(/\s+/).filter(Boolean).length,
       body: raw,
     };
   }
@@ -88,7 +90,10 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
     if (colon === -1) continue;
     const key = line.slice(0, colon).trim();
     let value = line.slice(colon + 1).trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       value = value.slice(1, -1);
     }
     data[key] = value;
@@ -96,96 +101,88 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
   const tags = data.tags
     ? data.tags.split(",").map((t) => t.trim()).filter(Boolean)
     : [];
+
+  const wordCount = body.split(/\s+/).filter(Boolean).length;
+  // Explicit form in frontmatter overrides the word-count default.
+  const form: ContentMeta["form"] =
+    data.form === "newsletter"
+      ? "newsletter"
+      : data.form === "article"
+        ? "article"
+        : wordCount >= 500
+          ? "article"
+          : "newsletter";
+
   return {
     slug: data.slug || fallbackSlug,
     title: data.title || fallbackSlug,
     date: data.date || "",
     tags,
     summary: data.summary || "",
-    type: (data.type as ContentMeta["type"]) || "article",
+    form,
+    wordCount,
     body,
   };
 }
 
 // ---------------------------------------------------------------------------
-// Content loader
+// Content loader — all content lives in content/articles/
+// form is determined by word count (>=500 = article, <500 = newsletter)
+// or overridden by explicit `form:` in frontmatter
 // ---------------------------------------------------------------------------
-const CONTENT_DIR = join(import.meta.dir, "content");
+const ARTICLES_DIR = join(import.meta.dir, "content", "articles");
 
-async function loadAllContent(type: "articles" | "newsletter"): Promise<ContentItem[]> {
-  const dir = join(CONTENT_DIR, type);
+async function loadAllFromArticlesDir(): Promise<ContentItem[]> {
   const glob = new Glob("*.md");
   const items: ContentItem[] = [];
-  for await (const file of glob.scan(dir)) {
-    const raw = await Bun.file(join(dir, file)).text();
+  for await (const file of glob.scan(ARTICLES_DIR)) {
+    const raw = await Bun.file(join(ARTICLES_DIR, file)).text();
     const slug = file.replace(/\.md$/, "");
-    const item = parseFrontmatter(raw, slug);
-    item.type = type === "articles" ? "article" : "newsletter";
-    items.push(item);
+    items.push(parseFrontmatter(raw, slug));
   }
   return items.sort((a, b) => b.date.localeCompare(a.date));
 }
 
-async function loadContentItem(
-  type: "articles" | "newsletter",
-  slug: string
-): Promise<ContentItem | null> {
-  const filePath = join(CONTENT_DIR, type, `${slug}.md`);
-  const file = Bun.file(filePath);
+async function loadArticleBySlug(slug: string): Promise<ContentItem | null> {
+  const file = Bun.file(join(ARTICLES_DIR, `${slug}.md`));
   if (!(await file.exists())) return null;
   const raw = await file.text();
-  const item = parseFrontmatter(raw, slug);
-  item.type = type === "articles" ? "article" : "newsletter";
-  return item;
+  return parseFrontmatter(raw, slug);
 }
 
 // ---------------------------------------------------------------------------
-// API routes
+// API routes — static paths MUST come before /:slug param routes
 // ---------------------------------------------------------------------------
 
-// Combined feed
-app.get("/api/feed", async (c) => {
-  const [articles, newsletter] = await Promise.all([
-    loadAllContent("articles"),
-    loadAllContent("newsletter"),
-  ]);
-  const feed = [...articles, ...newsletter]
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .map(({ body: _body, ...meta }) => meta);
-  return c.json({ items: feed });
+// Combined feed (all content, sorted by date)
+app.get("/api/content", async (c) => {
+  const items = await loadAllFromArticlesDir();
+  return c.json({ items: items.map(({ body: _body, ...meta }) => meta) });
 });
 
-// Articles list
+// Filter to articles only (wordCount >= 500 or form: article in frontmatter)
 app.get("/api/content/articles", async (c) => {
-  const items = await loadAllContent("articles");
-  return c.json({ items: items.map(({ body: _body, ...meta }) => meta) });
+  const items = await loadAllFromArticlesDir();
+  return c.json({ items: items.filter(i => i.form === "article").map(({ body: _body, ...meta }) => meta) });
 });
 
-// Single article
-app.get("/api/content/articles/:slug", async (c) => {
-  const slug = c.req.param("slug");
-  const item = await loadContentItem("articles", slug);
-  if (!item) return c.json({ error: "Not found" }, 404);
-  return c.json({ item });
-});
-
-// Newsletter list
+// Filter to newsletter/short-form only (wordCount < 500 or form: newsletter in frontmatter)
 app.get("/api/content/newsletter", async (c) => {
-  const items = await loadAllContent("newsletter");
-  return c.json({ items: items.map(({ body: _body, ...meta }) => meta) });
+  const items = await loadAllFromArticlesDir();
+  return c.json({ items: items.filter(i => i.form === "newsletter").map(({ body: _body, ...meta }) => meta) });
 });
 
-// Single newsletter issue
-app.get("/api/content/newsletter/:slug", async (c) => {
+// Single piece by slug — defined AFTER the static paths above
+app.get("/api/content/:slug", async (c) => {
   const slug = c.req.param("slug");
-  const item = await loadContentItem("newsletter", slug);
+  const item = await loadArticleBySlug(slug);
   if (!item) return c.json({ error: "Not found" }, 404);
   return c.json({ item });
 });
 
 // Profile content
 app.get("/api/profile", async (c) => {
-  const file = Bun.file(join(CONTENT_DIR, "profile.md"));
+  const file = Bun.file(join(import.meta.dir, "content", "profile.md"));
   if (!(await file.exists())) return c.json({ markdown: "" });
   const markdown = await file.text();
   return c.json({ markdown });

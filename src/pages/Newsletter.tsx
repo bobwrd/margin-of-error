@@ -18,9 +18,9 @@ export default function Newsletter() {
   return (
     <Layout>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Newsletter</h1>
+        <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Short-form</h1>
         <p className="text-sm text-muted-foreground">
-          Short-form writing on economics, law, and policy. Published irregularly.
+          Quick takes and observations — under 500 words.
         </p>
       </div>
 
@@ -32,7 +32,7 @@ export default function Newsletter() {
         <div className="py-12 text-center text-sm text-muted-foreground">Loading…</div>
       ) : issues.length === 0 ? (
         <div className="py-12 text-center text-sm text-muted-foreground">
-          First issue coming soon.
+          Nothing published yet.
         </div>
       ) : (
         <div>

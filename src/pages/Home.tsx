@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import ContentCard from "@/components/ContentCard";
 import NewsletterSignup from "@/components/NewsletterSignup";
-import { getFeed, type ContentMeta } from "@/lib/api";
+import { getAllContent, type ContentMeta } from "@/lib/api";
 import { siteConfig } from "@/config/site";
 
 type Filter = "all" | "article" | "newsletter";
@@ -13,13 +13,13 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getFeed().then((items) => {
+    getAllContent().then((items) => {
       setFeed(items);
       setLoading(false);
     });
   }, []);
 
-  const filtered = filter === "all" ? feed : feed.filter((i) => i.type === filter);
+  const filtered = filter === "all" ? feed : feed.filter((i) => i.form === filter);
 
   return (
     <Layout>
@@ -45,7 +45,7 @@ export default function Home() {
                 : "border-border text-muted-foreground hover:border-foreground/50 hover:text-foreground"
             }`}
           >
-            {f === "all" ? "All" : f === "article" ? "Articles" : "Newsletter"}
+            {f === "all" ? "All" : f === "article" ? "Long-form" : "Short-form"}
           </button>
         ))}
       </div>
@@ -59,7 +59,7 @@ export default function Home() {
       ) : (
         <div>
           {filtered.map((item) => (
-            <ContentCard key={`${item.type}:${item.slug}`} item={item} />
+            <ContentCard key={`${item.form}:${item.slug}`} item={item} />
           ))}
         </div>
       )}

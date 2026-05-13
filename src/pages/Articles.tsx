@@ -18,8 +18,8 @@ export default function Articles() {
   return (
     <Layout>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Articles</h1>
-        <p className="text-sm text-muted-foreground">Essays and analysis.</p>
+        <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Long-form</h1>
+        <p className="text-sm text-muted-foreground">Essays and analysis — 1,000+ words.</p>
       </div>
 
       {loading ? (

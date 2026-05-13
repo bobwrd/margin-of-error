@@ -7,8 +7,8 @@ export const siteConfig = {
   url: "https://arshade.zo.space",
   navItems: [
     { label: "Home", href: "/" },
-    { label: "Articles", href: "/articles" },
-    { label: "Newsletter", href: "/newsletter" },
+    { label: "Long-form", href: "/articles" },
+    { label: "Short-form", href: "/newsletter" },
     { label: "Profile", href: "/profile" },
     { label: "Contact", href: "/contact" },
     // To add a new nav item, append an object here:

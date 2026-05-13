@@ -5,19 +5,19 @@ import Layout from "@/components/Layout";
 import LikeButton from "@/components/LikeButton";
 import AuthorBox from "@/components/AuthorBox";
 import NewsletterSignup from "@/components/NewsletterSignup";
-import { getArticle, type ContentItem } from "@/lib/api";
+import { getContentBySlug, type ContentItem } from "@/lib/api";
 
 export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>();
-  const [article, setArticle] = useState<ContentItem | null>(null);
+  const [item, setItem] = useState<ContentItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
-    getArticle(slug).then((item) => {
-      if (!item) setNotFound(true);
-      else setArticle(item);
+    getContentBySlug(slug).then((result) => {
+      if (!result) setNotFound(true);
+      else setItem(result);
       setLoading(false);
     });
   }, [slug]);
@@ -30,47 +30,64 @@ export default function ArticlePage() {
     );
   }
 
-  if (notFound || !article) {
+  if (notFound || !item) {
     return (
       <Layout>
         <div className="py-12 text-center">
-          <p className="text-muted-foreground mb-4">Article not found.</p>
-          <Link to="/articles" className="text-sm underline underline-offset-2">
-            ← Back to Articles
+          <p className="text-muted-foreground mb-4">Not found.</p>
+          <Link to="/" className="text-sm underline underline-offset-2">
+            ← Home
           </Link>
         </div>
       </Layout>
     );
   }
 
-  const htmlBody = marked.parse(article.body) as string;
+  const htmlBody = marked.parse(item.body) as string;
+  const backLabel = item.form === "article" ? "Long-form" : "Short-form";
+  const backHref = item.form === "article" ? "/articles" : "/newsletter";
 
   return (
     <Layout>
       <div className="mb-2">
         <Link
-          to="/articles"
+          to={backHref}
           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          ← Articles
+          ← {backLabel}
         </Link>
       </div>
 
-      <header className="mb-8 pt-2">
+      <div className="mb-3 pt-2">
+        <span
+          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+            item.form === "newsletter"
+              ? "bg-primary/10 text-primary"
+              : "bg-secondary text-muted-foreground"
+          }`}
+        >
+          {item.form === "newsletter" ? "Short-form" : "Long-form"}
+        </span>
+        <span className="text-xs text-muted-foreground ml-2">
+          {item.wordCount.toLocaleString()} words
+        </span>
+      </div>
+
+      <header className="mb-8">
         <h1 className="text-2xl font-bold text-foreground tracking-tight leading-snug mb-3">
-          {article.title}
+          {item.title}
         </h1>
         <div className="flex items-center gap-3 flex-wrap">
-          {article.date && (
+          {item.date && (
             <time className="text-sm text-muted-foreground">
-              {new Date(article.date).toLocaleDateString("en-SG", {
+              {new Date(item.date).toLocaleDateString("en-SG", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
             </time>
           )}
-          {article.tags.map((tag) => (
+          {item.tags.map((tag) => (
             <span
               key={tag}
               className="text-xs bg-secondary text-muted-foreground px-2 py-0.5 rounded-full"
@@ -87,7 +104,7 @@ export default function ArticlePage() {
       />
 
       <div className="mt-8 flex items-center gap-4">
-        <LikeButton contentType="article" slug={article.slug} />
+        <LikeButton contentType={item.form} slug={item.slug} />
       </div>
 
       <AuthorBox />
