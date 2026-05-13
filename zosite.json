@@ -1,0 +1,15 @@
+{
+  "name": "margin-of-error",
+  "local_port": 57493,
+  "entrypoint": "bun run dev",
+  "publish": {
+    "label": "margin-of-error",
+    "type": "http",
+    "entrypoint": "bun run prod",
+    "published_port": 58136,
+    "env": {
+      "NODE_ENV": "production",
+      "ZO_CLIENT_IDENTITY_TOKEN": "none"
+    }
+  }
+}
