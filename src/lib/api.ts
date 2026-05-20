@@ -68,15 +68,3 @@ export async function submitContact(payload: {
   });
   return res.json();
 }
-
-export async function subscribeNewsletter(payload: {
-  email: string;
-  name?: string;
-}): Promise<{ success?: boolean; error?: string }> {
-  const res = await fetch("/api/newsletter/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify(payload),
-  });
-  return res.json();
-}

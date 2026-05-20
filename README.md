@@ -2,7 +2,55 @@ This file provides guidance when working with code in this repository. The READM
 
 # Project Notes
 
-**Margin of Error** — a personal writing hub for articles, newsletter issues, and a public profile. Built as a Zo Site (Bun + Hono backend, React + Vite frontend).
+**Margin of Error** — a personal writing hub for articles, newsletter issues, a public profile, and **The Verdict** (AI policy intelligence database). Built as a Zo Site (Bun + Hono backend, React + Vite frontend).
+
+## The Verdict
+
+A structured database of AI-related legal and regulatory events at `/verdict`. Has its own visual identity (deep navy + cyan accent, independent dark/light toggle stored in `localStorage["verdict-theme"]`).
+
+### Content
+- Cases: `content/verdict/verdict_cases.json` — array of VerdictCase objects
+- Setup notes: `content/verdict/setup_notes.txt`
+- Weekly radar: `content/verdict/weekly_radar/verdict_radar_YYYY-MM-DD.md` (written by automation)
+
+### Score computation
+Run after adding/publishing a case:
+```bash
+bun scripts/compute_verdict_scores.ts
+```
+Recomputes all published cases. Drafts are excluded from normalisation.
+
+### Newsletter export
+```bash
+bash scripts/export_verdict_newsletter.sh
+```
+Outputs `content/verdict/newsletter_draft.txt` — last 30 days of published cases.
+
+### Submit page password
+Set `VERDICT_PASSWORD` in `zosite.json` → `env` (dev) and `publish.env` (production). Currently set to `CHANGE_ME` — replace with your actual password. The submit form at `/verdict/submit` sends this in the `x-verdict-password` header.
+
+### API routes (add to server.ts, before static routing)
+- `GET /api/verdict/cases` — all published cases
+- `GET /api/verdict/cases/:id` — single case
+- `POST /api/verdict/submit` — submit draft (requires `x-verdict-password` header)
+
+### Pages
+- `/verdict` — index with timeline, filters, case cards
+- `/verdict/:id` — case detail with radar chart, DP/DR dimensions, uncertainty band
+- `/verdict/charts` — scatter (DP vs DR) and bar (ranked EDI) charts
+- `/verdict/about` — full methodology
+- `/verdict/submit` — password-protected submission form
+
+### Weekly automation
+Every Monday 8:00 AM SGT — searches for AI governance events, saves to `content/verdict/weekly_radar/`, emails to arinjain.mail@gmail.com. Automation ID: `f6c26062-f40e-4f9a-b7aa-ad1743e63344`.
+
+### Visual identity
+- Background: `#0a0e1a` (dark) / `#f8fafc` (light)
+- Accent: `#22d3ee` (cyan)
+- Tier colours: Seismic=red, Major=orange, Moderate=yellow, Marginal=slate
+- Verdict section CSS is scoped under `.verdict-section` and `.verdict-section.verdict-light` in `src/styles.css`
+
+---
 
 ## Content Tasks
 

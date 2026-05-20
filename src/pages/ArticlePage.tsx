@@ -5,7 +5,14 @@ import Layout from "@/components/Layout";
 import LikeButton from "@/components/LikeButton";
 import AuthorBox from "@/components/AuthorBox";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import ReadingPreferences from "@/components/ReadingPreferences";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { getContentBySlug, type ContentItem } from "@/lib/api";
+
+function readTime(wordCount: number): string {
+  const mins = Math.max(1, Math.ceil(wordCount / 200));
+  return `${mins} min read`;
+}
 
 export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>();
@@ -25,7 +32,7 @@ export default function ArticlePage() {
   if (loading) {
     return (
       <Layout>
-        <div className="py-12 text-center text-sm text-muted-foreground">Loading…</div>
+        <div className="py-16 text-center text-sm text-muted-foreground">Loading…</div>
       </Layout>
     );
   }
@@ -33,7 +40,7 @@ export default function ArticlePage() {
   if (notFound || !item) {
     return (
       <Layout>
-        <div className="py-12 text-center">
+        <div className="py-16 text-center">
           <p className="text-muted-foreground mb-4">Not found.</p>
           <Link to="/" className="text-sm underline underline-offset-2">
             ← Home
@@ -49,35 +56,37 @@ export default function ArticlePage() {
 
   return (
     <Layout>
-      <div className="mb-2">
+      <ReadingProgressBar />
+
+      <div className="mb-6">
         <Link
           to={backHref}
-          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="text-sm text-muted-foreground hover:text-warm-accent transition-colors duration-150"
         >
           ← {backLabel}
         </Link>
       </div>
 
-      <div className="mb-3 pt-2">
-        <span
-          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-            item.form === "newsletter"
-              ? "bg-primary/10 text-primary"
-              : "bg-secondary text-muted-foreground"
-          }`}
-        >
-          {item.form === "newsletter" ? "Short-form" : "Long-form"}
-        </span>
-        <span className="text-xs text-muted-foreground ml-2">
-          {item.wordCount.toLocaleString()} words
-        </span>
-      </div>
+      {/* Article header */}
+      <header className="mb-10 pb-8 border-b border-border">
+        <div className="flex items-center gap-2.5 mb-4">
+          <span
+            className={`text-xs px-2.5 py-0.5 rounded-full font-medium tracking-wide ${
+              item.form === "newsletter"
+                ? "bg-warm-accent-muted text-warm-accent"
+                : "bg-secondary text-muted-foreground"
+            }`}
+          >
+            {item.form === "newsletter" ? "Short-form" : "Long-form"}
+          </span>
+          <span className="text-xs text-muted-foreground/70">{readTime(item.wordCount)}</span>
+        </div>
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground tracking-tight leading-snug mb-3">
+        <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight leading-snug mb-4">
           {item.title}
         </h1>
-        <div className="flex items-center gap-3 flex-wrap">
+
+        <div className="flex items-center gap-3 flex-wrap mb-4">
           {item.date && (
             <time className="text-sm text-muted-foreground">
               {new Date(item.date).toLocaleDateString("en-SG", {
@@ -90,27 +99,44 @@ export default function ArticlePage() {
           {item.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-secondary text-muted-foreground px-2 py-0.5 rounded-full"
+              className="text-xs bg-secondary text-muted-foreground px-2.5 py-0.5 rounded-full"
             >
               {tag}
             </span>
           ))}
         </div>
+
+        <ReadingPreferences />
       </header>
 
+      {/* Article body */}
       <div
-        className="prose prose-neutral dark:prose-invert max-w-none prose-p:text-base prose-p:leading-7 prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-foreground prose-a:underline-offset-2"
+        className="prose prose-neutral dark:prose-invert max-w-none
+          prose-p:text-[1.0625rem] prose-p:leading-[1.85] prose-p:mb-5
+          prose-headings:font-semibold prose-headings:tracking-tight prose-headings:mt-10 prose-headings:mb-4
+          prose-h2:text-xl prose-h3:text-lg
+          prose-a:text-warm-accent prose-a:underline-offset-2 prose-a:no-underline hover:prose-a:underline
+          prose-blockquote:border-l-warm-accent prose-blockquote:border-l-2 prose-blockquote:text-muted-foreground prose-blockquote:pl-4
+          prose-code:text-warm-accent prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal
+          prose-pre:bg-secondary prose-pre:border prose-pre:border-border
+          prose-img:rounded-lg prose-img:border prose-img:border-border
+          prose-hr:border-border"
         dangerouslySetInnerHTML={{ __html: htmlBody }}
       />
 
-      <div className="mt-8 flex items-center gap-4">
+      <div className="mt-10 pt-8 border-t border-border flex items-center gap-4">
         <LikeButton contentType={item.form} slug={item.slug} />
       </div>
 
       <AuthorBox />
 
       <div className="mt-10">
-        <NewsletterSignup compact />
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="md:w-80 shrink-0">
+            <NewsletterSignup compact />
+          </div>
+          <div className="flex-1" />
+        </div>
       </div>
     </Layout>
   );

@@ -1,0 +1,40 @@
+[
+  {
+    "case_id": 1,
+    "title": "EU AI Act — Full Entry into Force",
+    "date": "2024-08-01",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The world's first comprehensive AI regulation entered into force, establishing a risk-tiered framework that subjects high-risk AI systems to mandatory conformity assessments, imposes transparency obligations on general-purpose AI models, and prohibits specific AI applications outright. The Act applies to any provider or deployer operating within the EU market, regardless of where they are incorporated.",
+    "legal_mechanism": "Regulation (EU) 2024/1689 under Article 114 TFEU (internal market harmonisation). Binding directly on all 27 EU member states without transposition. Phased application: prohibited practices from February 2025; GPAI model obligations from August 2025; high-risk system obligations from August 2026. Enforcement via national market surveillance authorities with fines up to €35M or 7% of global annual turnover.",
+    "economic_consequence": "Compliance costs estimated at €400,000–€1.2M per high-risk AI system for initial conformity assessment, plus ongoing audit costs. The EU AI Office projects a net GDP impact of +€271B over five years through productivity gains, offset by near-term compliance drag on EU-headquartered AI firms. Global companies face a binary choice: segment EU AI deployments or standardise globally on EU requirements (the Brussels Effect). A new AI compliance industry — auditors, notified bodies, legal advisory — is already forming, with projected market size of €2–4B by 2027.",
+    "scores": {
+      "LI": 9,
+      "SE": 8,
+      "ER": 9,
+      "SF": 9,
+      "PS": 8
+    },
+    "computed": {
+      "DP": 8.55,
+      "DR": 8.75,
+      "ABS": 8.650,
+      "EDI": 5.0,
+      "uncertainty_band": [5.0, 5.0],
+      "tier": "Moderate",
+      "scenario_scores": {
+        "conservative": 5.0,
+        "structural": 5.0,
+        "balanced": 5.0
+      }
+    },
+    "sources": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401689",
+      "https://www.europarl.europa.eu/news/en/press-room/20240308IPR19015/artificial-intelligence-act-meps-adopt-landmark-law",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://artificialintelligenceact.eu/the-act/"
+    ],
+    "contributor": "arshade",
+    "status": "published"
+  }
+]

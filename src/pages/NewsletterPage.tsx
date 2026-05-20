@@ -99,7 +99,12 @@ export default function NewsletterPage() {
       <AuthorBox />
 
       <div className="mt-10">
-        <NewsletterSignup compact />
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="md:w-80 shrink-0">
+            <NewsletterSignup compact />
+          </div>
+          <div className="flex-1" />
+        </div>
       </div>
     </Layout>
   );

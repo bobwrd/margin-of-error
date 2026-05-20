@@ -11,7 +11,7 @@ export const siteConfig = {
     { label: "Short-form", href: "/newsletter" },
     { label: "Profile", href: "/profile" },
     { label: "Contact", href: "/contact" },
-    // To add a new nav item, append an object here:
-    // { label: "Tools", href: "/tools" },
+    { label: "Tools", href: "/tools" },
+    { label: "The Verdict", href: "/verdict" },
   ],
 };

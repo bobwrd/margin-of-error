@@ -1,0 +1,93 @@
+THE VERDICT — SETUP NOTES
+EU AI Act Case (case_id: 1)
+Generated: 2024-08 / indexed 2026-05-21
+==================================================
+
+CASE SELECTION RATIONALE
+The EU AI Act is the obvious seed case for The Verdict. It is the first binding, comprehensive AI regulation globally, which makes it a natural anchor for a database tracking AI-related legal and regulatory events. Any future case will be scored relative to this baseline once there are enough cases to produce a meaningful z-score.
+
+RAW SCORES (1–10 scale)
+
+LI = 9 (Legal Instrument)
+  - First comprehensive AI regulation globally; binding directly in all 27 EU member states without national transposition
+  - Extraterritorial reach via market access mechanism (any provider/deployer targeting EU users)
+  - Strong enforcement: fines up to €35M or 7% global turnover
+  - Deducted 1 from 10 for: phased rollout (full high-risk obligations not until 2026), compliance gaps expected in early enforcement, and limits on the EU's ability to enforce against non-EU entities
+
+SE = 8 (Societal Effect)
+  - Touches healthcare AI (MDR-adjacent high-risk classification), hiring AI, credit scoring, judicial/law enforcement AI, biometric systems
+  - Prohibition on certain biometric surveillance has tangible civil liberties effect
+  - Deducted 2 from 10 for: most consumer AI (chatbots, recommendation systems) sits in lower-risk tiers with lighter obligations; long phase-in means immediate societal effect is limited
+
+ER = 9 (Economic Reach)
+  - Every company globally that deploys AI to EU users is in scope — this is not a domestic regulation
+  - Creates an AI compliance industry; forces capital allocation to conformity infrastructure
+  - Projected €271B GDP impact over 5 years (EU AI Office estimate)
+  - Deducted 1 from 10 for: high-risk category is defined narrowly enough that many AI deployments fall into lower-risk or exempt tiers, limiting direct compliance burden for most companies
+
+SF = 9 (Structural Force)
+  - The Brussels Effect is real: US hyperscalers already adjusting global AI deployment practices to meet EU requirements
+  - Sets the template for AI legislation in UK, Canada, Singapore, Brazil (all citing or benchmarking against the Act)
+  - Reshapes AI development incentives: risk-by-design, documentation-first engineering
+  - Deducted 1 from 10 for: US and China are not adopting equivalent frameworks, which limits the global structural shift
+
+PS = 8 (Political Salience)
+  - Three-plus years of contentious inter-institutional negotiations; ChatGPT's emergence mid-process forced major rewrites of GPAI provisions
+  - High media coverage in tech, legal, and mainstream press
+  - Contentious trilogues on biometric surveillance and law enforcement carveouts
+  - Deducted 2 from 10 for: passed without the same public visibility as GDPR; most affected actors are businesses rather than citizens, dampening civic salience
+
+COMPUTED VALUES
+
+DP = (LI × 0.55) + (SE × 0.45)
+   = (9 × 0.55) + (8 × 0.45)
+   = 4.95 + 3.60
+   = 8.55
+
+DR = (ER × 0.40) + (SF × 0.35) + (PS × 0.25)
+   = (9 × 0.40) + (9 × 0.35) + (8 × 0.25)
+   = 3.60 + 3.15 + 2.00
+   = 8.75
+
+ABS = sqrt(DP × DR)
+    = sqrt(8.55 × 8.75)
+    = sqrt(74.8125)
+    ≈ 8.650
+
+EDI NORMALISATION NOTE
+With only one published case, z-score normalisation collapses: mean_ABS = 8.650, stddev_ABS = 0.
+EDI = 5 + 2 × ((8.650 - 8.650) / 0) → undefined → default 5.0
+
+This is expected and correct. The EDI of 5.0 does not mean this case is "average"; it means there is no reference distribution yet. As more cases are added, the EU AI Act's EDI will shift to reflect its position in the actual distribution of cases. The score is explicitly provisional.
+
+SCENARIO ANALYSIS (all collapse to 5.0 with one case)
+
+Conservative (ER weight ×2, SF halved in DR):
+  DR_c = (9 × 0.80) + (9 × 0.175) + (8 × 0.25) = 7.20 + 1.575 + 2.00 = 10.775
+  ABS_c = sqrt(8.55 × 10.775) ≈ 9.598
+  EDI_c = 5.0 (no reference distribution)
+
+Structural (LI and SE weights ×2 in DP, PS halved in DR):
+  DP_s = (9 × 1.10) + (8 × 0.90) = 9.90 + 7.20 = 17.10
+  DR_s = (9 × 0.40) + (9 × 0.35) + (8 × 0.125) = 3.60 + 3.15 + 1.00 = 7.75
+  ABS_s = sqrt(17.10 × 7.75) ≈ 11.512
+  EDI_s = 5.0 (no reference distribution)
+
+Balanced (equal 0.20 weight across all five factors):
+  DP_b = (9 × 0.20) + (8 × 0.20) = 3.40
+  DR_b = (9 × 0.20) + (9 × 0.20) + (8 × 0.20) = 5.20
+  ABS_b = sqrt(3.40 × 5.20) ≈ 4.205
+  EDI_b = 5.0 (no reference distribution)
+
+The scenario ABS values diverge substantially (4.205 to 11.512), which captures real uncertainty about weighting. This range will produce meaningful uncertainty bands once the database has ≥3 cases.
+
+TIER ASSIGNMENT
+EDI = 5.0 → "Moderate" (4.0–5.9)
+This is the provisional tier only. Based on the raw ABS of 8.650, the actual tier — once there is a meaningful reference distribution — will likely be "Seismic" or "Major," reflecting where this regulation sits relative to other AI governance events.
+
+SOURCES USED
+1. Official text: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401689
+2. EP press release: https://www.europarl.europa.eu/news/en/press-room/20240308IPR19015/artificial-intelligence-act-meps-adopt-landmark-law
+3. EC digital strategy page: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai
+4. AI Act tracker: https://artificialintelligenceact.eu/the-act/
+==================================================

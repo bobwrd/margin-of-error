@@ -40,14 +40,6 @@ function getDb(): Database {
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     )
   `);
-  db.run(`
-    CREATE TABLE IF NOT EXISTS newsletter_signups (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      email TEXT NOT NULL UNIQUE,
-      name TEXT,
-      created_at TEXT NOT NULL DEFAULT (datetime('now'))
-    )
-  `);
   return db;
 }
 
@@ -239,25 +231,60 @@ app.post("/api/contact", async (c) => {
   return c.json({ success: true });
 });
 
-// Newsletter signup
+// Newsletter signup — no-op since we now use Rumicat embed
 app.post("/api/newsletter/signup", async (c) => {
-  const body = await c.req.json<{ email: string; name?: string }>();
-  const { email, name } = body;
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return c.json({ error: "A valid email is required." }, 400);
+  return c.json({ success: true, contactCreated: false });
+});
+
+// ---------------------------------------------------------------------------
+// Verdict API routes
+// ---------------------------------------------------------------------------
+const VERDICT_CASES_PATH = join(import.meta.dir, "content", "verdict", "verdict_cases.json");
+
+async function loadVerdictCases() {
+  const file = Bun.file(VERDICT_CASES_PATH);
+  if (!(await file.exists())) return [];
+  return (await file.json()) as Record<string, unknown>[];
+}
+
+// All published cases
+app.get("/api/verdict/cases", async (c) => {
+  const cases = await loadVerdictCases();
+  return c.json({ cases: cases.filter((c: Record<string, unknown>) => c.status === "published") });
+});
+
+// Single case by id
+app.get("/api/verdict/cases/:id", async (c) => {
+  const id = parseInt(c.req.param("id"), 10);
+  const cases = await loadVerdictCases();
+  const item = cases.find((c: Record<string, unknown>) => c.case_id === id);
+  if (!item) return c.json({ error: "Not found" }, 404);
+  return c.json({ case: item });
+});
+
+// Submit a new draft case (password protected)
+app.post("/api/verdict/submit", async (c) => {
+  const VERDICT_PASSWORD = process.env.VERDICT_PASSWORD;
+  const authHeader = c.req.header("x-verdict-password");
+  if (!VERDICT_PASSWORD || authHeader !== VERDICT_PASSWORD) {
+    return c.json({ error: "Unauthorized" }, 401);
   }
-  const db = getDb();
-  try {
-    db.run("INSERT INTO newsletter_signups (email, name) VALUES (?, ?)", [
-      email.trim(),
-      name?.trim() ?? null,
-    ]);
-    db.close();
-    return c.json({ success: true });
-  } catch {
-    db.close();
-    return c.json({ error: "Already subscribed." }, 409);
-  }
+  const body = await c.req.json<Record<string, unknown>>();
+  const cases = await loadVerdictCases();
+  const nextId = cases.reduce((max: number, c: Record<string, unknown>) =>
+    Math.max(max, (c.case_id as number) || 0), 0) + 1;
+  const newCase = {
+    ...body,
+    case_id: nextId,
+    status: "draft",
+    computed: { DP: 0, DR: 0, ABS: 0, EDI: 0, uncertainty_band: [0, 0], tier: "", scenario_scores: { conservative: 0, structural: 0, balanced: 0 } },
+  };
+  cases.push(newCase);
+  await Bun.write(VERDICT_CASES_PATH, JSON.stringify(cases, null, 2));
+  // Recompute scores (only affects published cases)
+  const { execSync } = await import("node:child_process");
+  try { execSync(`bun ${join(import.meta.dir, "scripts/compute_verdict_scores.ts")}`); } catch {}
+  return c.json({ success: true, case_id: nextId });
 });
 
 // ---------------------------------------------------------------------------
