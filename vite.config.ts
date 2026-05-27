@@ -15,6 +15,9 @@ export default defineConfig({
     strictPort: true,
     hmr: false,
   },
+  optimizeDeps: {
+    include: ["react-globe.gl", "three", "three-stdlib"],
+  },
   build: {
     outDir: "dist",
     emptyOutDir: true,

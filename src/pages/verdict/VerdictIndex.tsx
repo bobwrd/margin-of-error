@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import {
   ScatterChart, Scatter, XAxis, YAxis, Tooltip,
@@ -6,7 +6,9 @@ import {
 } from "recharts";
 import { useVerdictTheme } from "./VerdictLayout";
 import { fetchCases, TIER_COLORS, TIER_BG, type VerdictCase } from "./types";
-import VerdictGlobe from "./VerdictGlobe";
+const GlobeComponent = lazy(() =>
+    import(/* webpackChunkName: "verdict-globe" */ "./VerdictGlobe").then((m) => ({ default: m.default }))
+  );
 
 function TierBadge({ tier }: { tier: string }) {
   return (
@@ -251,7 +253,7 @@ export default function VerdictIndex() {
         </div>
       )}
 
-      {/* Globe */}
+      {/* Globe — lazy-loaded to keep initial bundle small */}
       {!loading && cases.length > 0 && (
         <div
           className="rounded-lg border p-4 mb-8"
@@ -260,7 +262,15 @@ export default function VerdictIndex() {
           <div className="text-xs font-mono mb-3" style={{ color: "var(--verdict-muted)" }}>
             GLOBAL DISTRIBUTION — click a point to open that verdict
           </div>
-          <VerdictGlobe cases={filtered} />
+          <div style={{ height: 320 }}>
+            <Suspense fallback={
+              <div className="h-full flex items-center justify-center rounded" style={{ backgroundColor: "var(--verdict-surface-2)", color: "var(--verdict-muted)" }}>
+                <span className="text-xs font-mono">Loading globe…</span>
+              </div>
+            }>
+              <GlobeComponent cases={filtered} />
+            </Suspense>
+          </div>
         </div>
       )}
 
