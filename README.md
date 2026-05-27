@@ -35,7 +35,7 @@ Set `VERDICT_PASSWORD` in `zosite.json` → `env` (dev) and `publish.env` (produ
 - `POST /api/verdict/submit` — submit draft (requires `x-verdict-password` header)
 
 ### Pages
-- `/verdict` — index with timeline, filters, case cards
+- `/verdict` — index with interactive rotating globe (globe.gl), timeline, filters, case cards
 - `/verdict/:id` — case detail with radar chart, DP/DR dimensions, uncertainty band
 - `/verdict/charts` — scatter (DP vs DR) and bar (ranked EDI) charts
 - `/verdict/about` — full methodology

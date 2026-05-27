@@ -1,0 +1,56 @@
+# The Verdict — Setup & Methodology
+
+## EDI Scoring Formula
+
+Score 0–10 on five factors, then combine:
+
+| Factor | Description | Range |
+|--------|-------------|-------|
+| LI — Legislative Impact | EU=10, US federal=7, state/agency=5, guidance/briefing=3 | 0–10 |
+| SE — Sectoral Effect | Horizontal=10, multi-sector=7, sector-specific=4, narrow=2 | 0–10 |
+| ER — Enforcement Risk | Hard sanctions=10, compliance obligations=7, guidance=4, aspirational=2 | 0–10 |
+| SF — Sanction Force | Criminal/criminal-adjacent=10, heavy fines=8, civil/administrative=6, light fines=3 | 0–10 |
+| PS — Policy Synergy | Aligned with international frameworks=10, EU-specific=8, regional=5, single-country=3 | 0–10 |
+
+**Raw score** = (LI + SE + ER + SF + PS) / 5
+**Final EDI** = raw × (100 / 22) → rescaled to 0–100
+
+**DP (Disruption Potential)** = ((LI × 0.30) + (SF × 0.35) + (PS × 0.35)) × (100 / 10)
+**DR (Disturbance Reach)** = ((SE × 0.40) + (ER × 0.40) + (PS × 0.20)) × (100 / 10)
+
+**Uncertainty Band**
+- 0–3.9: Marginal, Band = "Low ±6"
+- 4.0–5.9: Moderate, Band = "Medium ±12"
+- 6.0–7.9: Significant, Band = "High ±18"
+- 8.0+: Major, Band = "Very High ±24"
+
+## Tier Classification
+
+Cases are classified by EDI score:
+- **Major** — EDI 8.0+
+- **Significant** — EDI 6.0–7.9
+- **Moderate** — EDI 4.0–5.9
+- **Marginal** — EDI 1.0–3.9
+
+## Source Verification Requirement (MANDATORY)
+
+For EVERY case, verify facts across 5–6 credible sources:
+1. **EUR-Lex / Official Journal** — legal ground truth
+2. **European Commission / gov agency explainer** — official narrative
+3. **Parliament / CRS briefings** — political salience and context
+4. **EU AI Office / DPA / regulator guidance** — enforcement texture
+5. **1–2 analytical sources** (FLI, Bruegel, CEPS, OECD, law reviews) — quant estimates, flag as projections
+
+Pair Tier 1 + Tier 2 always. Layer 3–5. Never cite only one tier.
+
+## Newsletter Export
+
+Run: `bash scripts/export_verdict_newsletter.sh`
+
+## Add a Case
+
+1. Research across all 5 source tiers
+2. Score using EDI formula above
+3. Add to `data/verdict_cases.json`
+4. If a case is Seismic or Major tier, add to featured feed in `Home.tsx`
+5. Verify in browser at `/verdict`

@@ -6,6 +6,7 @@ import {
 } from "recharts";
 import { useVerdictTheme } from "./VerdictLayout";
 import { fetchCases, TIER_COLORS, TIER_BG, type VerdictCase } from "./types";
+import VerdictGlobe from "./VerdictGlobe";
 
 function TierBadge({ tier }: { tier: string }) {
   return (
@@ -247,6 +248,19 @@ export default function VerdictIndex() {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Globe */}
+      {!loading && cases.length > 0 && (
+        <div
+          className="rounded-lg border p-4 mb-8"
+          style={{ borderColor: "var(--verdict-border)", backgroundColor: "var(--verdict-surface)" }}
+        >
+          <div className="text-xs font-mono mb-3" style={{ color: "var(--verdict-muted)" }}>
+            GLOBAL DISTRIBUTION — click a point to open that verdict
+          </div>
+          <VerdictGlobe cases={filtered} />
         </div>
       )}
 
