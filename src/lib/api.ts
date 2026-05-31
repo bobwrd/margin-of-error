@@ -4,9 +4,9 @@ export interface ContentMeta {
   date: string;
   tags: string[];
   summary: string;
-  form: "article" | "newsletter"; // article >= 500 words, newsletter < 500 words
+  form: "article" | "newsletter";
   wordCount: number;
-  pdf?: string; // path to embedded PDF for long-form articles
+  verdictId?: number;
 }
 
 export interface ContentItem extends ContentMeta {

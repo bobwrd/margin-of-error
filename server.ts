@@ -54,6 +54,7 @@ interface ContentMeta {
   summary: string;
   form: "article" | "newsletter";
   wordCount: number;
+  verdictId?: number;
   pdf?: string;
 }
 
@@ -116,6 +117,7 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
     wordCount,
     body,
     pdf: data.pdf || undefined,
+    verdictId: data.verdictId ? parseInt(String(data.verdictId), 10) : undefined,
   };
 }
 
