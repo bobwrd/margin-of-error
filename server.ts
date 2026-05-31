@@ -54,6 +54,7 @@ interface ContentMeta {
   summary: string;
   form: "article" | "newsletter";
   wordCount: number;
+  pdf?: string;
 }
 
 interface ContentItem extends ContentMeta {
@@ -114,6 +115,7 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
     form,
     wordCount,
     body,
+    pdf: data.pdf || undefined,
   };
 }
 

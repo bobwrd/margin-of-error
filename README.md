@@ -42,7 +42,7 @@ Set `VERDICT_PASSWORD` in `zosite.json` → `env` (dev) and `publish.env` (produ
 - `/verdict/submit` — password-protected submission form
 
 ### Weekly automation
-Every Monday 8:00 AM SGT — searches for AI governance events, saves to `content/verdict/weekly_radar/`, emails to arinjain.mail@gmail.com. Automation ID: `f6c26062-f40e-4f9a-b7aa-ad1743e63344`.
+Every Monday 8:00 AM SGT — searches for AI governance events, saves to `content/verdict/weekly_radar/`, emails to arinjain.mail@gmail.com, and creates a cross-post article in `content/articles/`. Automation ID: `f6c26062-f40e-4f9a-b7aa-ad1743e63344`.
 
 ### Visual identity
 - Background: `#0a0e1a` (dark) / `#f8fafc` (light)

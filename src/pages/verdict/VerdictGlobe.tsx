@@ -84,55 +84,56 @@ export default function VerdictGlobe({ cases }: VerdictGlobeProps) {
         style={{
           borderColor: "var(--verdict-border)",
           backgroundColor: "var(--verdict-surface)",
-          height: 440,
+          height: 420,
+          minHeight: 420,
         }}
       >
+        <div style={{ height: 420, position: "relative" }}>
         {!loaded && (
           <div
             className="absolute inset-0 flex items-center justify-center text-xs font-mono z-10"
-            style={{ color: "var(--verdict-muted)" }}
+            style={{ color: "var(--verdict-muted)", backgroundColor: "var(--verdict-surface)" }}
           >
             Initialising globe…
           </div>
         )}
 
+        {/* @ts-ignore */}
         <Globe
           ref={globeRef}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+          topojsonUrl="//unpkg.com/world-atlas@2/countries-110m.json"
+          atmosphereColor="#22d3ee"
+          atmosphereOpacity={0.18}
           globeColor={() => isDark ? "#0d1520" : "#c8e4ef"}
-          bgColor={() => "transparent"}
+          bgColor="transparent"
           pointsData={pointData}
           pointLat="lat"
           pointLng="lng"
           pointColor={makePointColor}
-          pointRadius={0.5}
-          pointAltitude={0.015}
+          pointRadius={0.55}
+          pointAltitude={0.02}
           pointLabel={makeTooltip}
           onPointClick={handleClick}
-          hexBinColor={() => "rgba(34,211,238,0.4)"}
-          hexBinHeight={0.25}
-          hexBinRadius={2}
-          hexBinResolution={3}
-          hexTopColor={() => "rgba(34,211,238,0.5)"}
-          hexSideColor={() => "rgba(34,211,238,0.25)"}
-          hexGlobePolygonSide={0.5}
           onGlobeReady={() => setLoaded(true)}
           enablePointerInteraction={true}
         />
+        </div>
 
         {/* Bottom fade */}
         <div
-          className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
+          className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
           style={{
             background: "linear-gradient(to top, var(--verdict-surface) 0%, transparent 100%)",
-            opacity: 0.7,
+            opacity: 0.6,
           }}
         />
         {/* Top fade */}
         <div
-          className="absolute inset-x-0 top-0 h-12 pointer-events-none"
+          className="absolute inset-x-0 top-0 h-10 pointer-events-none"
           style={{
             background: "linear-gradient(to bottom, var(--verdict-surface) 0%, transparent 100%)",
-            opacity: 0.5,
+            opacity: 0.4,
           }}
         />
       </div>

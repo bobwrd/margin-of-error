@@ -6,6 +6,7 @@ export interface ContentMeta {
   summary: string;
   form: "article" | "newsletter"; // article >= 500 words, newsletter < 500 words
   wordCount: number;
+  pdf?: string; // path to embedded PDF for long-form articles
 }
 
 export interface ContentItem extends ContentMeta {

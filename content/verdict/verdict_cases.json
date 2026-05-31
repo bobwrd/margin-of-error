@@ -19,7 +19,7 @@
       "DP": 8.55,
       "DR": 8.75,
       "ABS": 8.65,
-      "EDI": 8.37,
+      "EDI": 8.52,
       "uncertainty_band": [
         1,
         10
@@ -60,14 +60,14 @@
       "DP": 7,
       "DR": 7.4,
       "ABS": 7.2,
-      "EDI": 5.14,
+      "EDI": 5.81,
       "uncertainty_band": [
         1,
         10
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 7.15,
+        "conservative": 7.5,
         "structural": 10,
         "balanced": 1
       }
@@ -102,14 +102,14 @@
       "DP": 7.55,
       "DR": 6.95,
       "ABS": 7.24,
-      "EDI": 5.24,
+      "EDI": 5.9,
       "uncertainty_band": [
         1,
         10
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 6.36,
+        "conservative": 6.84,
         "structural": 10,
         "balanced": 1
       }
@@ -144,15 +144,15 @@
       "DP": 6,
       "DR": 5.8,
       "ABS": 5.9,
-      "EDI": 2.25,
+      "EDI": 3.39,
       "uncertainty_band": [
         1,
-        6.66
+        7.08
       ],
       "tier": "Marginal",
       "scenario_scores": {
-        "conservative": 4.27,
-        "structural": 6.66,
+        "conservative": 5.08,
+        "structural": 7.08,
         "balanced": 1
       }
     },
@@ -186,15 +186,15 @@
       "DP": 7.45,
       "DR": 6,
       "ABS": 6.69,
-      "EDI": 4,
+      "EDI": 4.86,
       "uncertainty_band": [
         1,
-        8.8
+        8.88
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 5.59,
-        "structural": 8.8,
+        "conservative": 6.19,
+        "structural": 8.88,
         "balanced": 1
       }
     },
@@ -225,19 +225,19 @@
       "PS": 8
     },
     "computed": {
-      "DP": 4.75,
-      "DR": 6.4,
-      "ABS": 5.51,
-      "EDI": 5.2,
+      "DP": 5.25,
+      "DR": 4.65,
+      "ABS": 4.94,
+      "EDI": 1.6,
       "uncertainty_band": [
-        4.2,
-        6.2
+        1,
+        3.93
       ],
-      "tier": "Moderate",
+      "tier": "Marginal",
       "scenario_scores": {
-        "conservative": 4.3,
-        "structural": 6.5,
-        "balanced": 5.1
+        "conservative": 2.61,
+        "structural": 3.93,
+        "balanced": 1
       }
     },
     "sources": [
@@ -269,19 +269,19 @@
       "PS": 5
     },
     "computed": {
-      "DP": 6.2,
-      "DR": 6.6,
-      "ABS": 6.4,
-      "EDI": 5.0,
+      "DP": 6.55,
+      "DR": 6.9,
+      "ABS": 6.72,
+      "EDI": 4.93,
       "uncertainty_band": [
-        4.0,
-        6.0
+        1,
+        9.3
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 5.0,
-        "structural": 6.7,
-        "balanced": 4.9
+        "conservative": 6.61,
+        "structural": 9.3,
+        "balanced": 1
       }
     },
     "sources": [

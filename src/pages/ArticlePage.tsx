@@ -109,6 +109,17 @@ export default function ArticlePage() {
         <ReadingPreferences />
       </header>
 
+      {/* Embedded PDF for long-form articles */}
+      {item.pdf && (
+        <div className="mb-8 rounded-lg border border-border overflow-hidden" style={{ height: "75vh" }}>
+          <iframe
+            src={item.pdf}
+            className="w-full h-full"
+            title={`PDF: ${item.title}`}
+          />
+        </div>
+      )}
+
       {/* Article body */}
       <div
         className="prose prose-neutral dark:prose-invert max-w-none
