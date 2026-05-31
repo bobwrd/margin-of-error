@@ -55,6 +55,13 @@ interface ContentMeta {
   form: "article" | "newsletter";
   wordCount: number;
   verdictId?: number;
+  verdictTier?: string;
+  verdictJurisdiction?: string;
+  verdictDecision?: string;
+  verdictEdi?: number;
+  verdictDp?: number;
+  verdictDr?: number;
+  verdictUncertainty?: number;
   pdf?: string;
 }
 
@@ -159,7 +166,32 @@ app.get("/api/content", async (c) => {
 // Filter to articles only (wordCount >= 500 or form: article in frontmatter)
 app.get("/api/content/articles", async (c) => {
   const items = await loadAllFromArticlesDir();
-  return c.json({ items: items.filter(i => i.form === "article").map(({ body: _body, ...meta }) => meta) });
+  const verdictCases = await loadVerdictCases();
+  const verdictMap: Record<number, Record<string, unknown>> = {};
+  for (const vc of verdictCases) {
+    verdictMap[vc.case_id as number] = vc;
+  }
+  const enriched = items
+    .filter(i => i.form === "article")
+    .map(({ body: _body, ...meta }) => {
+      const m = meta as ContentMeta;
+      if (m.verdictId) {
+        const vc = verdictMap[m.verdictId];
+        const comp = vc?.computed as Record<string, unknown> | undefined;
+        return {
+          ...m,
+          verdictTier: comp?.tier as string | undefined,
+          verdictJurisdiction: vc?.jurisdiction as string | undefined,
+          verdictDecision: vc?.decision_type as string | undefined,
+          verdictEdi: comp?.EDI as number | undefined,
+          verdictDp: comp?.DP as number | undefined,
+          verdictDr: comp?.DR as number | undefined,
+          verdictUncertainty: comp?.uncertainty_band ? (comp.uncertainty_band as number[])[0] : undefined,
+        };
+      }
+      return m;
+    });
+  return c.json({ items: enriched });
 });
 
 // Filter to newsletter/short-form only (wordCount < 500 or form: newsletter in frontmatter)

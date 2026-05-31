@@ -4,9 +4,16 @@ export interface ContentMeta {
   date: string;
   tags: string[];
   summary: string;
-  form: "article" | "newsletter";
+  form: "article" | "newsletter"; // article >= 500 words, newsletter < 500 words
   wordCount: number;
   verdictId?: number;
+  verdictTier?: string;
+  verdictJurisdiction?: string;
+  verdictDecision?: string;
+  verdictEdi?: number;
+  verdictDp?: number;
+  verdictDr?: number;
+  verdictUncertainty?: number;
 }
 
 export interface ContentItem extends ContentMeta {
