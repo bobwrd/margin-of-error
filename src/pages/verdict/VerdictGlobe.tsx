@@ -1,6 +1,6 @@
 // @ts-nocheck — globe.gl has incomplete type definitions for its globe.gl-specific props
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Globe from "react-globe.gl";
 import { useVerdictTheme } from "./VerdictLayout";
@@ -45,6 +45,66 @@ interface PointEntry {
   edi: number;
 }
 
+// Spread points from the same jurisdiction so they never stack on the same coord.
+// We deterministically fan them out in a small ring around the anchor; the ring
+// scales with group size and a tiny per-case radial jitter keeps it organic.
+function spreadPoints(
+  cases: VerdictCase[],
+  baseStepDeg = 2.4
+): PointEntry[] {
+  const groups = new Map<string, VerdictCase[]>();
+  for (const c of cases) {
+    const key = c.jurisdiction;
+    const list = groups.get(key) ?? [];
+    list.push(c);
+    groups.set(key, list);
+  }
+
+  const out: PointEntry[] = [];
+  for (const [jurisdiction, list] of groups) {
+    const [baseLat, baseLng] = getCoords(jurisdiction);
+    const n = list.length;
+
+    if (n === 1) {
+      const c = list[0];
+      out.push({ id: c.case_id, lat: baseLat, lng: baseLng, name: c.title, tier: c.computed.tier, edi: c.computed.EDI });
+      continue;
+    }
+
+    // Place points on concentric rings; first point sits on the anchor.
+    // ringIndex 0 = anchor, 1 = first ring, etc.
+    let placed = 0;
+    let ringIndex = 0;
+    while (placed < n) {
+      const capacity = ringIndex === 0 ? 1 : 6 * ringIndex;
+      const ringStart = placed;
+      const ringEnd = Math.min(n, placed + capacity);
+      const ringCount = ringEnd - ringStart;
+
+      for (let i = 0; i < ringCount; i++) {
+        const c = list[ringStart + i];
+        if (ringIndex === 0) {
+          out.push({ id: c.case_id, lat: baseLat, lng: baseLng, name: c.title, tier: c.computed.tier, edi: c.computed.EDI });
+        } else {
+          // Distribute `ringCount` points evenly around the ring.
+          const angle = (i / ringCount) * Math.PI * 2;
+          const ringRadiusDeg = baseStepDeg * ringIndex;
+          // Slight per-case radial jitter (deterministic from case_id) so points
+          // don't form a perfect circle. Keep it small so they stay clustered.
+          const jitter = (((c.case_id * 9301 + 49297) % 233280) / 233280 - 0.5) * (baseStepDeg * 0.35);
+          const r = ringRadiusDeg + jitter;
+          const lat = baseLat + Math.sin(angle) * r;
+          const lng = baseLng + Math.cos(angle) * r;
+          out.push({ id: c.case_id, lat, lng, name: c.title, tier: c.computed.tier, edi: c.computed.EDI });
+        }
+      }
+      placed = ringEnd;
+      ringIndex++;
+    }
+  }
+  return out;
+}
+
 export default function VerdictGlobe({ cases }: VerdictGlobeProps) {
   const navigate = useNavigate();
   const { theme } = useVerdictTheme();
@@ -53,10 +113,7 @@ export default function VerdictGlobe({ cases }: VerdictGlobeProps) {
 
   const isDark = theme === "dark";
 
-  const pointData: PointEntry[] = cases.map((c) => {
-    const [lat, lng] = getCoords(c.jurisdiction);
-    return { id: c.case_id, lat, lng, name: c.title, tier: c.computed.tier, edi: c.computed.EDI };
-  });
+  const pointData: PointEntry[] = useMemo(() => spreadPoints(cases), [cases]);
 
   const handleClick = useCallback((d: any) => {
     navigate(`/verdict/${d.id}`);

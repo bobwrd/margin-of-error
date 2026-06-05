@@ -36,6 +36,33 @@ function CompactTimeline({ cases }: { cases: VerdictCase[] }) {
     id: c.case_id,
   }));
 
+  // Month tick positions: first day of each month in the data range. Avoids the
+  // "every case in 2026 renders a 2026 tick" overlap the old per-data tick had.
+  const monthTicks = useMemo(() => {
+    if (data.length === 0) return [] as number[];
+    const min = Math.min(...data.map((d) => d.x));
+    const max = Math.max(...data.map((d) => d.x));
+    const ticks: number[] = [];
+    const cursor = new Date(min);
+    cursor.setUTCDate(1);
+    cursor.setUTCHours(0, 0, 0, 0);
+    while (cursor.getTime() <= max) {
+      ticks.push(cursor.getTime());
+      cursor.setUTCMonth(cursor.getUTCMonth() + 1);
+    }
+    return ticks;
+  }, [data]);
+
+  // "Mar 2026" for non-January months, "2026" only for January — keeps the axis
+  // readable when the data is concentrated in a single year.
+  const tickFormatter = (v: number) => {
+    const d = new Date(v);
+    const isJanuary = d.getUTCMonth() === 0;
+    return isJanuary
+      ? d.getUTCFullYear().toString()
+      : d.toLocaleDateString("en-SG", { month: "short", timeZone: "UTC" });
+  };
+
   const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { payload: typeof data[0] }[] }) => {
     if (!active || !payload?.length) return null;
     const d = payload[0].payload;
@@ -66,7 +93,8 @@ function CompactTimeline({ cases }: { cases: VerdictCase[] }) {
             dataKey="x"
             type="number"
             domain={["auto", "auto"]}
-            tickFormatter={(v) => new Date(v).getFullYear().toString()}
+            ticks={monthTicks}
+            tickFormatter={tickFormatter}
             tick={{ fill: "var(--verdict-muted)", fontSize: 10, fontFamily: "monospace" }}
             axisLine={{ stroke: "var(--verdict-border)" }}
             tickLine={false}
@@ -277,7 +305,7 @@ export default function VerdictIndex() {
       {/* Timeline */}
       {!loading && cases.length > 0 && (
         <div
-          className="rounded-lg border p-4 mb-8"
+          className="rounded-lg border p-4 mb-8 mt-12"
           style={{ borderColor: "var(--verdict-border)", backgroundColor: "var(--verdict-surface)" }}
         >
           <div className="text-xs font-mono mb-3" style={{ color: "var(--verdict-muted)" }}>
