@@ -11,28 +11,25 @@ function readTime(wordCount: number): string {
   return `${mins} min read`;
 }
 
-// Verdict tier colors — match the canonical Verdict identity (deep navy + cyan).
-// Sourced from .verdict-section CSS variables in src/styles.css.
-const VERDICT_TIER_FG: Record<string, string> = {
-  Seismic: "var(--verdict-seismic)",
-  Major: "var(--verdict-major)",
-  Moderate: "var(--verdict-moderate)",
-  Marginal: "var(--verdict-marginal)",
-};
-const VERDICT_TIER_BG: Record<string, string> = {
-  Seismic: "rgba(248,113,113,0.12)",
-  Major: "rgba(251,146,60,0.12)",
-  Moderate: "rgba(250,204,21,0.12)",
-  Marginal: "rgba(148,163,184,0.10)",
+// Verdict tier accent color for the left stripe + tier badge text.
+// Colors match the Verdict section identity (cyan accent + tier-coded tints).
+const TIER_ACCENT: Record<string, string> = {
+  Seismic: "#f87171",   // red
+  Major: "#fb923c",     // orange
+  Moderate: "#facc15",  // yellow
+  Marginal: "#94a3b8",  // slate
 };
 
+function tierAccent(tier: string): string {
+  return TIER_ACCENT[tier] ?? TIER_ACCENT.Marginal;
+}
+
 function VerdictTierBadge({ tier }: { tier: string }) {
-  const fg = VERDICT_TIER_FG[tier] ?? "var(--verdict-muted)";
-  const bg = VERDICT_TIER_BG[tier] ?? "transparent";
+  const accent = tierAccent(tier);
   return (
     <span
-      className="text-[0.65rem] font-mono font-bold tracking-widest px-2 py-0.5 rounded uppercase"
-      style={{ color: fg, backgroundColor: bg, border: `1px solid ${fg}` }}
+      className="text-[0.6rem] font-mono font-bold tracking-widest px-1.5 py-0.5 rounded uppercase"
+      style={{ color: accent, border: `1px solid ${accent}` }}
     >
       {tier}
     </span>
@@ -45,114 +42,45 @@ export default function ContentCard({ item }: ContentCardProps) {
 
   if (isVerdict) {
     const tier = item.verdictTier ?? "Marginal";
+    const accent = tierAccent(tier);
     return (
-      <Link
-        to={href}
-        className="block rounded-lg border p-5 mb-4 transition-all duration-200 hover:opacity-95"
-        style={{
-          // Self-contained: scope the verdict CSS variables on this card
-          // so it renders correctly outside the Verdict section.
-          backgroundColor: "var(--verdict-surface)",
-          borderColor: "var(--verdict-border)",
-          color: "var(--verdict-text)",
-          "--verdict-bg": "#0a0e1a",
-          "--verdict-surface": "#111827",
-          "--verdict-surface-2": "#1a2235",
-          "--verdict-border": "rgba(34, 211, 238, 0.12)",
-          "--verdict-border-hover": "rgba(34, 211, 238, 0.35)",
-          "--verdict-accent": "#22d3ee",
-          "--verdict-accent-dim": "rgba(34, 211, 238, 0.08)",
-          "--verdict-text": "#e2e8f0",
-          "--verdict-muted": "#94a3b8",
-          "--verdict-seismic": "#f87171",
-          "--verdict-major": "#fb923c",
-          "--verdict-moderate": "#facc15",
-          "--verdict-marginal": "#94a3b8",
-        } as React.CSSProperties}
+      <article
+        className="group relative py-7 border-b border-border last:border-0 transition-all duration-200"
+        style={{ paddingLeft: "1.25rem" } as CSSProperties}
       >
-        <div className="flex items-start justify-between gap-6 mb-3">
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 flex-wrap mb-3">
-              <span
-                className="text-[0.65rem] font-mono font-bold tracking-widest uppercase"
-                style={{ color: "var(--verdict-accent)" }}
-              >
-                The Verdict
-              </span>
-              <VerdictTierBadge tier={tier} />
-              {item.verdictDecision && (
-                <span
-                  className="text-[0.6rem] font-mono tracking-wider uppercase px-2 py-0.5 rounded"
-                  style={{
-                    color: "var(--verdict-muted)",
-                    backgroundColor: "var(--verdict-surface-2)",
-                  }}
-                >
-                  {item.verdictDecision}
-                </span>
-              )}
-              {item.verdictJurisdiction && (
-                <span
-                  className="text-[0.6rem] font-mono tracking-wider uppercase px-2 py-0.5 rounded"
-                  style={{
-                    color: "var(--verdict-muted)",
-                    backgroundColor: "var(--verdict-surface-2)",
-                  }}
-                >
-                  {item.verdictJurisdiction}
-                </span>
-              )}
-            </div>
+        {/* Left vertical accent stripe — tier-coded */}
+        <span
+          aria-hidden
+          className="absolute left-0 top-0 bottom-0 w-[3px] rounded"
+          style={{ backgroundColor: accent }}
+        />
 
-            <h2
-              className="text-lg font-semibold leading-snug mb-2"
-              style={{ color: "var(--verdict-text)" }}
-            >
-              {item.title}
-            </h2>
-
-            {item.summary && (
-              <p
-                className="text-sm leading-relaxed max-w-prose line-clamp-2"
-                style={{ color: "var(--verdict-muted)" }}
-              >
-                {item.summary}
-              </p>
-            )}
-          </div>
-
-          {item.verdictEdi !== undefined && (
-            <div className="text-right shrink-0">
-              <div
-                className="text-[0.6rem] font-mono tracking-widest mb-1"
-                style={{ color: "var(--verdict-muted)" }}
-              >
-                EDI
-              </div>
-              <div
-                className="text-3xl font-mono font-bold leading-none"
-                style={{ color: "var(--verdict-accent)" }}
-              >
-                {item.verdictEdi.toFixed(1)}
-              </div>
-              {item.verdictUncertainty !== undefined && item.verdictUncertainty > 0 && (
-                <div
-                  className="text-[0.55rem] font-mono mt-1"
-                  style={{ color: "var(--verdict-muted)" }}
-                >
-                  ±{item.verdictUncertainty.toFixed(1)}
-                </div>
-              )}
-            </div>
+        {/* Verdict metadata row */}
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <span
+            className="text-[0.65rem] font-mono font-bold tracking-widest uppercase"
+            style={{ color: "var(--verdict-accent, #0891b2)" } as CSSProperties}
+          >
+            The Verdict
+          </span>
+          <VerdictTierBadge tier={tier} />
+          {item.verdictDecision && (
+            <span className="text-[0.6rem] font-mono tracking-wider uppercase text-muted-foreground/70">
+              {item.verdictDecision}
+            </span>
           )}
-        </div>
-
-        <div
-          className="flex items-center gap-4 text-[0.6rem] font-mono pt-3 mt-1"
-          style={{ borderTop: "1px solid var(--verdict-border)", color: "var(--verdict-muted)" }}
-        >
+          {item.verdictJurisdiction && (
+            <span className="text-[0.6rem] font-mono tracking-wider uppercase text-muted-foreground/60">
+              {item.verdictJurisdiction}
+            </span>
+          )}
+          {item.verdictEdi !== undefined && (
+            <span className="text-[0.6rem] font-mono tracking-wider text-muted-foreground/70">
+              EDI <span className="font-semibold text-foreground">{item.verdictEdi.toFixed(1)}</span>
+            </span>
+          )}
           {item.date && (
-            <time>
+            <time className="text-xs text-muted-foreground ml-auto">
               {new Date(item.date).toLocaleDateString("en-SG", {
                 year: "numeric",
                 month: "short",
@@ -160,34 +88,33 @@ export default function ContentCard({ item }: ContentCardProps) {
               })}
             </time>
           )}
-          {item.verdictDp !== undefined && (
-            <span>
-              DP <span style={{ color: "var(--verdict-text)" }}>{item.verdictDp.toFixed(2)}</span>
-            </span>
-          )}
-          {item.verdictDr !== undefined && (
-            <span>
-              DR <span style={{ color: "var(--verdict-text)" }}>{item.verdictDr.toFixed(2)}</span>
-            </span>
-          )}
-          {item.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 ml-auto">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-[0.55rem] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded"
-                  style={{
-                    color: "var(--verdict-muted)",
-                    backgroundColor: "var(--verdict-surface-2)",
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
-      </Link>
+
+        <Link to={href} className="block">
+          <h2 className="text-lg font-semibold text-foreground group-hover:text-warm-accent transition-colors duration-150 leading-snug mb-2">
+            {item.title}
+          </h2>
+        </Link>
+
+        {item.summary && (
+          <p className="text-sm text-muted-foreground leading-relaxed mb-3 max-w-prose">
+            {item.summary}
+          </p>
+        )}
+
+        {item.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {item.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs text-muted-foreground/80 bg-secondary px-2.5 py-0.5 rounded-full transition-colors duration-150"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </article>
     );
   }
 
