@@ -93,7 +93,7 @@ function CompactTimeline({ cases }: { cases: VerdictCase[] }) {
   );
 }
 
-export function CaseCard({ c }: { c: VerdictCase }) {
+function CaseCard({ c }: { c: VerdictCase }) {
   const { computed } = c;
   const band = computed.uncertainty_band;
 
