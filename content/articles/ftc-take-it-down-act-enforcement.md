@@ -6,7 +6,6 @@ tags: verdict, ai, law, regulation, united-states
 summary: The FTC began enforcing the TAKE IT DOWN Act, requiring platforms to remove deepfakes and nonconsensual intimate imagery within 48 hours.
 form: article
 verdictId: 7
-
 ---
 
 ## What Happened
@@ -35,8 +34,6 @@ No jurisdiction has enacted an identical 48-hour removal statute. Australia's On
 
 The TAKE IT DOWN Act's 48-hour hard deadline stands out internationally as a technology-neutral, victims-rights-framed approach that delegates enforcement to an existing agency rather than creating a new regulator. It has attracted interest from Japan's Digital Agency and South Korea's Personal Information Protection Commission as a potential model.
 
-verdictId: 7
-
 ---
 
 ## Sources
@@ -45,8 +42,4 @@ verdictId: 7
 - https://www.congress.gov/bill/118th-congress/public-law/11862
 - https://www.iapp.org/news/a/take-it-down-act-how-to-comply-as-the-ftc-begins-enforcement
 
-verdictId: 7
-
 ---
-
-**EDI Score:** 6.72 (Moderate) | **DP:** 6.55 | **DR:** 6.9 | **Uncertainty Band:** ±1.73

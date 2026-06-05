@@ -6,7 +6,6 @@ tags: verdict, ai, law, regulation, united-states
 summary: A California federal jury rejected all of Elon Musk's claims against OpenAI, finding them time-barred.
 form: article
 verdictId: 3
-
 ---
 
 ## What Happened
@@ -33,8 +32,6 @@ The outcome also has implications for other "mission-driven" AI labs that have r
 
 The case was watched particularly closely in jurisdictions where the boundary between non-profit research and commercial deployment is becoming increasingly contested. In the EU, the question of whether OpenAI's structure adequately satisfies the GPAI model's obligations to the European AI Office remains open. In the UK, the FCA has been examining whether AI labs' governance arrangements constitute material information that should be disclosed to investors. The Musk verdict does not directly affect those proceedings, but it clarifies that US courts will not lightly intervene in board-level governance decisions.
 
-verdictId: 3
-
 ---
 
 ## Sources
@@ -43,8 +40,4 @@ verdictId: 3
 - https://www.bloomberg.com/news/articles/2026-05-18/openai-wins-musk-lawsuit-over-nonprofit-mission
 - https://law.justia.com/cases/federal/california/ndcal/2026/
 
-verdictId: 3
-
 ---
-
-**EDI Score:** 6.72 (Moderate) | **DP:** 6.55 | **DR:** 6.9 | **Uncertainty Band:** ±1.73

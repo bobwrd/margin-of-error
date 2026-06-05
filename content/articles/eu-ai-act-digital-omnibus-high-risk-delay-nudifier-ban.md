@@ -6,7 +6,6 @@ tags: verdict, ai, law, regulation, european-union
 summary: The EU's Digital Omnibus amendment pushed high-risk obligations to December 2027 and banned AI nudifier systems.
 form: article
 verdictId: 2
-
 ---
 
 ## What Happened
@@ -39,8 +38,6 @@ The Omnibus illustrates the EU's iterative approach to AI governance: rather tha
 
 For non-EU companies, the practical effect of the Omnibus is to extend the compliance runway for certain high-risk use cases while tightening requirements for GPAI providers. The nudifier ban creates a de facto global standard: companies building behavioural design tools for EU users must redesign for transparency regardless of where they are based, given the EU market's size.
 
-verdictId: 2
-
 ---
 
 ## Sources
@@ -49,8 +46,4 @@ verdictId: 2
 - https://artificialintelligenceact.eu/the-act/
 - https://www.euronews.com/2026/02/15/eu-ai-act-nudifier-ban-what-it-means-for-behavioural-ai-companies
 
-verdictId: 2
-
 ---
-
-**EDI Score:** 6.15 (Moderate) | **DP:** 6.0 | **DR:** 6.3 | **Uncertainty Band:** ±1.9

@@ -37,15 +37,16 @@ function VerdictTierBadge({ tier }: { tier: string }) {
 }
 
 export default function ContentCard({ item }: ContentCardProps) {
-  const href = `/${item.form === "article" ? "articles" : "newsletter"}/${item.slug}`;
+  const articleHref = `/${item.form === "article" ? "articles" : "newsletter"}/${item.slug}`;
   const isVerdict = Boolean(item.verdictId);
 
   if (isVerdict) {
     const tier = item.verdictTier ?? "Marginal";
     const accent = tierAccent(tier);
     return (
-      <article
-        className="group relative py-7 border-b border-border last:border-0 transition-all duration-200"
+      <Link
+        to={`/verdict/${item.verdictId}`}
+        className="group relative block py-7 border-b border-border last:border-0 transition-all duration-200"
         style={{ paddingLeft: "1.25rem" } as CSSProperties}
       >
         {/* Left vertical accent stripe — tier-coded */}
@@ -90,11 +91,9 @@ export default function ContentCard({ item }: ContentCardProps) {
           )}
         </div>
 
-        <Link to={href} className="block">
-          <h2 className="text-lg font-semibold text-foreground group-hover:text-warm-accent transition-colors duration-150 leading-snug mb-2">
-            {item.title}
-          </h2>
-        </Link>
+        <h2 className="text-lg font-semibold text-foreground group-hover:text-warm-accent transition-colors duration-150 leading-snug mb-2">
+          {item.title}
+        </h2>
 
         {item.summary && (
           <p className="text-sm text-muted-foreground leading-relaxed mb-3 max-w-prose">
@@ -114,7 +113,7 @@ export default function ContentCard({ item }: ContentCardProps) {
             ))}
           </div>
         )}
-      </article>
+      </Link>
     );
   }
 
@@ -144,7 +143,7 @@ export default function ContentCard({ item }: ContentCardProps) {
         </span>
       </div>
 
-      <Link to={href} className="block">
+      <Link to={articleHref} className="block">
         <h2 className="text-lg font-semibold text-foreground group-hover:text-warm-accent transition-colors duration-150 leading-snug mb-2">
           {item.title}
         </h2>

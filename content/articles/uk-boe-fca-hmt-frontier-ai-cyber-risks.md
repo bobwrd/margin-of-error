@@ -6,7 +6,6 @@ tags: verdict, ai, law, regulation, united-kingdom, financial-services
 summary: Three UK regulators jointly flagged systemic cyber risks from frontier AI systems in financial services, without specifying binding requirements.
 form: article
 verdictId: 4
-
 ---
 
 ## What Happened
@@ -37,8 +36,6 @@ The UK approach — sectoral, coordinated across multiple regulators, non-bindin
 
 The US has no equivalent multi-agency AI systemic risk statement. The SEC has issued guidance on AI usage in securities markets; the OCC has addressed bank AI model risk management; but no body has articulated a comprehensive view of frontier AI systemic risk in the US financial system. Australia's APRA has published an information paper on AI governance for APRA-regulated entities; Canada's OSFI has issued a technology risk management guidance that covers AI; both are broadly consistent with the UK statement's direction of travel.
 
-verdictId: 4
-
 ---
 
 ## Sources
@@ -47,8 +44,4 @@ verdictId: 4
 - https://www.fca.org.uk/news/statements/joint-statement-boe-fca-hmt-frontier-ai-cyber-risks
 - https://www.gov.uk/government/publications/frontier-ai-systemic-risk-hmt-boe-fca-joint-statement
 
-verdictId: 4
-
 ---
-
-**EDI Score:** 5.43 (Moderate) | **DP:** 5.3 | **DR:** 5.55 | **Uncertainty Band:** ±2.25

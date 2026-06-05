@@ -6,7 +6,6 @@ tags: verdict, ai, law, regulation, biometrics, privacy, illinois
 summary: Class actions under Illinois' BIPA statute targeted AI companies deploying voice recognition in Chicago workplaces and financial services.
 form: article
 verdictId: 5
-
 ---
 
 ## What Happened
@@ -33,8 +32,6 @@ The Illinois Supreme Court's 2025 ruling in *Thornley v. Clearview AI* — which
 
 BIPA's consent-and-disclosure framework has influenced state-level biometric privacy legislation nationwide. Texas, Washington, and California have enacted similar (though less plaintiff-friendly) biometric privacy statutes. At the federal level, no comprehensive biometric privacy law exists. The FTC has applied its Section 5 authority to biometric data practices, but has not issued rules specifically addressing voice biometrics. The EU AI Act's provisions on biometric categorisation (Article 5(1)(b), prohibiting real-time remote biometric identification in public spaces) operate in a fundamentally different regulatory register — risk-prohibition rather than consent-disclosure — making direct comparison difficult.
 
-verdictId: 5
-
 ---
 
 ## Sources
@@ -43,8 +40,4 @@ verdictId: 5
 - https://www.iapp.org/resources/analysis/bipa-litigation-update-2026/
 - https://www.classaction.org/2026/03/chicago-voiceprint-bipa-class-action/
 
-verdictId: 5
-
 ---
-
-**EDI Score:** 5.88 (Moderate) | **DP:** 5.7 | **DR:** 6.05 | **Uncertainty Band:** ±2.1

@@ -6,8 +6,8 @@ tags: verdict, ai, law, regulation, european-union
 summary: The world's first comprehensive AI regulation entered into force, establishing a risk-tiered framework.
 form: article
 verdictId: 1
-
 ---
+
 ## What Happened
 
 On 1 August 2024, Regulation (EU) 2024/1689 — the EU Artificial Intelligence Act — entered into force, becoming the world's first comprehensive horizontal AI regulation. It establishes a four-tier risk pyramid: unacceptable risk (banned outright), high risk (mandatory conformity assessments required before market placement), limited risk (transparency obligations only), and minimal risk (no obligations). The Act applies to any provider or deployer operating within the EU market, regardless of where they are incorporated.
@@ -34,8 +34,6 @@ The EU AI Act is not operating in isolation. Brazil's AI bill (PL 2338/2023) mir
 
 In the United States, federal AI regulation remains fragmented. The FTC applies its existing Section 5 authority to unfair and deceptive practices. The FDA regulates AI in medical devices. The CFPB and HUD apply their statutory mandates to AI in credit and housing. No comprehensive federal AI law exists. The absence of a US federal equivalent means the Brussels Effect operates most forcefully on companies with global operations: the EU's definitions and documentation requirements are becoming the global default simply because no other jurisdiction has published equivalently detailed rules.
 
-verdictId: 1
-
 ---
 
 ## Sources
@@ -44,8 +42,4 @@ verdictId: 1
 - https://www.europarl.europa.eu/news/en/press-room/20240308IPR19015/artificial-intelligence-act-meps-adopt-landmark-law
 - https://artificialintelligenceact.eu/the-act/
 
-verdictId: 1
-
 ---
-
-**EDI Score:** 8.37 (Seismic) | **DP:** 8.55 | **DR:** 8.75 | **Uncertainty Band:** ±1.63

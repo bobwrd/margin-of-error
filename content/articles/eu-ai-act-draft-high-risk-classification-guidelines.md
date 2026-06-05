@@ -6,7 +6,6 @@ tags: verdict, ai, law, regulation, european-union
 summary: The EU AI Office published draft guidelines for high-risk AI classification, clarifying the Annex III boundary.
 form: article
 verdictId: 6
-
 ---
 
 ## What Happened
@@ -35,8 +34,6 @@ The publication of the guidelines was closely watched by AI regulators in the UK
 
 The US NIST AI Management Framework — last updated in January 2026 — takes a voluntary, tiered approach to AI risk classification, without mandating a specific high-risk category equivalent to Annex III. NIST's framework remains the primary US reference for AI risk management in non-regulated sectors; in regulated sectors (financial services, healthcare, energy), the relevant sector regulator's existing authority governs.
 
-verdictId: 6
-
 ---
 
 ## Sources
@@ -45,8 +42,4 @@ verdictId: 6
 - https://commission.europa.eu/artificial-intelligence-act_en
 - https://www.europarl.europa.eu/legislative-train/theme-europe-fit-for-the-digital-age/file-artificial-intelligence-act
 
-verdictId: 6
-
 ---
-
-**EDI Score:** 5.68 (Moderate) | **DP:** 5.5 | **DR:** 5.85 | **Uncertainty Band:** ±2.0
