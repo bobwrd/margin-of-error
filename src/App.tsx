@@ -1,9 +1,10 @@
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import Home from "./pages/Home";
-import Articles from "./pages/Articles";
+import ShortForm from "./pages/ShortForm";
+import WeeklyBriefing from "./pages/WeeklyBriefing";
+import PersonalPieces from "./pages/PersonalPieces";
 import ArticlePage from "./pages/ArticlePage";
-import Newsletter from "./pages/Newsletter";
 import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
 import Tools from "./pages/Tools";
@@ -30,13 +31,24 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/articles/:slug" element={<ArticlePage />} />
-          <Route path="/newsletter" element={<Newsletter />} />
-          <Route path="/newsletter/:slug" element={<ArticlePage />} />
+
+          <Route path="/short-form" element={<ShortForm />} />
+          <Route path="/short-form/:slug" element={<ArticlePage />} />
+
+          <Route path="/weekly" element={<WeeklyBriefing />} />
+          <Route path="/weekly/:slug" element={<ArticlePage />} />
+
+          <Route path="/personal" element={<PersonalPieces />} />
+          <Route path="/personal/:slug" element={<ArticlePage />} />
+
+          {/* Legacy routes — keep old links alive, redirect to new category pages. */}
+          <Route path="/articles" element={<Navigate to="/weekly" replace />} />
+          <Route path="/newsletter" element={<Navigate to="/short-form" replace />} />
+
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/tools" element={<Tools />} />
+
           <Route path="/verdict" element={<VerdictShell />}>
             <Route index element={<VerdictIndex />} />
             <Route path=":id" element={<VerdictCase />} />

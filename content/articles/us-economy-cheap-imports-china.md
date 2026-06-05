@@ -6,6 +6,7 @@ tags: trade, economics, china, geopolitics
 summary: Cheap Chinese imports raise US aggregate living standards but harm specific workers and create strategic vulnerabilities — "harm" has to be defined distributionally and geopolitically, not just by GDP.
 pdf: /pdfs/us-economy-cheap-imports-china.pdf
 form: article
+category: personal
 ---
 ---
 

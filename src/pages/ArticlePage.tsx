@@ -210,8 +210,22 @@ export default function ArticlePage() {
 
   // ─── Regular article ────────────────────────────────────────────────────────
   const htmlBody = marked.parse(item.body) as string;
-  const backLabel = item.form === "article" ? "Long-form" : "Short-form";
-  const backHref = item.form === "article" ? "/articles" : "/newsletter";
+
+  const backHref = (() => {
+    switch (item.category) {
+      case "short": return "/short-form";
+      case "weekly": return "/weekly";
+      case "personal": return "/personal";
+    }
+  })();
+  const backLabel = (() => {
+    switch (item.category) {
+      case "short": return "Short-form";
+      case "weekly": return "Weekly Briefing";
+      case "personal": return "Personal Pieces";
+    }
+  })();
+  const categoryLabel = backLabel;
 
   return (
     <Layout>
@@ -230,13 +244,9 @@ export default function ArticlePage() {
       <header className="mb-10 pb-8 border-b border-border">
         <div className="flex items-center gap-2.5 mb-4">
           <span
-            className={`text-xs px-2.5 py-0.5 rounded-full font-medium tracking-wide ${
-              item.form === "newsletter"
-                ? "bg-warm-accent-muted text-warm-accent"
-                : "bg-secondary text-muted-foreground"
-            }`}
+            className="text-xs px-2.5 py-0.5 rounded-full font-medium tracking-wide bg-secondary text-muted-foreground"
           >
-            {item.form === "newsletter" ? "Short-form" : "Long-form"}
+            {categoryLabel}
           </span>
           <span className="text-xs text-muted-foreground/70">{readTime(item.wordCount)}</span>
         </div>

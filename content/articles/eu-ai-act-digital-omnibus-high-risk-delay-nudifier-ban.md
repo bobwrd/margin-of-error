@@ -1,5 +1,6 @@
 ---
 slug: eu-ai-act-digital-omnibus-high-risk-delay-nudifier-ban
+category: short
 title: "EU AI Act — Digital Omnibus High-Risk Delay and Nudifier Ban"
 date: 2026-02-15
 tags: verdict, ai, law, regulation, european-union

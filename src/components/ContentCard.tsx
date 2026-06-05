@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import type { ContentMeta } from "@/lib/api";
+import type { ContentMeta, ContentCategory } from "@/lib/api";
 
 interface ContentCardProps {
   item: ContentMeta;
@@ -36,8 +36,40 @@ function VerdictTierBadge({ tier }: { tier: string }) {
   );
 }
 
+// Category badge + style for the 3 content types.
+const CATEGORY_LABEL: Record<ContentCategory, string> = {
+  short: "Short-form",
+  weekly: "Weekly Briefing",
+  personal: "Personal Piece",
+};
+
+const CATEGORY_STYLE: Record<ContentCategory, string> = {
+  short: "bg-warm-accent-muted text-warm-accent",
+  weekly: "bg-secondary text-muted-foreground",
+  personal: "bg-secondary text-foreground",
+};
+
+function CategoryBadge({ category }: { category: ContentCategory }) {
+  return (
+    <span
+      className={`text-xs px-2.5 py-0.5 rounded-full font-medium tracking-wide ${CATEGORY_STYLE[category]}`}
+    >
+      {CATEGORY_LABEL[category]}
+    </span>
+  );
+}
+
+// Route each category to its own slug-prefixed URL.
+function categoryHref(category: ContentCategory, slug: string): string {
+  switch (category) {
+    case "short": return `/short-form/${slug}`;
+    case "weekly": return `/weekly/${slug}`;
+    case "personal": return `/personal/${slug}`;
+  }
+}
+
 export default function ContentCard({ item }: ContentCardProps) {
-  const articleHref = `/${item.form === "article" ? "articles" : "newsletter"}/${item.slug}`;
+  const articleHref = categoryHref(item.category, item.slug);
   const isVerdict = Boolean(item.verdictId);
 
   if (isVerdict) {
@@ -120,15 +152,7 @@ export default function ContentCard({ item }: ContentCardProps) {
   return (
     <article className="group py-7 border-b border-border last:border-0 transition-all duration-200">
       <div className="flex items-center gap-2.5 mb-3">
-        <span
-          className={`text-xs px-2.5 py-0.5 rounded-full font-medium tracking-wide ${
-            item.form === "newsletter"
-              ? "bg-warm-accent-muted text-warm-accent"
-              : "bg-secondary text-muted-foreground"
-          }`}
-        >
-          {item.form === "newsletter" ? "Short-form" : "Long-form"}
-        </span>
+        <CategoryBadge category={item.category} />
         {item.date && (
           <time className="text-xs text-muted-foreground">
             {new Date(item.date).toLocaleDateString("en-SG", {

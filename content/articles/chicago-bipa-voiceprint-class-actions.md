@@ -1,5 +1,6 @@
 ---
 slug: chicago-bipa-voiceprint-class-actions
+category: short
 title: "Chicago — BIPA Voiceprint Class Actions"
 date: 2026-03-15
 tags: verdict, ai, law, regulation, biometrics, privacy, illinois

@@ -6,6 +6,7 @@ author: Arin Jain
 tags: economics, law, ai, access
 summary: A week of payment limits, platform fees, court procedure, and AI hiring showed how access is being priced through rules rather than markets alone.
 form: article
+category: weekly
 ---
 
 The Fed moved toward limited payment accounts for fintechs, India pushed Apple deeper into an antitrust case, and the Supreme Court kept mifepristone moving by telehealth and mail. None of those stories is about the same market, but they share one pattern: the gate, not the sticker price, is where power sits.

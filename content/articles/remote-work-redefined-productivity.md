@@ -6,6 +6,7 @@ tags: remote work, productivity, labour markets, urban, policy
 summary: Remote and hybrid work have moved from fringe arrangements to structural features of modern labour markets — reshaping productivity measurement, urban inequality, educational priorities, and the focus of governmental institutions.
 pdf: /pdfs/remote-work-redefined-productivity.pdf
 form: article
+category: personal
 ---
 
 

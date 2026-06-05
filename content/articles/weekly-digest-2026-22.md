@@ -6,6 +6,7 @@ author: Arin Jain
 tags: economics, law, ai, access
 summary: A week of AI filings, court bottlenecks, platform fees, and rail-level finance showed how access is being priced through queues and rules.
 form: article
+category: weekly
 ---
 
 The week’s cleanest signal was that access got cheaper to start and harder to finish. Bloomberg Law said AI-generated pro se filings are flooding dockets, with non-prisoner pro se civil cases rising from 11% to 16.8% over five years. AP also reported that San Francisco’s main immigration court shut down after judges were fired, retired, or resigned, pushing roughly 117,000 cases to Concord.[^1][^2] Those are not separate stories. They are the same one: software and restructuring can open the front door, but the real cost shows up in the queue.

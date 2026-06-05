@@ -1,5 +1,6 @@
 ---
 slug: eu-ai-act-draft-high-risk-classification-guidelines
+category: short
 title: "EU AI Act — Draft High-Risk Classification Guidelines"
 date: 2026-04-20
 tags: verdict, ai, law, regulation, european-union

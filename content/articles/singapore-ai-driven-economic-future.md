@@ -6,6 +6,7 @@ tags: artificial intelligence, singapore, policy, labour markets, economics
 summary: How can artificial intelligence reshape Singapore's industries, workforce, and competitive advantage while ensuring inclusive growth and managing disruption?
 pdf: /pdfs/singapore-ai-driven-economic-future.pdf
 form: article
+category: personal
 ---
 
 

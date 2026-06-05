@@ -73,17 +73,38 @@ All written content lives in `content/articles/` — both long-form and short-fo
    ```
 3. The piece is live immediately — no restart needed.
 
-### Long-form vs short-form
+### Content categories
 
-Form is determined automatically by word count:
-- **Short-form**: fewer than 500 words → `form: newsletter`
-- **Long-form**: 500+ words → `form: article`
+Every piece in `content/articles/` belongs to one of three categories. Set it explicitly in frontmatter — this is the only field the site uses to route content:
 
-To override (flag a shorter piece as long-form, or vice versa), add `form: article` or `form: newsletter` to the frontmatter:
+- `category: short` — newsletter-style observations, typically under 500 words (e.g. `issue-001-welcome`, the Verdict AI-policy takes)
+- `category: weekly` — the auto-generated weekly digest produced by the Monday automation
+- `category: personal` — long-form pieces the author writes by hand; the `pdf:` field embeds the PDF above the body, and the bibliography sits below
+
+Example frontmatter:
 ```
-form: article   # always treated as long-form, regardless of word count
-form: newsletter # always treated as short-form, regardless of word count
+---
+slug: my-piece
+title: My Piece
+date: 2026-05-13
+tags: economics, law
+summary: One sentence summary.
+pdf: /pdfs/my-piece.pdf        # optional — personal pieces only
+category: personal              # required
+---
 ```
+
+If `category` is missing, the system falls back to the legacy word-count rule (`form: article` for ≥500 words, `form: newsletter` otherwise). Long-form pieces without an explicit category default to `weekly`, so a new personal piece **must** be tagged `category: personal` to route correctly. The fallback is only there to keep older content working.
+
+### Personal pieces (PDF + bibliography)
+
+Personal pieces are written by the author and distributed as a PDF. To add one:
+
+1. Place the PDF at `public/pdfs/<slug>.pdf` (served at `/pdfs/<slug>.pdf`)
+2. In the markdown frontmatter, set `pdf: /pdfs/<slug>.pdf` and `category: personal`
+3. The body of the markdown can include the bibliography below the body text — the `## Bibliography` heading and following entries are rendered normally. PDF sits above the body, bibliography sits below — no other wiring needed.
+
+The body itself can also include a short summary, author notes, or be left empty. The three existing examples are `us-economy-cheap-imports-china`, `remote-work-redefined-productivity`, and `singapore-ai-driven-economic-future`.
 
 ### Add or edit a new static page (e.g. a "Tools" page)
 
@@ -151,11 +172,12 @@ This is a **Zo Site** - a web application running on a user's Zo computer that c
     │   ├── AuthorBox.tsx   # "About the author" box for article/newsletter pages
     │   └── theme-provider.tsx
     └── pages/
-        ├── Home.tsx        # Combined feed with All/Articles/Newsletter filter
-        ├── Articles.tsx    # Articles list
-        ├── ArticlePage.tsx # Single article (/articles/:slug)
-        ├── Newsletter.tsx  # Newsletter list
-        ├── NewsletterPage.tsx  # Single issue (/newsletter/:slug)
+        ├── Home.tsx        # Combined feed (no filters — just lists all content, newest first)
+        ├── ShortForm.tsx   # Wraps CategoryPage with category="short"
+        ├── WeeklyBriefing.tsx  # Wraps CategoryPage with category="weekly"
+        ├── PersonalPieces.tsx  # Wraps CategoryPage with category="personal"
+        ├── CategoryPage.tsx    # Shared list-page component for all 3 categories
+        ├── ArticlePage.tsx # Single piece — handles /short-form/:slug, /weekly/:slug, /personal/:slug
         ├── Profile.tsx     # Renders content/profile.md
         └── Contact.tsx     # Contact form → SQLite
 ```
@@ -189,16 +211,18 @@ Three tables, auto-created on first run:
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/api/feed` | Combined articles + newsletter, sorted by date |
-| GET | `/api/content/articles` | All articles (metadata only) |
-| GET | `/api/content/articles/:slug` | Single article with body |
-| GET | `/api/content/newsletter` | All newsletter issues (metadata only) |
-| GET | `/api/content/newsletter/:slug` | Single issue with body |
+| GET | `/api/content` | Combined feed (all categories), sorted by date |
+| GET | `/api/content/short` | Short-form pieces (`category: short`) |
+| GET | `/api/content/weekly` | Weekly briefings (`category: weekly`) |
+| GET | `/api/content/personal` | Personal pieces (`category: personal`) |
+| GET | `/api/content/articles` | Legacy alias for `weekly` + `personal` (combined) |
+| GET | `/api/content/newsletter` | Legacy alias for `short` |
+| GET | `/api/content/:slug` | Single piece by slug (any category) |
 | GET | `/api/profile` | Profile markdown |
 | GET | `/api/likes/:type/:slug` | Like count |
 | POST | `/api/likes/:type/:slug` | Increment like |
 | POST | `/api/contact` | Submit contact form |
-| POST | `/api/newsletter/signup` | Newsletter signup |
+| POST | `/api/newsletter/signup` | Newsletter signup (no-op) |
 
 ### Site config
 

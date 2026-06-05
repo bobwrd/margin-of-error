@@ -1,8 +1,11 @@
 ---
+slug: weekly-digest-2026-20
 title: "Weekly Digest — W20 (May 12–16, 2026)"
 date: 2026-05-16
 author: Arin Jain
+tags: economics, law, weekly, briefing
 summary: Energy-driven inflation resurfaces, U.S.-China trade talks fragment, and corporate/legal cross-currents — Samsung strike, SIA-Air India, Adani settlement, SCOTUS trucking ruling.
+category: weekly
 ---
 
 The week's economic signal ran through energy. An inflation print that reran hotter than expected, an Iran-linked Strait of Hormuz closure driving oil prices higher, and the knock-on effects for monetary policy, emerging market vulnerability, and corporate cost structures formed the backbone of the week. Alongside that, U.S.-China trade negotiations showed up as a series of gestures rather than a deal, while corporate and legal cross-currents — a Samsung workers' strike, the Singapore Airlines–Air India integration drag, an SEC settlement with Adani, and a SCOTUS ruling on trucking broker liability — added sector-level texture. These stories are connected: energy supply shocks raise input costs across the board, force central banks to hold rates higher for longer, and compress margins in energy-intensive sectors from aviation to semiconductors.

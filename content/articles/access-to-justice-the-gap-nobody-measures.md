@@ -1,5 +1,6 @@
 ---
 slug: access-to-justice-the-gap-nobody-measures
+category: short
 title: Access to Justice — The Gap Nobody Measures
 date: 2026-05-01
 tags: law, access to justice, policy

@@ -1,3 +1,5 @@
+export type ContentCategory = "short" | "weekly" | "personal";
+
 export interface ContentMeta {
   slug: string;
   title: string;
@@ -5,7 +7,9 @@ export interface ContentMeta {
   tags: string[];
   summary: string;
   form: "article" | "newsletter"; // article >= 500 words, newsletter < 500 words
+  category: ContentCategory;
   wordCount: number;
+  pdf?: string;
   verdictId?: number;
   verdictTier?: string;
   verdictJurisdiction?: string;
@@ -33,14 +37,20 @@ export async function getContentBySlug(slug: string): Promise<ContentItem | null
   return data.item;
 }
 
-export async function getArticles(): Promise<ContentMeta[]> {
-  const res = await fetch("/api/content/articles");
+export async function getShortForm(): Promise<ContentMeta[]> {
+  const res = await fetch("/api/content/short");
   const data = await res.json();
   return data.items;
 }
 
-export async function getNewsletterIssues(): Promise<ContentMeta[]> {
-  const res = await fetch("/api/content/newsletter");
+export async function getWeeklyBriefings(): Promise<ContentMeta[]> {
+  const res = await fetch("/api/content/weekly");
+  const data = await res.json();
+  return data.items;
+}
+
+export async function getPersonalPieces(): Promise<ContentMeta[]> {
+  const res = await fetch("/api/content/personal");
   const data = await res.json();
   return data.items;
 }

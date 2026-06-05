@@ -53,7 +53,9 @@ interface ContentMeta {
   tags: string[];
   summary: string;
   form: "article" | "newsletter";
+  category: "short" | "weekly" | "personal";
   wordCount: number;
+  pdf?: string;
   verdictId?: number;
   verdictTier?: string;
   verdictJurisdiction?: string;
@@ -62,7 +64,6 @@ interface ContentMeta {
   verdictDp?: number;
   verdictDr?: number;
   verdictUncertainty?: number;
-  pdf?: string;
 }
 
 interface ContentItem extends ContentMeta {
@@ -114,6 +115,18 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
           ? "article"
           : "newsletter";
 
+  // category: explicit frontmatter wins, otherwise default by `form`.
+  // - "article" (>=500 words) defaults to "weekly" because the only
+  //   long-form pieces in the system are auto-generated weekly digests.
+  //   Personal pieces MUST be tagged explicitly.
+  // - "newsletter" (<500 words) defaults to "short".
+  const category: ContentMeta["category"] =
+    data.category === "personal" || data.category === "weekly" || data.category === "short"
+      ? (data.category as ContentMeta["category"])
+      : form === "article"
+        ? "weekly"
+        : "short";
+
   return {
     slug: data.slug || fallbackSlug,
     title: data.title || fallbackSlug,
@@ -121,6 +134,7 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
     tags,
     summary: data.summary || "",
     form,
+    category,
     wordCount,
     body,
     pdf: data.pdf || undefined,
@@ -187,41 +201,33 @@ app.get("/api/content", async (c) => {
   return c.json({ items: enriched });
 });
 
-// Filter to articles only (wordCount >= 500 or form: article in frontmatter)
-app.get("/api/content/articles", async (c) => {
+// Filter to weekly briefings (auto-generated weekly digest, long-form)
+app.get("/api/content/weekly", async (c) => {
   const items = await loadAllFromArticlesDir();
-  const verdictCases = await loadVerdictCases();
-  const verdictMap: Record<number, Record<string, unknown>> = {};
-  for (const vc of verdictCases) {
-    verdictMap[vc.case_id as number] = vc;
-  }
-  const enriched = items
-    .filter(i => i.form === "article")
-    .map(({ body: _body, ...meta }) => {
-      const m = meta as ContentMeta;
-      if (m.verdictId) {
-        const vc = verdictMap[m.verdictId];
-        const comp = vc?.computed as Record<string, unknown> | undefined;
-        return {
-          ...m,
-          verdictTier: comp?.tier as string | undefined,
-          verdictJurisdiction: vc?.jurisdiction as string | undefined,
-          verdictDecision: vc?.decision_type as string | undefined,
-          verdictEdi: comp?.EDI as number | undefined,
-          verdictDp: comp?.DP as number | undefined,
-          verdictDr: comp?.DR as number | undefined,
-          verdictUncertainty: comp?.uncertainty_band ? (comp.uncertainty_band as number[])[0] : undefined,
-        };
-      }
-      return m;
-    });
-  return c.json({ items: enriched });
+  return c.json({ items: items.filter(i => i.category === "weekly").map(({ body: _body, ...meta }) => meta) });
 });
 
-// Filter to newsletter/short-form only (wordCount < 500 or form: newsletter in frontmatter)
+// Filter to personal pieces (author's own work, typically with PDF + bibliography)
+app.get("/api/content/personal", async (c) => {
+  const items = await loadAllFromArticlesDir();
+  return c.json({ items: items.filter(i => i.category === "personal").map(({ body: _body, ...meta }) => meta) });
+});
+
+// Filter to short-form pieces (newsletter-style observations under 500 words)
+app.get("/api/content/short", async (c) => {
+  const items = await loadAllFromArticlesDir();
+  return c.json({ items: items.filter(i => i.category === "short").map(({ body: _body, ...meta }) => meta) });
+});
+
+// Legacy aliases — kept so old links/clients still work
+app.get("/api/content/articles", async (c) => {
+  const items = await loadAllFromArticlesDir();
+  return c.json({ items: items.filter(i => i.category === "weekly" || i.category === "personal").map(({ body: _body, ...meta }) => meta) });
+});
+
 app.get("/api/content/newsletter", async (c) => {
   const items = await loadAllFromArticlesDir();
-  return c.json({ items: items.filter(i => i.form === "newsletter").map(({ body: _body, ...meta }) => meta) });
+  return c.json({ items: items.filter(i => i.category === "short").map(({ body: _body, ...meta }) => meta) });
 });
 
 // Single piece by slug — defined AFTER the static paths above
