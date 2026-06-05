@@ -160,7 +160,31 @@ async function loadArticleBySlug(slug: string): Promise<ContentItem | null> {
 // Combined feed (all content, sorted by date)
 app.get("/api/content", async (c) => {
   const items = await loadAllFromArticlesDir();
-  return c.json({ items: items.map(({ body: _body, ...meta }) => meta) });
+  const verdictCases = await loadVerdictCases();
+  const verdictMap: Record<number, Record<string, unknown>> = {};
+  for (const vc of verdictCases) {
+    verdictMap[vc.case_id as number] = vc;
+  }
+  const enriched = items
+    .map(({ body: _body, ...meta }) => {
+      const m = meta as ContentMeta;
+      if (m.verdictId) {
+        const vc = verdictMap[m.verdictId];
+        const comp = vc?.computed as Record<string, unknown> | undefined;
+        return {
+          ...m,
+          verdictTier: comp?.tier as string | undefined,
+          verdictJurisdiction: vc?.jurisdiction as string | undefined,
+          verdictDecision: vc?.decision_type as string | undefined,
+          verdictEdi: comp?.EDI as number | undefined,
+          verdictDp: comp?.DP as number | undefined,
+          verdictDr: comp?.DR as number | undefined,
+          verdictUncertainty: comp?.uncertainty_band ? (comp.uncertainty_band as number[])[0] : undefined,
+        };
+      }
+      return m;
+    });
+  return c.json({ items: enriched });
 });
 
 // Filter to articles only (wordCount >= 500 or form: article in frontmatter)
