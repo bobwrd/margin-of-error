@@ -7,12 +7,9 @@ export const siteConfig = {
   url: "https://arshade.zo.space",
   navItems: [
     { label: "Home", href: "/" },
-    { label: "Short-form", href: "/short-form" },
     { label: "Weekly Briefing", href: "/weekly" },
     { label: "Personal Pieces", href: "/personal" },
     { label: "Profile", href: "/profile" },
     { label: "Contact", href: "/contact" },
-    { label: "Tools", href: "/tools" },
-    { label: "The Verdict", href: "/verdict" },
   ],
 };

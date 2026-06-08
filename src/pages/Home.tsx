@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import ContentCard from "@/components/ContentCard";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import VerdictButton from "@/components/VerdictButton";
 import { getAllContent, type ContentMeta } from "@/lib/api";
 import { siteConfig } from "@/config/site";
 
@@ -21,11 +22,14 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="mb-12">
-        <h1 className="text-3xl font-bold text-foreground tracking-tight mb-2">
-          {siteConfig.title}
-        </h1>
-        <p className="text-muted-foreground text-base">{siteConfig.tagline}</p>
+      <div className="mb-12 flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight mb-2">
+            {siteConfig.title}
+          </h1>
+          <p className="text-muted-foreground text-base">{siteConfig.tagline}</p>
+        </div>
+        <VerdictButton />
       </div>
 
       <div className="mb-10">

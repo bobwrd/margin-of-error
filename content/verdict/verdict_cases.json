@@ -19,16 +19,16 @@
       "DP": 8.55,
       "DR": 8.75,
       "ABS": 8.65,
-      "EDI": 8.52,
+      "EDI": 8.54,
       "uncertainty_band": [
-        1,
+        1.19,
         10
       ],
       "tier": "Seismic",
       "scenario_scores": {
         "conservative": 10,
         "structural": 10,
-        "balanced": 1
+        "balanced": 1.19
       }
     },
     "sources": [
@@ -60,14 +60,14 @@
       "DP": 7,
       "DR": 7.4,
       "ABS": 7.2,
-      "EDI": 5.81,
+      "EDI": 6.14,
       "uncertainty_band": [
         1,
         10
       ],
-      "tier": "Moderate",
+      "tier": "Major",
       "scenario_scores": {
-        "conservative": 7.5,
+        "conservative": 7.64,
         "structural": 10,
         "balanced": 1
       }
@@ -102,14 +102,14 @@
       "DP": 7.55,
       "DR": 6.95,
       "ABS": 7.24,
-      "EDI": 5.9,
+      "EDI": 6.22,
       "uncertainty_band": [
         1,
         10
       ],
-      "tier": "Moderate",
+      "tier": "Major",
       "scenario_scores": {
-        "conservative": 6.84,
+        "conservative": 7.05,
         "structural": 10,
         "balanced": 1
       }
@@ -144,15 +144,15 @@
       "DP": 6,
       "DR": 5.8,
       "ABS": 5.9,
-      "EDI": 3.39,
+      "EDI": 3.99,
       "uncertainty_band": [
         1,
-        7.08
+        7.27
       ],
       "tier": "Marginal",
       "scenario_scores": {
-        "conservative": 5.08,
-        "structural": 7.08,
+        "conservative": 5.5,
+        "structural": 7.27,
         "balanced": 1
       }
     },
@@ -186,15 +186,15 @@
       "DP": 7.45,
       "DR": 6,
       "ABS": 6.69,
-      "EDI": 4.86,
+      "EDI": 5.29,
       "uncertainty_band": [
         1,
-        8.88
+        8.87
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 6.19,
-        "structural": 8.88,
+        "conservative": 6.48,
+        "structural": 8.87,
         "balanced": 1
       }
     },
@@ -228,15 +228,15 @@
       "DP": 5.25,
       "DR": 4.65,
       "ABS": 4.94,
-      "EDI": 1.6,
+      "EDI": 2.41,
       "uncertainty_band": [
         1,
-        3.93
+        4.48
       ],
       "tier": "Marginal",
       "scenario_scores": {
-        "conservative": 2.61,
-        "structural": 3.93,
+        "conservative": 3.3,
+        "structural": 4.48,
         "balanced": 1
       }
     },
@@ -272,15 +272,15 @@
       "DP": 6.55,
       "DR": 6.9,
       "ABS": 6.72,
-      "EDI": 4.93,
+      "EDI": 5.36,
       "uncertainty_band": [
         1,
-        9.3
+        9.23
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 6.61,
-        "structural": 9.3,
+        "conservative": 6.85,
+        "structural": 9.23,
         "balanced": 1
       }
     },
@@ -291,6 +291,50 @@
       "https://www.congress.gov/bill/119th-congress/senate-bill/146",
       "https://www.congress.gov/crs-product/LSB11314",
       "https://iapp.org/news/a/take-it-down-act-how-to-comply-as-the-ftc-begins-enforcement"
+    ],
+    "contributor": "arshade",
+    "status": "published"
+  },
+  {
+    "case_id": 8,
+    "title": "EU AI Act — Enforcement Gets Independent Expert Support",
+    "date": "2026-06-01",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The European Commission appointed a Scientific Panel and an Advisory Forum to support enforcement of the AI Act, giving the AI Office and national authorities more technical depth on GPAI, systemic risks, and classification disputes.",
+    "legal_mechanism": "The new bodies sit inside the AI Act's enforcement architecture under Article 68 and the Commission's implementing rules. The Scientific Panel is made up of independent experts who advise on GPAI models, systemic risk, evaluation methods, and cross-border market surveillance. The Advisory Forum adds stakeholder input from academia, civil society, industry, SMEs, startups, the EU Agency for Fundamental Rights, ENISA, and standardisation bodies.",
+    "economic_consequence": "The immediate effect is not a new duty but tighter interpretation. Firms facing borderline GPAI or high-risk classification questions now have more formal expert input on the Commission side, which should reduce some ambiguity while raising the odds that enforcement develops faster and with less room for informal discretion. Compliance teams will still do the same work, but they are less likely to be able to rely on a thin reading of the rules.",
+    "scores": {
+      "LI": 3,
+      "SE": 7,
+      "ER": 4,
+      "SF": 3,
+      "PS": 8
+    },
+    "computed": {
+      "DP": 4.8,
+      "DR": 4.65,
+      "ABS": 4.72,
+      "EDI": 2.05,
+      "uncertainty_band": [
+        1,
+        4.03
+      ],
+      "tier": "Marginal",
+      "scenario_scores": {
+        "conservative": 2.91,
+        "structural": 4.03,
+        "balanced": 1
+      }
+    },
+    "sources": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "https://digital-strategy.ec.europa.eu/en/news/ai-act-enforcement-gets-independent-expert-support",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-act-governance-and-enforcement",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-scientific-panel",
+      "https://www.europarl.europa.eu/RegData/etudes/ATAG/2026/785670/EPRS_ATA(2026)785670_EN.pdf",
+      "https://www.bruegel.org/sites/default/files/2026-03/PB%2005%202026.pdf",
+      "https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/oecd-due-diligence-guidance-for-responsible-ai_7831bb49/41671712-en.pdf"
     ],
     "contributor": "arshade",
     "status": "published"

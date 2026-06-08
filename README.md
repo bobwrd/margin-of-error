@@ -8,6 +8,13 @@ This file provides guidance when working with code in this repository. The READM
 
 A structured database of AI-related legal and regulatory events at `/verdict`. Has its own visual identity (deep navy + cyan accent, independent dark/light toggle stored in `localStorage["verdict-theme"]`).
 
+**The Verdict is not in the top nav.** It is reached via a cyan pill button (`src/components/VerdictButton.tsx`) that sits parallel to the main heading of each main page (Home, Weekly Briefing, Personal Pieces, Profile, Contact). The top nav only exposes the writing/profile/contact sections.
+
+### Removed pages
+
+- `Tools` — the curated tools directory at `/tools` was removed; component deleted, route removed from `App.tsx`, nav entry removed. The Verdict button is the replacement entry point for non-writing content.
+- `Short-form` — the dedicated `/short-form` page and its legacy `/newsletter` alias were removed. Short-form pieces still exist as a `category: short` content type and appear in the home feed; the dedicated landing page just isn't surfaced.
+
 ### Content
 - Cases: `content/verdict/verdict_cases.json` — array of VerdictCase objects
 - Setup notes: `content/verdict/setup_notes.txt`

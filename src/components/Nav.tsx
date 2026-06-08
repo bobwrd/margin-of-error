@@ -20,27 +20,17 @@ export default function Nav() {
               item.href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(item.href);
-            const isVerdict = item.href === "/verdict";
             return (
               <Link
                 key={item.href}
                 to={item.href}
                 className={`px-2.5 py-1.5 rounded-md text-sm whitespace-nowrap transition-colors duration-150 ${
                   active
-                    ? isVerdict
-                      ? "bg-cyan-500/10 text-cyan-400 font-medium"
-                      : "bg-secondary text-foreground font-medium"
-                    : isVerdict
-                      ? "text-cyan-500/70 hover:text-cyan-400 hover:bg-cyan-500/8"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
+                    ? "bg-secondary text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
                 }`}
               >
                 {item.label}
-                {isVerdict && (
-                  <span className="ml-1.5 text-[0.6rem] font-mono bg-cyan-500/15 text-cyan-400 px-1 py-px rounded uppercase tracking-wider">
-                    ⬡
-                  </span>
-                )}
               </Link>
             );
           })}

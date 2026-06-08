@@ -1,13 +1,11 @@
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import Home from "./pages/Home";
-import ShortForm from "./pages/ShortForm";
 import WeeklyBriefing from "./pages/WeeklyBriefing";
 import PersonalPieces from "./pages/PersonalPieces";
 import ArticlePage from "./pages/ArticlePage";
 import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
-import Tools from "./pages/Tools";
 import VerdictLayout, { VerdictThemeProvider } from "./pages/verdict/VerdictLayout";
 import VerdictIndex from "./pages/verdict/VerdictIndex";
 import VerdictCase from "./pages/verdict/VerdictCase";
@@ -32,22 +30,17 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/short-form" element={<ShortForm />} />
-          <Route path="/short-form/:slug" element={<ArticlePage />} />
-
           <Route path="/weekly" element={<WeeklyBriefing />} />
           <Route path="/weekly/:slug" element={<ArticlePage />} />
 
           <Route path="/personal" element={<PersonalPieces />} />
           <Route path="/personal/:slug" element={<ArticlePage />} />
 
-          {/* Legacy routes — keep old links alive, redirect to new category pages. */}
+          {/* Legacy route — keep old links alive, redirect to the new category page. */}
           <Route path="/articles" element={<Navigate to="/weekly" replace />} />
-          <Route path="/newsletter" element={<Navigate to="/short-form" replace />} />
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/tools" element={<Tools />} />
 
           <Route path="/verdict" element={<VerdictShell />}>
             <Route index element={<VerdictIndex />} />

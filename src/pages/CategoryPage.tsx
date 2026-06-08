@@ -8,9 +8,10 @@ interface CategoryPageProps {
   category: ContentCategory;
   title: string;
   subtitle: string;
+  headingExtra?: React.ReactNode;
 }
 
-export default function CategoryPage({ category, title, subtitle }: CategoryPageProps) {
+export default function CategoryPage({ category, title, subtitle, headingExtra }: CategoryPageProps) {
   const [items, setItems] = useState<ContentMeta[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -27,9 +28,12 @@ export default function CategoryPage({ category, title, subtitle }: CategoryPage
 
   return (
     <Layout>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">{title}</h1>
-        <p className="text-sm text-muted-foreground">{subtitle}</p>
+      <div className="mb-8 flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">{title}</h1>
+          <p className="text-sm text-muted-foreground">{subtitle}</p>
+        </div>
+        {headingExtra}
       </div>
 
       {category === "short" && (

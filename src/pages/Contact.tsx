@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import VerdictButton from "@/components/VerdictButton";
 import { submitContact } from "@/lib/api";
 
 interface FormData {
@@ -62,11 +63,14 @@ export default function Contact() {
 
   return (
     <Layout>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Contact</h1>
-        <p className="text-sm text-muted-foreground">
-          Questions, feedback, or just want to talk economics or law — reach out.
-        </p>
+      <div className="mb-8 flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Contact</h1>
+          <p className="text-sm text-muted-foreground">
+            Questions, feedback, or just want to talk economics or law — reach out.
+          </p>
+        </div>
+        <VerdictButton />
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-xl">
