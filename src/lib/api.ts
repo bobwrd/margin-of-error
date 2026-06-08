@@ -55,6 +55,12 @@ export async function getPersonalPieces(): Promise<ContentMeta[]> {
   return data.items;
 }
 
+export async function getOthers(): Promise<ContentMeta[]> {
+  const res = await fetch("/api/content/other");
+  const data = await res.json();
+  return data.items;
+}
+
 export async function getProfile(): Promise<string> {
   const res = await fetch("/api/profile");
   const data = await res.json();

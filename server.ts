@@ -53,7 +53,7 @@ interface ContentMeta {
   tags: string[];
   summary: string;
   form: "article" | "newsletter";
-  category: "short" | "weekly" | "personal";
+  category: "short" | "weekly" | "personal" | "other";
   wordCount: number;
   pdf?: string;
   verdictId?: number;
@@ -121,7 +121,7 @@ function parseFrontmatter(raw: string, fallbackSlug: string): ContentItem {
   //   Personal pieces MUST be tagged explicitly.
   // - "newsletter" (<500 words) defaults to "short".
   const category: ContentMeta["category"] =
-    data.category === "personal" || data.category === "weekly" || data.category === "short"
+    data.category === "personal" || data.category === "weekly" || data.category === "short" || data.category === "other"
       ? (data.category as ContentMeta["category"])
       : form === "article"
         ? "weekly"
@@ -211,6 +211,12 @@ app.get("/api/content/weekly", async (c) => {
 app.get("/api/content/personal", async (c) => {
   const items = await loadAllFromArticlesDir();
   return c.json({ items: items.filter(i => i.category === "personal").map(({ body: _body, ...meta }) => meta) });
+});
+
+// Filter to other pieces (anything that doesn't fit weekly briefing or personal pieces)
+app.get("/api/content/other", async (c) => {
+  const items = await loadAllFromArticlesDir();
+  return c.json({ items: items.filter(i => i.category === "other").map(({ body: _body, ...meta }) => meta) });
 });
 
 // Filter to short-form pieces (newsletter-style observations under 500 words)

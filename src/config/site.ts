@@ -9,6 +9,7 @@ export const siteConfig = {
     { label: "Home", href: "/" },
     { label: "Weekly Briefing", href: "/weekly" },
     { label: "Personal Pieces", href: "/personal" },
+    { label: "Others", href: "/others" },
     { label: "Profile", href: "/profile" },
     { label: "Contact", href: "/contact" },
   ],

@@ -222,6 +222,7 @@ Three tables, auto-created on first run:
 | GET | `/api/content/short` | Short-form pieces (`category: short`) |
 | GET | `/api/content/weekly` | Weekly briefings (`category: weekly`) |
 | GET | `/api/content/personal` | Personal pieces (`category: personal`) |
+| GET | `/api/content/other` | Other pieces (`category: other`) |
 | GET | `/api/content/articles` | Legacy alias for `weekly` + `personal` (combined) |
 | GET | `/api/content/newsletter` | Legacy alias for `short` |
 | GET | `/api/content/:slug` | Single piece by slug (any category) |

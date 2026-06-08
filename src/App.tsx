@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Home from "./pages/Home";
 import WeeklyBriefing from "./pages/WeeklyBriefing";
 import PersonalPieces from "./pages/PersonalPieces";
+import Others from "./pages/Others";
 import ArticlePage from "./pages/ArticlePage";
 import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
@@ -35,6 +36,9 @@ export default function App() {
 
           <Route path="/personal" element={<PersonalPieces />} />
           <Route path="/personal/:slug" element={<ArticlePage />} />
+
+          <Route path="/others" element={<Others />} />
+          <Route path="/others/:slug" element={<ArticlePage />} />
 
           {/* Legacy route — keep old links alive, redirect to the new category page. */}
           <Route path="/articles" element={<Navigate to="/weekly" replace />} />
