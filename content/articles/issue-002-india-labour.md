@@ -1,5 +1,5 @@
 ---
-category: short
+category: other
 slug: issue-002-india-labour
 title: "Issue #2: What Indian Labour Data Actually Shows"
 date: 2026-05-10

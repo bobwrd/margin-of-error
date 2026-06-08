@@ -13,7 +13,7 @@ A structured database of AI-related legal and regulatory events at `/verdict`. H
 ### Removed pages
 
 - `Tools` — the curated tools directory at `/tools` was removed; component deleted, route removed from `App.tsx`, nav entry removed. The Verdict button is the replacement entry point for non-writing content.
-- `Short-form` — the dedicated `/short-form` page and its legacy `/newsletter` alias were removed. Short-form pieces still exist as a `category: short` content type and appear in the home feed; the dedicated landing page just isn't surfaced.
+- `Short-form` — the dedicated `/short-form` page and its legacy `/newsletter` alias were removed. Existing short-form pieces were re-categorized to `category: other` so they surface on the `/others` page; the `/api/content/short` endpoint is now a legacy alias that returns empty.
 
 ### Content
 - Cases: `content/verdict/verdict_cases.json` — array of VerdictCase objects
@@ -82,10 +82,10 @@ All written content lives in `content/articles/` — both long-form and short-fo
 
 ### Content categories
 
-Every piece in `content/articles/` belongs to one of three categories. Set it explicitly in frontmatter — this is the only field the site uses to route content:
+Every piece in `content/articles/` belongs to one of three active categories. Set it explicitly in frontmatter — this is the only field the site uses to route content:
 
-- `category: short` — newsletter-style observations, typically under 500 words (e.g. `issue-001-welcome`, the Verdict AI-policy takes)
-- `category: weekly` — the auto-generated weekly digest produced by the Monday automation
+- `category: other` — anything that doesn't fit weekly or personal: Verdict AI-policy takes, newsletter-style observations, ad-hoc essays (e.g. `issue-001-welcome`, the EU AI Act briefs, `us-economy-cheap-imports-china`)
+- `category: weekly` — the auto-generated weekly digest produced by the Monday automation (Monday 8 AM SGT)
 - `category: personal` — long-form pieces the author writes by hand; the `pdf:` field embeds the PDF above the body, and the bibliography sits below
 
 Example frontmatter:
@@ -219,7 +219,7 @@ Three tables, auto-created on first run:
 | Method | Path | Description |
 |--------|------|-------------|
 | GET | `/api/content` | Combined feed (all categories), sorted by date |
-| GET | `/api/content/short` | Short-form pieces (`category: short`) |
+| GET | `/api/content/short` | Legacy alias for `category: short` (now empty — short-form pieces were re-categorized to `other`) |
 | GET | `/api/content/weekly` | Weekly briefings (`category: weekly`) |
 | GET | `/api/content/personal` | Personal pieces (`category: personal`) |
 | GET | `/api/content/other` | Other pieces (`category: other`) |

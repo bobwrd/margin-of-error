@@ -1,6 +1,6 @@
 ---
 slug: ftc-take-it-down-act-enforcement
-category: short
+category: other
 title: "FTC — TAKE IT DOWN Act Enforcement Begins"
 date: 2026-05-19
 tags: verdict, ai, law, regulation, united-states

@@ -1,6 +1,6 @@
 ---
 slug: musk-v-openai-federal-jury-verdict
-category: short
+category: other
 title: "Musk v. OpenAI — Federal Jury Verdict"
 date: 2026-05-18
 tags: verdict, ai, law, regulation, united-states

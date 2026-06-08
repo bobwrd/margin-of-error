@@ -1,6 +1,6 @@
 ---
 slug: eu-ai-act-full-entry-into-force
-category: short
+category: other
 title: "EU AI Act — Full Entry into Force"
 date: 2024-08-01
 tags: verdict, ai, law, regulation, european-union

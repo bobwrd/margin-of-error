@@ -1,6 +1,6 @@
 ---
 slug: uk-boe-fca-hmt-frontier-ai-cyber-risks
-category: short
+category: other
 title: "UK — BoE/FCA/HMT Joint Statement on Frontier AI Cyber Risks"
 date: 2026-05-10
 tags: verdict, ai, law, regulation, united-kingdom, financial-services

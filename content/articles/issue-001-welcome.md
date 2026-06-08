@@ -1,5 +1,5 @@
 ---
-category: short
+category: other
 slug: issue-001-welcome
 title: "Issue #1: Welcome to Margin of Error"
 date: 2026-05-13

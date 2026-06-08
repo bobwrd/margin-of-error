@@ -1,6 +1,6 @@
 ---
 slug: eu-ai-act-enforcement-gets-independent-expert-support
-category: short
+category: other
 title: "EU AI Act — Enforcement Gets Independent Expert Support"
 date: 2026-06-01
 tags: verdict, ai, law, regulation, european-union
