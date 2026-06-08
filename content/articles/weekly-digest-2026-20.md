@@ -1,6 +1,6 @@
 ---
 slug: weekly-digest-2026-20
-title: "Weekly Digest — W20 (May 12–16, 2026)"
+title: "The Oil Bill"
 date: 2026-05-16
 author: Arin Jain
 tags: economics, law, weekly, briefing
