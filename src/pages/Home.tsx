@@ -3,12 +3,16 @@ import Layout from "@/components/Layout";
 import ContentCard from "@/components/ContentCard";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import VerdictButton from "@/components/VerdictButton";
+import ViewToggle, { readStoredView, type ViewMode } from "@/components/ViewToggle";
 import { getAllContent, type ContentMeta } from "@/lib/api";
 import { siteConfig } from "@/config/site";
+
+const VIEW_STORAGE_KEY = "moe-view-mode";
 
 export default function Home() {
   const [feed, setFeed] = useState<ContentMeta[]>([]);
   const [loading, setLoading] = useState(true);
+  const [view, setView] = useState<ViewMode>(() => readStoredView(VIEW_STORAGE_KEY, "list"));
 
   useEffect(() => {
     getAllContent().then((items) => {
@@ -19,6 +23,14 @@ export default function Home() {
       setLoading(false);
     });
   }, []);
+
+  const renderItem = (item: ContentMeta) => (
+    <ContentCard
+      key={item.slug}
+      item={item}
+      variant={item.verdictId ? "list" : view}
+    />
+  );
 
   return (
     <Layout>
@@ -41,11 +53,14 @@ export default function Home() {
       ) : feed.length === 0 ? (
         <div className="py-16 text-center text-sm text-muted-foreground">Nothing here yet.</div>
       ) : (
-        <div>
-          {feed.map((item) => (
-            <ContentCard key={item.slug} item={item} />
-          ))}
-        </div>
+        <>
+          <div className="mb-6 flex items-center justify-end">
+            <ViewToggle value={view} onChange={setView} storageKey={VIEW_STORAGE_KEY} />
+          </div>
+          <div className={view === "grid" ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" : ""}>
+            {feed.map(renderItem)}
+          </div>
+        </>
       )}
     </Layout>
   );

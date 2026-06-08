@@ -57,6 +57,10 @@ Every Monday 8:00 AM SGT — searches for AI governance events, saves to `conten
 - Tier colours: Seismic=red, Major=orange, Moderate=yellow, Marginal=slate
 - Verdict section CSS is scoped under `.verdict-section` and `.verdict-section.verdict-light` in `src/styles.css`
 
+### List/Grid view toggle
+
+The Home page and category pages (`/weekly`, `/personal`, `/others`) expose a list/grid toggle in the top-right of the feed. The selected mode is persisted in `localStorage["moe-view-mode"]` and shared across pages. Verdict items (`verdictId` set) always render in the original list style regardless of the toggle — they keep the left tier-stripe and the dense metadata row used on the Verdict index. Implementation: `src/components/ViewToggle.tsx` plus the `variant` prop on `ContentCard`.
+
 ---
 
 ## Content Tasks
@@ -173,7 +177,8 @@ This is a **Zo Site** - a web application running on a user's Zo computer that c
     ├── components/
     │   ├── Layout.tsx     # Page shell with Nav and footer
     │   ├── Nav.tsx        # Top nav bar (reads from site.ts)
-    │   ├── ContentCard.tsx # Card for articles/newsletter in list views
+    │   ├── ContentCard.tsx # Card for articles/newsletter — list (default) and grid variants. Verdict items always render in list style.
+    │   ├── ViewToggle.tsx  # List/grid toggle for Home + category pages; persists in localStorage["moe-view-mode"]
     │   ├── LikeButton.tsx  # Heart button with persisted count (localStorage + SQLite)
     │   ├── NewsletterSignup.tsx  # Signup form (compact and full variants)
     │   ├── AuthorBox.tsx   # "About the author" box for article/newsletter pages

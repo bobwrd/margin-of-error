@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import ContentCard from "@/components/ContentCard";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import ViewToggle, { readStoredView, type ViewMode } from "@/components/ViewToggle";
 import { getAllContent, type ContentMeta, type ContentCategory } from "@/lib/api";
+
+const VIEW_STORAGE_KEY = "moe-view-mode";
 
 interface CategoryPageProps {
   category: ContentCategory;
@@ -14,6 +17,7 @@ interface CategoryPageProps {
 export default function CategoryPage({ category, title, subtitle, headingExtra }: CategoryPageProps) {
   const [items, setItems] = useState<ContentMeta[]>([]);
   const [loading, setLoading] = useState(true);
+  const [view, setView] = useState<ViewMode>(() => readStoredView(VIEW_STORAGE_KEY, "list"));
 
   useEffect(() => {
     getAllContent().then((all) => {
@@ -25,6 +29,15 @@ export default function CategoryPage({ category, title, subtitle, headingExtra }
       setLoading(false);
     });
   }, [category]);
+
+  // Render verdict items always in list style; others follow the toggle.
+  const renderItem = (item: ContentMeta) => (
+    <ContentCard
+      key={item.slug}
+      item={item}
+      variant={item.verdictId ? "list" : view}
+    />
+  );
 
   return (
     <Layout>
@@ -49,11 +62,14 @@ export default function CategoryPage({ category, title, subtitle, headingExtra }
           Nothing published yet.
         </div>
       ) : (
-        <div>
-          {items.map((item) => (
-            <ContentCard key={item.slug} item={item} />
-          ))}
-        </div>
+        <>
+          <div className="mb-6 flex items-center justify-end">
+            <ViewToggle value={view} onChange={setView} storageKey={VIEW_STORAGE_KEY} />
+          </div>
+          <div className={view === "grid" ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" : ""}>
+            {items.map(renderItem)}
+          </div>
+        </>
       )}
 
       {category !== "short" && (

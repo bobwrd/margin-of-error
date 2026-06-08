@@ -4,6 +4,7 @@ import type { ContentMeta, ContentCategory } from "@/lib/api";
 
 interface ContentCardProps {
   item: ContentMeta;
+  variant?: "list" | "grid";
 }
 
 function readTime(wordCount: number): string {
@@ -68,7 +69,7 @@ function categoryHref(category: ContentCategory, slug: string): string {
   }
 }
 
-export default function ContentCard({ item }: ContentCardProps) {
+export default function ContentCard({ item, variant = "list" }: ContentCardProps) {
   const articleHref = categoryHref(item.category, item.slug);
   const isVerdict = Boolean(item.verdictId);
 
@@ -145,6 +146,61 @@ export default function ContentCard({ item }: ContentCardProps) {
             ))}
           </div>
         )}
+      </Link>
+    );
+  }
+
+  const formattedDate = item.date
+    ? new Date(item.date).toLocaleDateString("en-SG", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
+
+  if (variant === "grid") {
+    return (
+      <Link
+        to={articleHref}
+        className="group relative flex flex-col h-full p-5 rounded-lg border border-border bg-card hover:border-warm-accent/40 hover:shadow-sm transition-all duration-200"
+      >
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <CategoryBadge category={item.category} />
+          {formattedDate && (
+            <time className="text-xs text-muted-foreground">{formattedDate}</time>
+          )}
+        </div>
+
+        <h2 className="text-base font-semibold text-foreground group-hover:text-warm-accent transition-colors duration-150 leading-snug mb-2 line-clamp-3">
+          {item.title}
+        </h2>
+
+        {item.summary && (
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+            {item.summary}
+          </p>
+        )}
+
+        <div className="mt-auto flex items-center justify-between gap-2 flex-wrap">
+          {item.tags.length > 0 ? (
+            <div className="flex flex-wrap gap-1.5">
+              {item.tags.slice(0, 2).map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs text-muted-foreground/80 bg-secondary px-2.5 py-0.5 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+              {item.tags.length > 2 && (
+                <span className="text-xs text-muted-foreground/60">+{item.tags.length - 2}</span>
+              )}
+            </div>
+          ) : (
+            <span />
+          )}
+          <span className="text-xs text-muted-foreground/70">{readTime(item.wordCount)}</span>
+        </div>
       </Link>
     );
   }
