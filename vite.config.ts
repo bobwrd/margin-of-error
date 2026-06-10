@@ -15,9 +15,6 @@ export default defineConfig({
     strictPort: true,
     hmr: false,
   },
-  optimizeDeps: {
-    include: ["react-globe.gl", "three", "three-stdlib"],
-  },
   build: {
     // Modern target: smaller output, no legacy transforms. Fine for any
     // browser from ~2022 onward.
