@@ -8,10 +8,6 @@ I study economics and law, and I am interested in the gap between how institutio
 
 **Economics research** — an ongoing paper analysing sectoral employment trends in India across regions, industries, and genders using Periodic Labour Force Survey data. Early findings on informal sector persistence and non-uniform gender gaps are written up in the newsletter.
 
-## Recognition
-
-**National Merit Scholarship Commended Scholar** — recognition awarded by the National Merit Scholarship Corporation for PSAT/NMSQT performance, placing among the top ~3% of the 1.3 million+ students who sit the test each year.
-
 ## Links
 
 - [TEDx talk — on the social influences on ambition](https://www.youtube.com/watch?v=GucwscPHSGs)
