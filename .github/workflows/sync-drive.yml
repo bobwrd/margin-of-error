@@ -1,0 +1,56 @@
+name: Sync content from Google Drive
+
+# Pulls the "Margin of Error" Drive folder into content/ and commits any
+# changes. A push to main triggers Cloudflare Pages to rebuild and redeploy,
+# so new articles/verdict cases go live automatically.
+
+on:
+  schedule:
+    # Times are UTC. SGT = UTC+8.
+    # 08:30 UTC (16:30 SGT) — after the 15:00 SGT Daily Brief.
+    - cron: "30 8 * * *"
+    # 16:30 UTC Sat (00:30 SGT Sun) — after the Sat 23:59 SGT Weekly Digest.
+    - cron: "30 16 * * 6"
+    # 01:00 UTC Mon (09:00 SGT Mon) — after the 08:00 SGT Verdict Radar.
+    - cron: "0 1 * * 1"
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-drive
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install googleapis@^144 --no-save
+
+      - name: Sync from Drive
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          DRIVE_ROOT_FOLDER_ID: ${{ vars.DRIVE_ROOT_FOLDER_ID }}
+        run: node scripts/sync-drive.mjs
+
+      - name: Commit changes
+        run: |
+          git config user.name "drive-sync[bot]"
+          git config user.email "drive-sync@users.noreply.github.com"
+          git add content/
+          if git diff --cached --quiet; then
+            echo "No content changes."
+          else
+            git commit -m "chore(content): sync from Google Drive [skip ci]"
+            git push
+          fi

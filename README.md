@@ -313,4 +313,10 @@ const db = new Database("data.sqlite");
 
 ## Deployment
 
-The site exports `{ fetch, port }` from `server.ts`. Same code in dev and production; mode controlled by `NODE_ENV`.
+The site is hosted on **Cloudflare Pages** (frontend) + **Pages Functions** (the `/api/*` backend in `functions/api/[[route]].ts`) + **Cloudflare D1** (database). Content is synced from Google Drive by a scheduled GitHub Action (`.github/workflows/sync-drive.yml`), which commits to `main` and triggers a Cloudflare rebuild.
+
+Build: `npm run build` runs `scripts/bake-content.mjs` (bakes `content/` into `functions/generated/content.json`, since Workers have no filesystem) then `vite build` → `dist/`.
+
+Full one-time setup steps (D1, Cloudflare, Google service account, GitHub secrets) are in **`SETUP.md`**.
+
+The legacy Bun server (`server.ts`, `zosite.json`) is retained for reference and local dev only; it is not used by the Cloudflare deployment.

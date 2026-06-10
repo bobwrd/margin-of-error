@@ -1,2 +1,7 @@
 node_modules/
 dist/
+.wrangler/
+functions/generated/
+data.sqlite
+.dev.vars
+.DS_Store

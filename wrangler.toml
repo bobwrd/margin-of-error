@@ -1,0 +1,18 @@
+# Cloudflare Pages configuration for Margin of Error.
+#
+# The D1 binding here lets `wrangler pages dev` and `wrangler pages deploy`
+# know which database to attach as `env.DB`. When you connect the repo in the
+# Cloudflare dashboard you must also add the same D1 binding there (Settings →
+# Functions → D1 database bindings) — the dashboard build does not read this
+# file's bindings automatically for Git-connected projects.
+#
+# Replace database_id with the id printed by `wrangler d1 create`.
+
+name = "margin-of-error"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "margin-of-error-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"

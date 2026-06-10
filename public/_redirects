@@ -1,0 +1,4 @@
+# Cloudflare Pages routing.
+# Functions (/api/*) and real static assets are matched first; everything
+# else falls through to the SPA entry point so React Router can handle it.
+/*    /index.html   200
