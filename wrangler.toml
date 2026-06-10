@@ -1,16 +1,25 @@
-# Cloudflare Pages configuration for Margin of Error.
+# Cloudflare Worker config (Workers + Static Assets model).
 #
-# The D1 binding here lets `wrangler pages dev` and `wrangler pages deploy`
-# know which database to attach as `env.DB`. When you connect the repo in the
-# Cloudflare dashboard you must also add the same D1 binding there (Settings →
-# Functions → D1 database bindings) — the dashboard build does not read this
-# file's bindings automatically for Git-connected projects.
+# - main: the Worker that handles /api/* (worker.ts)
+# - [assets]: the React build in dist/ is served as static files, with SPA
+#   fallback to index.html for client-side routes. `run_worker_first` forces
+#   /api/* to the Worker even on direct navigation.
+# - [[d1_databases]]: binds the D1 database as env.DB at deploy time, so no
+#   manual dashboard binding is needed.
 #
-# Replace database_id with the id printed by `wrangler d1 create`.
+# The VERDICT_PASSWORD secret is NOT here (secrets don't belong in source).
+# Set it in the dashboard: Worker -> Settings -> Variables and Secrets, or with
+#   npx wrangler secret put VERDICT_PASSWORD
 
 name = "margin-of-error"
-compatibility_date = "2024-11-01"
-pages_build_output_dir = "dist"
+main = "worker.ts"
+compatibility_date = "2025-05-01"
+
+[assets]
+directory = "./dist/"
+not_found_handling = "single-page-application"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
 
 [[d1_databases]]
 binding = "DB"

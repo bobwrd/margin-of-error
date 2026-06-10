@@ -26,5 +26,5 @@
     "types",
     "**/*.d.ts"
   ],
-  "exclude": ["dist", "node_modules", "functions"]
+  "exclude": ["dist", "node_modules", "functions", "worker.ts"]
 }

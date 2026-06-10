@@ -15,7 +15,8 @@ itself.
 
 ## What's already in the repo
 
-- `functions/api/[[route]].ts` — the whole API (same routes as before).
+- `worker.ts` — the whole API (same routes as before), served at `/api/*`.
+- `wrangler.toml` — Worker entry, static-assets (`dist/`) + SPA fallback, D1.
 - `scripts/bake-content.mjs` — bakes `content/` into a bundle at build time.
 - `scripts/sync-drive.mjs` + `.github/workflows/sync-drive.yml` — Drive sync.
 - `schema.sql` — D1 tables (also auto-created on first request).
@@ -62,23 +63,29 @@ git push -u origin main
 
 ---
 
-## Step 3 — Connect the repo to Cloudflare Pages
+## Step 3 — Connect the repo as a Worker (Workers + Static Assets)
 
-1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** →
-   **Connect to Git** → pick your repo.
-2. Build settings:
-   - **Framework preset:** None
+Cloudflare folded Pages into Workers, so the site deploys as a **Worker with
+static assets**, not a Pages project. The config lives in `wrangler.toml`
+(Worker entry `worker.ts`, static assets from `dist/`, SPA fallback, and the D1
+binding), so most of this is automatic.
+
+1. Push the latest code first (it includes `worker.ts` and `wrangler.toml`):
+   ```bash
+   git add -A && git commit -m "Workers + static assets config" && git push
+   ```
+2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Import a
+   repository** (Workers) → pick `bobwrd/margin-of-error`.
+3. Build settings:
    - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-3. **Save and Deploy.** The first build will succeed and give you a
-   `*.pages.dev` URL.
-4. After the first deploy, add the bindings (Pages project → **Settings**):
-   - **Functions → D1 database bindings:** add binding **`DB`** → select
-     `margin-of-error-db`. (The binding name must be exactly `DB`.)
-   - **Environment variables (Production):** add **`VERDICT_PASSWORD`** = your
-     real password (this replaces the old `CHANGE_ME`).
-5. Re-deploy once (**Deployments → Retry/redeploy**) so the new bindings take
-   effect.
+   - **Deploy command:** `npx wrangler deploy` (use the default if shown)
+   - No "output directory" field — `wrangler.toml` defines the assets dir.
+4. **Save and Deploy.** The build runs in the cloud and gives you a
+   `…workers.dev` URL. The **`DB`** binding is applied automatically from
+   `wrangler.toml` — no manual binding step.
+5. Add the password secret: Worker → **Settings → Variables and Secrets** → add
+   a **Secret** named **`VERDICT_PASSWORD`** = your real password. Then redeploy
+   once (**Deployments → … → Retry**) so it takes effect.
 
 That's the website live. Likes, the contact form, and Verdict submit all work
 against D1.
