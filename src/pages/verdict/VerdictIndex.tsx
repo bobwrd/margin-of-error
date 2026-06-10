@@ -5,6 +5,7 @@ import {
   ResponsiveContainer, Cell
 } from "recharts";
 import { useVerdictTheme } from "./VerdictLayout";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { fetchCases, TIER_COLORS, TIER_BG, type VerdictCase } from "./types";
 const GlobeComponent = lazy(() =>
     import(/* webpackChunkName: "verdict-globe" */ "./VerdictGlobe").then((m) => ({ default: m.default }))
@@ -196,6 +197,7 @@ type FilterState = { type: string; jurisdiction: string; tier: string };
 export default function VerdictIndex() {
   const [cases, setCases] = useState<VerdictCase[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showGlobe, setShowGlobe] = useState(false);
   const [sort, setSort] = useState<SortKey>("date");
   const [filters, setFilters] = useState<FilterState>({ type: "", jurisdiction: "", tier: "" });
   const { theme } = useVerdictTheme();
@@ -288,16 +290,37 @@ export default function VerdictIndex() {
           style={{ borderColor: "var(--verdict-border)", backgroundColor: "var(--verdict-surface)" }}
         >
           <div className="text-xs font-mono mb-3" style={{ color: "var(--verdict-muted)" }}>
-            GLOBAL DISTRIBUTION — click a point to open that verdict
+            GLOBAL DISTRIBUTION — {showGlobe ? "click a point to open that verdict" : "optional interactive 3D view"}
           </div>
-          <div style={{ height: 320 }}>
-            <Suspense fallback={
-              <div className="h-full flex items-center justify-center rounded" style={{ backgroundColor: "var(--verdict-surface-2)", color: "var(--verdict-muted)" }}>
-                <span className="text-xs font-mono">Loading globe…</span>
-              </div>
-            }>
-              <GlobeComponent cases={filtered} />
-            </Suspense>
+          <div style={{ minHeight: 320 }}>
+            {showGlobe ? (
+              <ErrorBoundary
+                fallback={
+                  <div className="h-80 flex flex-col items-center justify-center gap-2 rounded text-center px-4" style={{ backgroundColor: "var(--verdict-surface-2)", color: "var(--verdict-muted)" }}>
+                    <span className="text-xs font-mono">The interactive globe couldn’t load in this browser.</span>
+                    <span className="text-[0.65rem] font-mono">All cases are available in the timeline and list below.</span>
+                  </div>
+                }
+              >
+                <Suspense fallback={
+                  <div className="h-80 flex items-center justify-center rounded" style={{ backgroundColor: "var(--verdict-surface-2)", color: "var(--verdict-muted)" }}>
+                    <span className="text-xs font-mono">Loading globe…</span>
+                  </div>
+                }>
+                  <GlobeComponent cases={filtered} />
+                </Suspense>
+              </ErrorBoundary>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setShowGlobe(true)}
+                className="w-full h-32 flex flex-col items-center justify-center gap-2 rounded border border-dashed transition-colors hover:opacity-80"
+                style={{ borderColor: "var(--verdict-border)", backgroundColor: "var(--verdict-surface-2)", color: "var(--verdict-muted)" }}
+              >
+                <span className="text-sm font-mono" style={{ color: "var(--verdict-accent)" }}>↻ Load interactive globe</span>
+                <span className="text-[0.65rem] font-mono">3D WebGL view · loads on demand</span>
+              </button>
+            )}
           </div>
         </div>
       )}
