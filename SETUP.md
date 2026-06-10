@@ -63,32 +63,54 @@ git push -u origin main
 
 ---
 
-## Step 3 — Connect the repo as a Worker (Workers + Static Assets)
+## Step 3 — First deploy (manual)
 
 Cloudflare folded Pages into Workers, so the site deploys as a **Worker with
-static assets**, not a Pages project. The config lives in `wrangler.toml`
-(Worker entry `worker.ts`, static assets from `dist/`, SPA fallback, and the D1
-binding), so most of this is automatic.
+static assets**. Everything is in `wrangler.toml` (Worker entry `worker.ts`,
+static assets from `dist/`, SPA fallback, and the D1 binding). Deploy from your
+machine once:
 
-1. Push the latest code first (it includes `worker.ts` and `wrangler.toml`):
-   ```bash
-   git add -A && git commit -m "Workers + static assets config" && git push
-   ```
-2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Import a
-   repository** (Workers) → pick `bobwrd/margin-of-error`.
-3. Build settings:
-   - **Build command:** `npm run build`
-   - **Deploy command:** `npx wrangler deploy` (use the default if shown)
-   - No "output directory" field — `wrangler.toml` defines the assets dir.
-4. **Save and Deploy.** The build runs in the cloud and gives you a
-   `…workers.dev` URL. The **`DB`** binding is applied automatically from
-   `wrangler.toml` — no manual binding step.
-5. Add the password secret: Worker → **Settings → Variables and Secrets** → add
-   a **Secret** named **`VERDICT_PASSWORD`** = your real password. Then redeploy
-   once (**Deployments → … → Retry**) so it takes effect.
+```bash
+npm install
+npm run deploy          # = npm run build && wrangler deploy
+npx wrangler secret put VERDICT_PASSWORD   # type your chosen password
+```
+
+You'll get a `https://margin-of-error.<subdomain>.workers.dev` URL. Enable it
+(Worker → Settings → Domains & Routes → enable the production `workers.dev`
+route) and, if Cloudflare Access is in front of it, remove that Access
+application so the site is public.
 
 That's the website live. Likes, the contact form, and Verdict submit all work
 against D1.
+
+> **Do NOT also connect the repo as a dashboard "Build"/Git integration.**
+> Deploys are handled by the GitHub Action in Step 3b. If you previously
+> connected Git in the dashboard, disconnect it (Worker → Settings → Build →
+> disconnect) so the two don't fight over deployments.
+
+---
+
+## Step 3b — Auto-deploy on every push (GitHub Action)
+
+So that `git push` (and the daily Drive sync) publish automatically, the repo
+has `.github/workflows/deploy.yml`, which builds and runs `wrangler deploy`.
+It needs a Cloudflare API token.
+
+1. Cloudflare dashboard → **My Profile → API Tokens → Create Token** → use the
+   **"Edit Cloudflare Workers"** template.
+2. Under **Account Resources**, scope it to your account. Add an extra
+   permission **Account → D1 → Edit** (so the deploy can validate the D1
+   binding). Create the token and **copy it**.
+3. GitHub repo → **Settings → Secrets and variables → Actions → New repository
+   secret**:
+   - **Name:** `CLOUDFLARE_API_TOKEN`
+   - **Value:** the token
+4. Push anything (or **Actions → Deploy to Cloudflare → Run workflow**). Confirm
+   the run goes green. From now on, every push deploys.
+
+The account ID is already set in `wrangler.toml`, so no other secret is needed
+for deploys.
 
 ---
 

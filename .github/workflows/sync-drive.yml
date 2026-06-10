@@ -1,8 +1,11 @@
 name: Sync content from Google Drive
 
-# Pulls the "Margin of Error" Drive folder into content/ and commits any
-# changes. A push to main triggers Cloudflare Pages to rebuild and redeploy,
-# so new articles/verdict cases go live automatically.
+# Pulls the "Margin of Error" Drive folder into content/, commits any changes,
+# and (if something changed) rebuilds and redeploys the Worker.
+#
+# Note: a commit made with the default GITHUB_TOKEN does NOT trigger other
+# workflows (GitHub blocks recursive runs), so this workflow deploys itself
+# rather than relying on deploy.yml to pick up the commit.
 
 on:
   schedule:
@@ -35,22 +38,38 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: npm install googleapis@^144 --no-save
+        run: npm ci
 
-      - name: Sync from Drive
+      - name: Pull content from Drive
         env:
           GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
           DRIVE_ROOT_FOLDER_ID: ${{ vars.DRIVE_ROOT_FOLDER_ID }}
-        run: node scripts/sync-drive.mjs
+        run: |
+          npm install googleapis@^144 --no-save
+          node scripts/sync-drive.mjs
 
       - name: Commit changes
+        id: commit
         run: |
           git config user.name "drive-sync[bot]"
           git config user.email "drive-sync@users.noreply.github.com"
           git add content/
           if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No content changes."
           else
-            git commit -m "chore(content): sync from Google Drive [skip ci]"
+            git commit -m "chore(content): sync from Google Drive"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Build
+        if: steps.commit.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Deploy with Wrangler
+        if: steps.commit.outputs.changed == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: deploy
