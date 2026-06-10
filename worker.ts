@@ -24,6 +24,27 @@ type Bindings = {
 const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
 
 // ---------------------------------------------------------------------------
+// Cache headers for baked-content reads.
+// Articles, profile, and verdict cases are baked at build time — they cannot
+// change between deploys. A short browser/edge TTL (5 min) plus
+// stale-while-revalidate makes repeat page loads near-instant without risking
+// stale content lingering long after a deploy. Dynamic routes (likes, contact,
+// newsletter, submit) are deliberately excluded.
+// ---------------------------------------------------------------------------
+app.use("*", async (c, next) => {
+  await next();
+  if (c.req.method !== "GET") return;
+  const p = c.req.path;
+  if (
+    p.startsWith("/api/content") ||
+    p === "/api/profile" ||
+    p.startsWith("/api/verdict/cases")
+  ) {
+    c.header("Cache-Control", "public, max-age=300, stale-while-revalidate=3600");
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Baked content
 // ---------------------------------------------------------------------------
 type Baked = {

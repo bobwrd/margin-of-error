@@ -19,7 +19,22 @@ export default defineConfig({
     include: ["react-globe.gl", "three", "three-stdlib"],
   },
   build: {
+    // Modern target: smaller output, no legacy transforms. Fine for any
+    // browser from ~2022 onward.
+    target: "es2022",
     outDir: "dist",
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Stable vendor chunk: changes rarely, so returning visitors keep
+          // the cached copy across content deploys.
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          // recharts is only used by Verdict pages; isolating it keeps it
+          // out of every other route chunk.
+          recharts: ["recharts"],
+        },
+      },
+    },
   },
 });
