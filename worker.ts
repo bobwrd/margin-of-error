@@ -38,7 +38,8 @@ app.use("*", async (c, next) => {
   if (
     p.startsWith("/api/content") ||
     p === "/api/profile" ||
-    p.startsWith("/api/verdict/cases")
+    p.startsWith("/api/verdict/cases") ||
+    p.startsWith("/api/ledger")
   ) {
     c.header("Cache-Control", "public, max-age=300, stale-while-revalidate=3600");
   }
@@ -51,8 +52,15 @@ type Baked = {
   articles: Record<string, string>;
   profile: string;
   verdictCases: Record<string, unknown>[];
+  ledgerActions: Record<string, unknown>[];
+  ledgerCsv: string;
+  ledgerCodebook: string;
 };
 const CONTENT = baked as Baked;
+
+function loadLedgerActions(): Record<string, unknown>[] {
+  return CONTENT.ledgerActions || [];
+}
 
 // ---------------------------------------------------------------------------
 // Frontmatter parser (ported verbatim from server.ts)
@@ -401,6 +409,35 @@ app.post("/verdict/submit", async (c) => {
     draft_id: res.meta.last_row_id,
     note: "Draft stored. Review it in D1 and publish via the Google Drive verdict_cases.json.",
   });
+});
+
+// ---------------------------------------------------------------------------
+// Ledger routes (MAS enforcement actions) — baked, read-only
+// ---------------------------------------------------------------------------
+app.get("/ledger/actions", (c) => c.json({ actions: loadLedgerActions() }));
+
+// Bulk downloads — static paths BEFORE the /:id param route.
+app.get("/ledger/download/json", (c) => {
+  c.header("Content-Type", "application/json");
+  c.header("Content-Disposition", 'attachment; filename="ledger_enforcement_actions.json"');
+  return c.body(JSON.stringify(loadLedgerActions(), null, 2));
+});
+app.get("/ledger/download/csv", (c) => {
+  c.header("Content-Type", "text/csv");
+  c.header("Content-Disposition", 'attachment; filename="ledger_enforcement_actions.csv"');
+  return c.body(CONTENT.ledgerCsv || "");
+});
+app.get("/ledger/download/codebook", (c) => {
+  c.header("Content-Type", "text/markdown");
+  c.header("Content-Disposition", 'attachment; filename="ledger_codebook.md"');
+  return c.body(CONTENT.ledgerCodebook || "");
+});
+
+app.get("/ledger/actions/:id", (c) => {
+  const id = parseInt(c.req.param("id"), 10);
+  const item = loadLedgerActions().find((a) => a.action_id === id);
+  if (!item) return c.json({ error: "Not found" }, 404);
+  return c.json({ action: item });
 });
 
 export default app;

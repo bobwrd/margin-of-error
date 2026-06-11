@@ -35,6 +35,29 @@ const VerdictCharts = lazy(() => import("./pages/verdict/VerdictCharts"));
 const VerdictAbout = lazy(() => import("./pages/verdict/VerdictAbout"));
 const VerdictSubmit = lazy(() => import("./pages/verdict/VerdictSubmit"));
 
+// The Ledger — MAS enforcement actions database. Same standalone-product
+// pattern as The Verdict: own theme shell, own lazy chunk.
+const LedgerShell = lazy(() =>
+  import("./pages/ledger/LedgerLayout").then((m) => {
+    const { default: LedgerLayout, LedgerThemeProvider } = m;
+    return {
+      default: function LedgerShell() {
+        return (
+          <LedgerThemeProvider>
+            <LedgerLayout>
+              <Outlet />
+            </LedgerLayout>
+          </LedgerThemeProvider>
+        );
+      },
+    };
+  })
+);
+const LedgerIndex = lazy(() => import("./pages/ledger/LedgerIndex"));
+const LedgerAction = lazy(() => import("./pages/ledger/LedgerAction"));
+const LedgerCharts = lazy(() => import("./pages/ledger/LedgerCharts"));
+const LedgerAbout = lazy(() => import("./pages/ledger/LedgerAbout"));
+
 // Minimal fallback — pages fetch their own data, so the gap is brief.
 // Intentionally unstyled-but-themed so there's no flash of wrong colors.
 function RouteFallback() {
@@ -70,6 +93,13 @@ export default function App() {
               <Route path="charts" element={<VerdictCharts />} />
               <Route path="about" element={<VerdictAbout />} />
               <Route path="submit" element={<VerdictSubmit />} />
+            </Route>
+
+            <Route path="/ledger" element={<LedgerShell />}>
+              <Route index element={<LedgerIndex />} />
+              <Route path="charts" element={<LedgerCharts />} />
+              <Route path="about" element={<LedgerAbout />} />
+              <Route path=":id" element={<LedgerAction />} />
             </Route>
           </Routes>
         </Suspense>

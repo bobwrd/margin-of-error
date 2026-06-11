@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import VerdictButton from "@/components/VerdictButton";
+import LedgerButton from "@/components/LedgerButton";
 import { submitContact } from "@/lib/api";
 
 interface FormData {
@@ -70,7 +71,10 @@ export default function Contact() {
             Questions, feedback, or just want to talk economics or law — reach out.
           </p>
         </div>
-        <VerdictButton />
+        <div className="flex items-center gap-2">
+          <VerdictButton />
+          <LedgerButton />
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-xl">

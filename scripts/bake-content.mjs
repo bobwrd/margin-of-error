@@ -20,6 +20,9 @@ const ROOT = join(__dirname, "..");
 const ARTICLES_DIR = join(ROOT, "content", "articles");
 const PROFILE_PATH = join(ROOT, "content", "profile.md");
 const VERDICT_CASES_PATH = join(ROOT, "content", "verdict", "verdict_cases.json");
+const LEDGER_ACTIONS_PATH = join(ROOT, "content", "ledger", "ledger_actions.json");
+const LEDGER_CSV_PATH = join(ROOT, "content", "ledger", "enforcement_actions.csv");
+const LEDGER_CODEBOOK_PATH = join(ROOT, "content", "ledger", "codebook.md");
 const OUT_DIR = join(ROOT, "functions", "generated");
 const OUT_PATH = join(OUT_DIR, "content.json");
 
@@ -33,7 +36,14 @@ async function exists(p) {
 }
 
 async function bake() {
-  const out = { articles: {}, profile: "", verdictCases: [] };
+  const out = {
+    articles: {},
+    profile: "",
+    verdictCases: [],
+    ledgerActions: [],
+    ledgerCsv: "",
+    ledgerCodebook: "",
+  };
 
   // Articles
   if (await exists(ARTICLES_DIR)) {
@@ -58,6 +68,17 @@ async function bake() {
     }
   }
 
+  // Ledger (MAS enforcement actions)
+  if (await exists(LEDGER_ACTIONS_PATH)) {
+    try {
+      out.ledgerActions = JSON.parse(await readFile(LEDGER_ACTIONS_PATH, "utf8"));
+    } catch (e) {
+      console.warn("[bake] ledger_actions.json is not valid JSON, skipping:", e.message);
+    }
+  }
+  if (await exists(LEDGER_CSV_PATH)) out.ledgerCsv = await readFile(LEDGER_CSV_PATH, "utf8");
+  if (await exists(LEDGER_CODEBOOK_PATH)) out.ledgerCodebook = await readFile(LEDGER_CODEBOOK_PATH, "utf8");
+
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(OUT_PATH, JSON.stringify(out));
 
@@ -65,7 +86,7 @@ async function bake() {
   console.log(
     `[bake] wrote ${OUT_PATH} — ${count} articles, profile ${
       out.profile ? "yes" : "no"
-    }, ${out.verdictCases.length} verdict cases`
+    }, ${out.verdictCases.length} verdict cases, ${out.ledgerActions.length} ledger actions`
   );
 }
 

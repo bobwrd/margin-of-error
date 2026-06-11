@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { marked } from "marked";
 import Layout from "@/components/Layout";
 import VerdictButton from "@/components/VerdictButton";
+import LedgerButton from "@/components/LedgerButton";
 import { getProfile } from "@/lib/api";
 import { Linkedin, Youtube, FileText } from "lucide-react";
 
@@ -51,7 +52,10 @@ export default function Profile() {
             </a>
           </div>
         </div>
-        <VerdictButton />
+        <div className="flex items-center gap-2">
+          <VerdictButton />
+          <LedgerButton />
+        </div>
       </div>
 
       {loading ? (

@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import ContentCard from "@/components/ContentCard";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import VerdictButton from "@/components/VerdictButton";
+import LedgerButton from "@/components/LedgerButton";
 import ViewToggle, { readStoredView, type ViewMode } from "@/components/ViewToggle";
 import { getAllContent, type ContentMeta } from "@/lib/api";
 import { siteConfig } from "@/config/site";
@@ -41,7 +42,10 @@ export default function Home() {
           </h1>
           <p className="text-muted-foreground text-base">{siteConfig.tagline}</p>
         </div>
-        <VerdictButton />
+        <div className="flex items-center gap-2">
+          <VerdictButton />
+          <LedgerButton />
+        </div>
       </div>
 
       <div className="mb-10">
