@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12">{children}</main>
       <footer className="border-t border-border mt-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-7 text-sm text-muted-foreground flex items-center justify-between">
-          <span className="tracking-tight">Margin of Error · Arin Jain</span>
+          <span className="tracking-tight">Margin of Error · Arin Jain · IB Year 1</span>
           <a
             href="https://linkedin.com/in/arin-jain-69a954270"
             target="_blank"

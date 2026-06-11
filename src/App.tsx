@@ -12,6 +12,7 @@ const Others = lazy(() => import("./pages/Others"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Contact = lazy(() => import("./pages/Contact"));
+const About = lazy(() => import("./pages/About"));
 
 const VerdictShell = lazy(() =>
   import("./pages/verdict/VerdictLayout").then((m) => {
@@ -86,6 +87,7 @@ export default function App() {
 
             <Route path="/profile" element={<Profile />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
 
             <Route path="/verdict" element={<VerdictShell />}>
               <Route index element={<VerdictIndex />} />

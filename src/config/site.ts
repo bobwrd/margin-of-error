@@ -10,6 +10,7 @@ export const siteConfig = {
     { label: "Weekly Briefing", href: "/weekly" },
     { label: "Personal Pieces", href: "/personal" },
     { label: "Others", href: "/others" },
+    { label: "About", href: "/about" },
     { label: "Profile", href: "/profile" },
     { label: "Contact", href: "/contact" },
   ],
