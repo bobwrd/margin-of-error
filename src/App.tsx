@@ -11,7 +11,6 @@ const PersonalPieces = lazy(() => import("./pages/PersonalPieces"));
 const Others = lazy(() => import("./pages/Others"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 const Profile = lazy(() => import("./pages/Profile"));
-const Contact = lazy(() => import("./pages/Contact"));
 const About = lazy(() => import("./pages/About"));
 
 const VerdictShell = lazy(() =>
@@ -86,7 +85,6 @@ export default function App() {
             <Route path="/articles" element={<Navigate to="/weekly" replace />} />
 
             <Route path="/profile" element={<Profile />} />
-            <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
 
             <Route path="/verdict" element={<VerdictShell />}>

@@ -35,7 +35,7 @@ const highlights = [
     tag: "Research Notes",
   },
   {
-    href: "/others/eu-ai-act-full-entry-into-force",
+    href: "/verdict/1",
     title: "EU AI Act — Full Entry into Force",
     summary:
       "The world's first comprehensive AI regulation entered into force, establishing a risk-tiered framework with global implications for tech governance.",
