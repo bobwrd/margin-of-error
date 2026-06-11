@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, Cell,
@@ -195,6 +196,30 @@ export default function LedgerIndex() {
           <PenaltyTimeline actions={filtered} />
         </div>
       )}
+
+      {/* Download buttons */}
+      <div className="grid sm:grid-cols-3 gap-3 mb-6">
+        {[
+          { href: "/api/ledger/download/json", label: "JSON", sub: "full nested dataset" },
+          { href: "/api/ledger/download/csv", label: "CSV", sub: "flat, one row per respondent" },
+          { href: "/api/ledger/download/codebook", label: "Codebook", sub: "full data dictionary" },
+        ].map(({ href, label, sub }) => (
+          <a
+            key={label}
+            href={href} download
+            className="flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors"
+            style={{ borderColor: "var(--ledger-border)", backgroundColor: "var(--ledger-surface)" }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "var(--ledger-accent)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "var(--ledger-border)")}
+          >
+            <Download className="h-4 w-4 shrink-0" style={{ color: "var(--ledger-accent)" }} />
+            <div>
+              <div className="text-sm font-mono" style={{ color: "var(--ledger-text)" }}>{label}</div>
+              <div className="text-[0.65rem] font-mono" style={{ color: "var(--ledger-muted)" }}>{sub}</div>
+            </div>
+          </a>
+        ))}
+      </div>
 
       {/* Filters + Sort */}
       <div className="flex items-center gap-3 flex-wrap mb-4">
