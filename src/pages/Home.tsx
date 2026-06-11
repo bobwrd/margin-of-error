@@ -10,7 +10,7 @@ const highlights = [
     href: "/personal/us-economy-cheap-imports-china",
     title: "Is the US economy harmed by cheap imports from China?",
     summary:
-      "Cheap Chinese imports raise aggregate living standards but harm specific workers and create strategic vulnerabilities. "Harm" has to be defined distributionally and geopolitically, not just by GDP.",
+      "Cheap Chinese imports raise aggregate living standards but harm specific workers and create strategic vulnerabilities. What counts as harm has to be defined distributionally and geopolitically, not just by GDP.",
     tag: "Personal Essay",
   },
   {
