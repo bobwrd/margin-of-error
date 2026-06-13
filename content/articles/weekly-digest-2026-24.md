@@ -1,5 +1,5 @@
 ---
-slug: weekly-digest-2026-w24
+slug: weekly-digest-2026-24
 title: The New Toll Booth Is the Queue
 date: 2026-06-14
 author: Arin Jain
