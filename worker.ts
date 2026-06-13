@@ -167,9 +167,16 @@ function loadAllArticles(): ContentItem[] {
 }
 
 function loadArticleBySlug(slug: string): ContentItem | null {
-  const raw = CONTENT.articles[slug];
-  if (raw === undefined) return null;
-  return parseFrontmatter(raw, slug);
+  // Fast path: filename key matches slug directly.
+  if (CONTENT.articles[slug] !== undefined) {
+    return parseFrontmatter(CONTENT.articles[slug], slug);
+  }
+  // Slow path: frontmatter slug differs from filename — scan all articles.
+  for (const [filenameSlug, raw] of Object.entries(CONTENT.articles)) {
+    const item = parseFrontmatter(raw, filenameSlug);
+    if (item.slug === slug) return item;
+  }
+  return null;
 }
 
 function loadVerdictCases(): Record<string, unknown>[] {
