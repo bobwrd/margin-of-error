@@ -13,7 +13,7 @@ verdictId: 9
 
 On 10 June 2026, the European Commission published the Code of Practice on Transparency of AI-Generated Content. It is a voluntary code, but it sits right on top of Article 50 of the EU AI Act, which becomes enforceable on 2 August 2026. The practical point is simple: if you make or deploy generative AI in the EU, the Commission now has a clearer playbook for how it expects marking, labeling, and disclosure to work.
 
-The code matters because transparency rules are the part of AI law that users actually see. People need to know when text, images, audio, or video were generated or manipulated by AI, and they need to know when they are interacting with a chatbot. The Commission's package turns that principle into a concrete sign-up and implementation process rather than leaving companies to improvise their own version of compliance.
+The code matters because transparency rules are the part of AI law that users actually see. People need to know when text, images, audio, or video were generated or manipulated by AI, and they need to know when they are interacting with a chatbot. The Commission’s package turns that principle into a concrete sign-up and implementation process rather than leaving companies to improvise their own version of compliance.
 
 ## What the code does
 
@@ -27,7 +27,7 @@ Transparency rules sound soft until you have to build them. Then they become pro
 
 That pushes costs into places that often get ignored. Startups will need labels, audit trails, moderation rules, and a way to answer complaints. Bigger platforms will need repeatable workflows for detection and downstream notices. None of this is glamorous. It is exactly the sort of work that makes regulation real.
 
-The upside is clarity. The EU is giving firms a common target instead of forcing them to guess what "transparent" means in practice. That should lower pointless legal debate, especially for companies that want one policy across the bloc rather than 27 local variants.
+The upside is clarity. The EU is giving firms a common target instead of forcing them to guess what “transparent” means in practice. That should lower pointless legal debate, especially for companies that want one policy across the bloc rather than 27 local variants.
 
 ## Enforcement implications
 
@@ -39,7 +39,7 @@ For companies that ignored this area until now, the message is blunt: the easy p
 
 ## Global context
 
-Europe is still the most aggressive regulator here, but it is not alone in treating transparency as the core issue. OECD work on trustworthy AI has kept pushing disclosure, traceability, and context-appropriate information. Bruegel's recent AI Act analysis makes the same basic point from the other side: clearer rules can help, but only if they do not turn into dead weight for smaller firms.
+Europe is still the most aggressive regulator here, but it is not alone in treating transparency as the core issue. OECD work on trustworthy AI has kept pushing disclosure, traceability, and context-appropriate information. Bruegel’s recent AI Act analysis makes the same basic point from the other side: clearer rules can help, but only if they do not turn into dead weight for smaller firms.
 
 This code lands in the middle. It does not solve every copyright or provenance problem. It does not settle all questions about synthetic media. But it does something more useful than a lot of AI policy talk: it gives builders a concrete path.
 
@@ -47,3 +47,5 @@ This code lands in the middle. It does not solve every copyright or provenance p
 
 - https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689
 - https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content
+
+EDI Score: 2.7 (Marginal) | DP: 5.8 | DR: 5.6 | Uncertainty: Low ±6
