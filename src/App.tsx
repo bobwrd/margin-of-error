@@ -10,7 +10,6 @@ const WeeklyBriefing = lazy(() => import("./pages/WeeklyBriefing"));
 const PersonalPieces = lazy(() => import("./pages/PersonalPieces"));
 const Others = lazy(() => import("./pages/Others"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
-const Profile = lazy(() => import("./pages/Profile"));
 const About = lazy(() => import("./pages/About"));
 
 const VerdictShell = lazy(() =>
@@ -84,7 +83,6 @@ export default function App() {
             {/* Legacy route — keep old links alive, redirect to the new category page. */}
             <Route path="/articles" element={<Navigate to="/weekly" replace />} />
 
-            <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<About />} />
 
             <Route path="/verdict" element={<VerdictShell />}>

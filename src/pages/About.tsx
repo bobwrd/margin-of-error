@@ -1,15 +1,16 @@
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
+import { Linkedin, Youtube, FileText } from "lucide-react";
 
 export default function About() {
   return (
     <Layout>
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-foreground tracking-tight mb-2">
-          About this project
+          About
         </h1>
         <p className="text-muted-foreground text-base">
-          What Margin of Error is, and what questions it is trying to answer.
+          What Margin of Error is, who's behind it, and what else I'm building.
         </p>
       </div>
 
@@ -87,20 +88,69 @@ export default function About() {
           </p>
         </section>
 
+        {/* CivicAid */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">CivicAid</h2>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            CivicAid is a legal literacy app for Singapore, currently in development. It is designed for people who
+            encounter legal problems — employment disputes, tenancy issues, consumer rights — but don't know where to
+            start or can't afford a lawyer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            The core premise is that legal information should be navigable without a law degree. CivicAid structures
+            Singapore's legal aid landscape, relevant statutes, and practical next-steps into something a non-expert
+            can actually use.
+          </p>
+        </section>
+
+        {/* Research */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Research</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            I'm working on an economics research paper analysing sectoral employment trends in India using PLFS
+            (Periodic Labour Force Survey) data. The paper looks at how structural shifts in employment — particularly
+            the movement between formal and informal sectors, and across agriculture, manufacturing, and services —
+            map onto policy interventions over the last decade.
+          </p>
+        </section>
+
         {/* About me */}
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">About me</h2>
-          <p className="text-muted-foreground leading-relaxed mb-3">
+          <p className="text-muted-foreground leading-relaxed mb-5">
             I'm Arin Jain, currently in IB Year 1. I study economics and law and am interested in the gap between how
             institutions are designed and how they actually function — especially for people who have least access to
-            them. Outside of this site I'm building CivicAid (a legal literacy app for Singapore) and working on an
-            economics research paper analysing sectoral employment trends in India using PLFS data.
+            them.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <Link to="/profile" className="text-warm-accent hover:underline">
-              Full profile →
-            </Link>
-          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="https://linkedin.com/in/arin-jain-69a954270"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:bg-card/80 transition-all duration-200 no-underline"
+            >
+              <Linkedin className="size-4" />
+              LinkedIn
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=GucwscPHSGs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:bg-card/80 transition-all duration-200 no-underline"
+            >
+              <Youtube className="size-4" />
+              TEDx Talk
+            </a>
+            <a
+              href="https://drive.google.com/file/d/17Zxrc2eKob4WHcAnGsNgLUb-xrgRgJQ_/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:bg-card/80 transition-all duration-200 no-underline"
+            >
+              <FileText className="size-4" />
+              Download CV
+            </a>
+          </div>
         </section>
 
       </div>

@@ -11,6 +11,5 @@ export const siteConfig = {
     { label: "Personal Pieces", href: "/personal" },
     { label: "Others", href: "/others" },
     { label: "About", href: "/about" },
-    { label: "Profile", href: "/profile" },
   ],
 };
