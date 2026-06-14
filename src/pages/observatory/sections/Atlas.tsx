@@ -158,6 +158,9 @@ export default function Atlas({
       <div className="grid lg:grid-cols-2 gap-5">
         {/* Panel A */}
         <Card title={`Prices — ${cName}`} className="lg:col-span-2">
+          <p className="text-[0.65rem] font-mono uppercase tracking-wider mb-4 inline-block px-2 py-0.5 rounded" style={{ color: "var(--obs-accent)", backgroundColor: "var(--obs-accent-dim)" }}>
+            Cost channel · Relative-price channel
+          </p>
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={priceData} margin={{ top: 8, right: 24, bottom: 4, left: -6 }}>
@@ -183,6 +186,9 @@ export default function Atlas({
 
         {/* Panel B */}
         <Card title={hasInvestDetail ? `Investment & tech labour — ${cName}` : `Productivity — ${cName}`}>
+          <p className="text-[0.65rem] font-mono uppercase tracking-wider mb-4 inline-block px-2 py-0.5 rounded" style={{ color: "var(--obs-accent)", backgroundColor: "var(--obs-accent-dim)" }}>
+            Adoption channel · Demand channel
+          </p>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={investData} margin={{ top: 8, right: 20, bottom: 4, left: -6 }}>
@@ -211,6 +217,9 @@ export default function Atlas({
 
         {/* Panel C */}
         <Card title={`Distribution & wages — ${cName}`}>
+          <p className="text-[0.65rem] font-mono uppercase tracking-wider mb-4 inline-block px-2 py-0.5 rounded" style={{ color: "var(--obs-accent)", backgroundColor: "var(--obs-accent-dim)" }}>
+            Who gets the gains · Wages vs profits · Across groups
+          </p>
           <div className="h-64 w-full">
             {wageData.length ? (
               <ResponsiveContainer width="100%" height="100%">

@@ -245,6 +245,102 @@ export function labLabel(value: number): "low" | "medium" | "high" {
   return value < 0.34 ? "low" : value < 0.67 ? "medium" : "high";
 }
 
+// --- Named Lab presets --------------------------------------------------------
+
+export interface LabPreset {
+  key: string;
+  label: string;
+  sliders: LabSliders;
+  description: string;
+}
+
+export const LAB_PRESETS: LabPreset[] = [
+  {
+    key: "hype-no-gains",
+    label: "Hype, no gains",
+    sliders: { adoptionSpeed: 0.82, wageShare: 0.25, hawkishness: 0.78, labourReplace: 0.72 },
+    description: "Fast expected adoption, weak productivity payoff, hawkish bank, labour-replacing.",
+  },
+  {
+    key: "slow-broad-gains",
+    label: "Slow, broad gains",
+    sliders: { adoptionSpeed: 0.18, wageShare: 0.82, hawkishness: 0.22, labourReplace: 0.18 },
+    description: "Slow diffusion, gains broadly shared via wages, dovish bank, tasks complement labour.",
+  },
+  {
+    key: "profit-heavy-boom",
+    label: "Profit-heavy boom",
+    sliders: { adoptionSpeed: 0.82, wageShare: 0.12, hawkishness: 0.22, labourReplace: 0.5 },
+    description: "Fast adoption, productivity dividend tilts heavily to profits, bank stays loose.",
+  },
+  {
+    key: "worker-friendly",
+    label: "Worker-friendly AI",
+    sliders: { adoptionSpeed: 0.78, wageShare: 0.88, hawkishness: 0.5, labourReplace: 0.12 },
+    description: "Fast adoption, high wage share, moderate CB response, strongly complementing.",
+  },
+];
+
+// --- Dynamic narrative (3 sentences keyed to model outputs) -------------------
+
+export interface DynamicNarrative {
+  inflation: string;
+  unemployment: string;
+  wageGap: string;
+}
+
+export function dynamicNarrative(r: SimResult): DynamicNarrative {
+  const TARGET = 2;
+  const H = r.years.length;
+
+  const peakPi = Math.max(...r.inflation);
+  const peakPiYr = r.years[r.inflation.indexOf(peakPi)];
+  const troughPi = Math.min(...r.inflation);
+  const finalPi = r.inflation[H - 1];
+
+  const peakU = Math.max(...r.unemployment);
+  const peakUYr = r.years[r.unemployment.indexOf(peakU)];
+  const finalU = r.unemployment[H - 1];
+
+  const yr10 = Math.min(9, H - 1);
+  const wH10 = r.realWageHigh[yr10];
+  const wL10 = r.realWageLow[yr10];
+  const gap10 = wH10 - wL10;
+
+  // Inflation sentence
+  let inflation: string;
+  if (peakPi > TARGET + 2) {
+    if (finalPi > TARGET + 1.5) {
+      inflation = `Inflation surges to ${peakPi.toFixed(1)}% around year ${peakPiYr} and remains well above the 2% target by the end of the window (${finalPi.toFixed(1)}%) — the central bank cannot fully contain the overshoot.`;
+    } else {
+      inflation = `Inflation peaks at ${peakPi.toFixed(1)}% around year ${peakPiYr}, then gradually returns toward 2% — the overshoot is significant but eventually absorbed.`;
+    }
+  } else if (peakPi > TARGET + 0.4) {
+    inflation = `Inflation peaks at ${peakPi.toFixed(1)}% around year ${peakPiYr}, then converges back toward the 2% target — a moderate, manageable overshoot.`;
+  } else if (troughPi < TARGET - 0.4) {
+    inflation = `Inflation falls below target, reaching ${troughPi.toFixed(1)}% at its trough — the disinflationary pull of productivity dominates the demand effect.`;
+  } else {
+    inflation = `Inflation stays close to the 2% target throughout, peaking at only ${peakPi.toFixed(1)}% — adoption is smooth enough that neither demand nor supply effects dominate.`;
+  }
+
+  // Unemployment sentence
+  const unemployment = `Unemployment reaches ${peakU.toFixed(1)}% around year ${peakUYr}${peakU < 5 ? ", staying near natural levels throughout" : ""}, then settles near ${finalU.toFixed(1)}% by year ${r.years[H - 1]}.`;
+
+  // Wage-gap sentence
+  let wageGap: string;
+  if (gap10 > 10) {
+    wageGap = `By year 10, higher-skill wages index at ${wH10.toFixed(0)} vs ${wL10.toFixed(0)} for lower-skill workers — a gap of ${gap10.toFixed(0)} index points, reflecting concentrated gains at the top.`;
+  } else if (gap10 > 3) {
+    wageGap = `By year 10, higher-skill workers lead with an index of ${wH10.toFixed(0)} vs ${wL10.toFixed(0)} for lower-skill — a ${gap10.toFixed(0)}-point gap that grows over the period.`;
+  } else if (gap10 < -2) {
+    wageGap = `By year 10, lower-skill workers edge ahead (index ${wL10.toFixed(0)} vs ${wH10.toFixed(0)}), an unusual outcome driven by the complement-heavy adoption path here.`;
+  } else {
+    wageGap = `By year 10, the two wage indices are close — higher-skill: ${wH10.toFixed(0)}, lower-skill: ${wL10.toFixed(0)} — suggesting fairly broad sharing of the productivity dividend.`;
+  }
+
+  return { inflation, unemployment, wageGap };
+}
+
 // One-paragraph plain-language read of the current lab settings + result.
 export function describeLab(s: LabSliders, r: SimResult): string {
   const adopt = s.adoptionSpeed >= 0.6 ? "fast" : s.adoptionSpeed >= 0.34 ? "moderate" : "slow";

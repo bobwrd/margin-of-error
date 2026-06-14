@@ -40,6 +40,41 @@ export default function Methodology({ data }: { data: ObservatoryData | null }) 
             rule, and Okun's law close the loop. Full equations sit behind the <span className="font-mono" style={{ color: "var(--obs-accent)" }}>Details</span> toggles
             in each section and in <span className="font-mono">model.ts</span>.
           </p>
+
+          <div className="mt-4 mb-4 overflow-x-auto">
+            <table className="w-full text-xs border-collapse">
+              <thead>
+                <tr style={{ borderBottom: "1px solid var(--obs-border)" }}>
+                  <th className="text-left pb-2 pr-4 font-mono uppercase tracking-wider" style={{ color: "var(--obs-muted)" }}>Lab slider</th>
+                  <th className="text-left pb-2 pr-4 font-mono uppercase tracking-wider" style={{ color: "var(--obs-muted)" }}>Model object(s) it drives</th>
+                  <th className="text-left pb-2 font-mono uppercase tracking-wider" style={{ color: "var(--obs-muted)" }}>Baseline value</th>
+                </tr>
+              </thead>
+              <tbody className="leading-relaxed" style={{ color: "var(--obs-text)" }}>
+                <tr style={{ borderBottom: "1px solid var(--obs-border)" }}>
+                  <td className="py-2 pr-4 font-medium">Speed of AI adoption</td>
+                  <td className="py-2 pr-4">Steepness and midpoint of the logistic productivity path <span className="font-mono" style={{ color: "var(--obs-accent)" }}>g(t)</span>; size of the investment hump; expectation-anchoring weight <span className="font-mono" style={{ color: "var(--obs-accent)" }}>ω</span> (faster → less anchored)</td>
+                  <td className="py-2 font-mono" style={{ color: "var(--obs-muted)" }}>medium — logistic speed 1.05, midpoint ~year 5, cumulative gains ~6.5 pp</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--obs-border)" }}>
+                  <td className="py-2 pr-4 font-medium">Share of AI gains going to wages</td>
+                  <td className="py-2 pr-4">Parameter <span className="font-mono" style={{ color: "var(--obs-accent)" }}>wageShare</span> (0–1): the fraction of each year's productivity flow that flows to real wages rather than profit margins</td>
+                  <td className="py-2 font-mono" style={{ color: "var(--obs-muted)" }}>0.5 (equal split)</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--obs-border)" }}>
+                  <td className="py-2 pr-4 font-medium">Central bank hawkishness</td>
+                  <td className="py-2 pr-4">Taylor-rule inflation coefficient <span className="font-mono" style={{ color: "var(--obs-accent)" }}>φπ</span>. A 1 pp deviation of inflation above target raises the policy rate by <span className="font-mono" style={{ color: "var(--obs-accent)" }}>φπ</span> pp. (Baseline satisfies the Taylor principle: φπ &gt; 1, so real rates rise with inflation.)</td>
+                  <td className="py-2 font-mono" style={{ color: "var(--obs-muted)" }}>φπ = 1.8 (mid-range); range: 1.1 (dovish) → 2.5 (hawkish)</td>
+                </tr>
+                <tr>
+                  <td className="py-2 pr-4 font-medium">Labour-replacing vs complementing</td>
+                  <td className="py-2 pr-4">Parameter <span className="font-mono" style={{ color: "var(--obs-accent)" }}>labourReplace</span> (0–1): tilts the labour share of gains toward complemented (high-skill) tasks and adds a displacement drag on replaceable (low-skill) wages</td>
+                  <td className="py-2 font-mono" style={{ color: "var(--obs-muted)" }}>0.5 (symmetric)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <p className="text-sm leading-relaxed" style={{ color: "var(--obs-muted)" }}>
             <strong style={{ color: "var(--obs-warn)" }}>What it is not:</strong> it is not a forecast, not calibrated to any
             country, and not a structural model. It has no random shocks, no financial sector, no exchange rate, and
