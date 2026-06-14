@@ -39,7 +39,8 @@ app.use("*", async (c, next) => {
     p.startsWith("/api/content") ||
     p === "/api/profile" ||
     p.startsWith("/api/verdict/cases") ||
-    p.startsWith("/api/ledger")
+    p.startsWith("/api/ledger") ||
+    p.startsWith("/api/observatory")
   ) {
     c.header("Cache-Control", "public, max-age=300, stale-while-revalidate=3600");
   }
@@ -55,6 +56,7 @@ type Baked = {
   ledgerActions: Record<string, unknown>[];
   ledgerCsv: string;
   ledgerCodebook: string;
+  observatory: Record<string, unknown> | null;
 };
 const CONTENT = baked as Baked;
 
@@ -445,6 +447,15 @@ app.get("/ledger/actions/:id", (c) => {
   const item = loadLedgerActions().find((a) => a.action_id === id);
   if (!item) return c.json({ error: "Not found" }, 404);
   return c.json({ action: item });
+});
+
+// ---------------------------------------------------------------------------
+// Observatory (AI / productivity / prices) — baked dataset, read-only.
+// Refreshed by scripts/fetch-observatory.mjs (World Bank + FRED) on a schedule.
+// ---------------------------------------------------------------------------
+app.get("/observatory", (c) => {
+  if (!CONTENT.observatory) return c.json({ error: "Observatory data unavailable" }, 503);
+  return c.json(CONTENT.observatory);
 });
 
 export default app;

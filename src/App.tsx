@@ -57,6 +57,27 @@ const LedgerAction = lazy(() => import("./pages/ledger/LedgerAction"));
 const LedgerCharts = lazy(() => import("./pages/ledger/LedgerCharts"));
 const LedgerAbout = lazy(() => import("./pages/ledger/LedgerAbout"));
 
+// The Observatory (/observatory) — AI, productivity and prices. One long
+// scrollable page (intro → walkthrough → data atlas → lab → methodology) under
+// its own teal/slate theme shell. recharts + heavy sections load on navigation.
+const ObservatoryShell = lazy(() =>
+  import("./pages/observatory/ObservatoryLayout").then((m) => {
+    const { default: ObservatoryLayout, ObservatoryThemeProvider } = m;
+    return {
+      default: function ObservatoryShell() {
+        return (
+          <ObservatoryThemeProvider>
+            <ObservatoryLayout>
+              <Outlet />
+            </ObservatoryLayout>
+          </ObservatoryThemeProvider>
+        );
+      },
+    };
+  })
+);
+const ObservatoryIndex = lazy(() => import("./pages/observatory/ObservatoryIndex"));
+
 // Minimal fallback — pages fetch their own data, so the gap is brief.
 // Intentionally unstyled-but-themed so there's no flash of wrong colors.
 function RouteFallback() {
@@ -98,6 +119,10 @@ export default function App() {
               <Route path="charts" element={<LedgerCharts />} />
               <Route path="about" element={<LedgerAbout />} />
               <Route path=":id" element={<LedgerAction />} />
+            </Route>
+
+            <Route path="/observatory" element={<ObservatoryShell />}>
+              <Route index element={<ObservatoryIndex />} />
             </Route>
           </Routes>
         </Suspense>

@@ -23,6 +23,7 @@ const VERDICT_CASES_PATH = join(ROOT, "content", "verdict", "verdict_cases.json"
 const LEDGER_ACTIONS_PATH = join(ROOT, "content", "ledger", "ledger_actions.json");
 const LEDGER_CSV_PATH = join(ROOT, "content", "ledger", "enforcement_actions.csv");
 const LEDGER_CODEBOOK_PATH = join(ROOT, "content", "ledger", "codebook.md");
+const OBSERVATORY_PATH = join(ROOT, "content", "observatory", "observatory.json");
 const OUT_DIR = join(ROOT, "functions", "generated");
 const OUT_PATH = join(OUT_DIR, "content.json");
 
@@ -43,6 +44,7 @@ async function bake() {
     ledgerActions: [],
     ledgerCsv: "",
     ledgerCodebook: "",
+    observatory: null,
   };
 
   // Articles
@@ -79,6 +81,15 @@ async function bake() {
   if (await exists(LEDGER_CSV_PATH)) out.ledgerCsv = await readFile(LEDGER_CSV_PATH, "utf8");
   if (await exists(LEDGER_CODEBOOK_PATH)) out.ledgerCodebook = await readFile(LEDGER_CODEBOOK_PATH, "utf8");
 
+  // Observatory (AI / productivity / prices dataset)
+  if (await exists(OBSERVATORY_PATH)) {
+    try {
+      out.observatory = JSON.parse(await readFile(OBSERVATORY_PATH, "utf8"));
+    } catch (e) {
+      console.warn("[bake] observatory.json is not valid JSON, skipping:", e.message);
+    }
+  }
+
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(OUT_PATH, JSON.stringify(out));
 
@@ -86,7 +97,9 @@ async function bake() {
   console.log(
     `[bake] wrote ${OUT_PATH} — ${count} articles, profile ${
       out.profile ? "yes" : "no"
-    }, ${out.verdictCases.length} verdict cases, ${out.ledgerActions.length} ledger actions`
+    }, ${out.verdictCases.length} verdict cases, ${out.ledgerActions.length} ledger actions, observatory ${
+      out.observatory ? `yes (fred_enriched=${out.observatory.fred_enriched})` : "no"
+    }`
   );
 }
 

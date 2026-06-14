@@ -250,4 +250,75 @@ body {
     --ledger-sev-4: #a07b1f;
     --ledger-sev-5: #6b5d47;
   }
+
+  /* The Observatory — AI / productivity / prices. Teal on deep slate. */
+  .obs-section {
+    --obs-bg: #0b1418;
+    --obs-surface: #111d22;
+    --obs-surface-2: #16282e;
+    --obs-border: rgba(45, 212, 191, 0.14);
+    --obs-border-hover: rgba(45, 212, 191, 0.4);
+    --obs-accent: #2dd4bf;
+    --obs-accent-2: #38bdf8;
+    --obs-accent-dim: rgba(45, 212, 191, 0.1);
+    --obs-text: #e6f2ef;
+    --obs-muted: #8aa6a0;
+    --obs-c1: #2dd4bf;
+    --obs-c2: #fbbf24;
+    --obs-c3: #38bdf8;
+    --obs-c4: #f472b6;
+    --obs-c5: #a3e635;
+    --obs-warn: #fb7185;
+  }
+
+  .obs-section.obs-light {
+    --obs-bg: #f3faf8;
+    --obs-surface: #ffffff;
+    --obs-surface-2: #e7f3f0;
+    --obs-border: rgba(13, 124, 112, 0.16);
+    --obs-border-hover: rgba(13, 124, 112, 0.42);
+    --obs-accent: #0d9488;
+    --obs-accent-2: #0369a1;
+    --obs-accent-dim: rgba(13, 148, 136, 0.08);
+    --obs-text: #0c2420;
+    --obs-muted: #4b6b65;
+    --obs-c1: #0d9488;
+    --obs-c2: #b45309;
+    --obs-c3: #0369a1;
+    --obs-c4: #be185d;
+    --obs-c5: #4d7c0f;
+    --obs-warn: #e11d48;
+  }
+
+  /* Observatory range sliders — themed to the section accent. */
+  .obs-section .obs-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--obs-surface-2);
+    outline: none;
+  }
+  .obs-section .obs-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--obs-accent);
+    border: 2px solid var(--obs-bg);
+    cursor: pointer;
+    transition: transform 120ms;
+  }
+  .obs-section .obs-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+  .obs-section .obs-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--obs-accent);
+    border: 2px solid var(--obs-bg);
+    cursor: pointer;
+  }
 }

@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import VerdictButton from "@/components/VerdictButton";
 import LedgerButton from "@/components/LedgerButton";
+import ObservatoryButton from "@/components/ObservatoryButton";
 import { siteConfig } from "@/config/site";
 import { Link } from "react-router-dom";
 
@@ -60,6 +61,7 @@ export default function Home() {
         <div className="flex items-center gap-2">
           <VerdictButton />
           <LedgerButton />
+          <ObservatoryButton />
         </div>
       </div>
 
@@ -121,6 +123,12 @@ export default function Home() {
           database of MAS (Monetary Authority of Singapore) enforcement
           actions, built to surface patterns in how Singapore's financial
           regulator actually exercises its powers.
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          <strong className="text-foreground">The Observatory</strong> is an
+          interactive explainer on AI, productivity and prices — a walkthrough
+          of the channels from AI to inflation, a live data atlas, and a toy
+          model you can play with. A way to explore mechanisms, not a forecast.
         </p>
         <Link
           to="/about"
