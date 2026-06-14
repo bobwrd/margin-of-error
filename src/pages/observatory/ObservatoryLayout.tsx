@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Sun, Moon } from "lucide-react";
 
 type ObsTheme = "dark" | "light";
@@ -44,10 +44,13 @@ export function ObservatoryThemeProvider({ children }: { children: React.ReactNo
 
 export default function ObservatoryLayout({ children }: { children: React.ReactNode }) {
   const { theme, toggle } = useObservatoryTheme();
+  const location = useLocation();
+  const isMethodsPage = location.pathname.endsWith("/methods");
 
-  // Anchor nav highlights the section currently in view.
+  // Anchor nav highlights the section currently in view (index page only).
   const [active, setActive] = useState<string>("intro");
   useEffect(() => {
+    if (isMethodsPage) return;
     const ids = ["intro", "walkthrough", "atlas", "lab", "methodology"];
     const obs = new IntersectionObserver(
       (entries) => {
@@ -62,7 +65,7 @@ export default function ObservatoryLayout({ children }: { children: React.ReactN
       if (el) obs.observe(el);
     }
     return () => obs.disconnect();
-  }, []);
+  }, [isMethodsPage]);
 
   const navLinks = [
     { label: "Intro", href: "#intro" },
@@ -102,7 +105,7 @@ export default function ObservatoryLayout({ children }: { children: React.ReactN
           </div>
 
           <nav className="hidden md:flex items-center gap-0.5">
-            {navLinks.map((link) => {
+            {!isMethodsPage && navLinks.map((link) => {
               const id = link.href.slice(1);
               const isActive = active === id;
               return (
@@ -119,6 +122,26 @@ export default function ObservatoryLayout({ children }: { children: React.ReactN
                 </a>
               );
             })}
+            {isMethodsPage && (
+              <Link
+                to="/observatory"
+                className="px-2.5 py-1.5 rounded text-xs font-mono tracking-wide transition-all duration-150"
+                style={{ color: "var(--obs-muted)" }}
+              >
+                ← Observatory
+              </Link>
+            )}
+            <Link
+              to="/observatory/methods"
+              className="px-2.5 py-1.5 rounded text-xs font-mono tracking-wide transition-all duration-150 border"
+              style={{
+                borderColor: isMethodsPage ? "var(--obs-accent)" : "var(--obs-border)",
+                color: isMethodsPage ? "var(--obs-accent)" : "var(--obs-muted)",
+                backgroundColor: isMethodsPage ? "var(--obs-accent-dim)" : "transparent",
+              }}
+            >
+              Tech note
+            </Link>
           </nav>
 
           <button
@@ -138,9 +161,14 @@ export default function ObservatoryLayout({ children }: { children: React.ReactN
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
           <div className="flex items-center justify-between text-xs font-mono" style={{ color: "var(--obs-muted)" }}>
             <span>THE OBSERVATORY · Margin of Error</span>
-            <a href="#methodology" className="hover:opacity-80 transition-opacity" style={{ color: "var(--obs-accent)" }}>
-              Methodology →
-            </a>
+            <div className="flex items-center gap-3">
+              <a href="#methodology" className="hover:opacity-80 transition-opacity" style={{ color: "var(--obs-muted)" }}>
+                Methodology ↑
+              </a>
+              <Link to="/observatory/methods" className="hover:opacity-80 transition-opacity" style={{ color: "var(--obs-accent)" }}>
+                Technical note →
+              </Link>
+            </div>
           </div>
           <p className="mt-3 text-[0.65rem] leading-relaxed" style={{ color: "var(--obs-muted)" }}>
             An exploratory tool, not a forecast. Charts use public data from the World Bank and FRED; the walkthrough

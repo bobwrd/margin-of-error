@@ -77,6 +77,7 @@ const ObservatoryShell = lazy(() =>
   })
 );
 const ObservatoryIndex = lazy(() => import("./pages/observatory/ObservatoryIndex"));
+const ObservatoryMethods = lazy(() => import("./pages/observatory/ObservatoryMethods"));
 
 // Minimal fallback — pages fetch their own data, so the gap is brief.
 // Intentionally unstyled-but-themed so there's no flash of wrong colors.
@@ -123,6 +124,7 @@ export default function App() {
 
             <Route path="/observatory" element={<ObservatoryShell />}>
               <Route index element={<ObservatoryIndex />} />
+              <Route path="methods" element={<ObservatoryMethods />} />
             </Route>
           </Routes>
         </Suspense>
