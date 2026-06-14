@@ -6,11 +6,12 @@ Everything you need to know before touching this project.
 
 ## What this is
 
-Personal writing + research site for Arin Jain (IB Year 1). Three surfaces:
+Personal writing + research site for Arin Jain (IB Year 1). Four surfaces:
 
 - **Main site** — essays, weekly digest, personal pieces, profile.
 - **The Verdict** (`/verdict`) — scored database of AI legal/regulatory events (EDI methodology). Own dark navy theme, own `localStorage["verdict-theme"]` toggle.
 - **The Ledger** (`/ledger`) — coded database of MAS enforcement actions. Own amber theme, own toggle.
+- **The Observatory** (`/observatory`) — interactive explainer on AI, productivity and prices (walkthrough + live data atlas + toy-model lab). Own teal/slate theme, own `localStorage["observatory-theme"]` toggle. One long scrollable page, not a multi-route section. Data: `content/observatory/observatory.json` (World Bank baseline always on; FRED enriches the US when `FRED_API_KEY` is set), refreshed weekly by `.github/workflows/refresh-observatory.yml`.
 
 ---
 
@@ -89,6 +90,7 @@ verdictId: 42             # links to a Verdict case
 | `CLOUDFLARE_API_TOKEN` | GitHub Actions secret | Lets `deploy.yml` call `wrangler deploy` |
 | `GOOGLE_SERVICE_ACCOUNT_KEY` | GitHub Actions secret | Lets `sync-drive.yml` read Drive |
 | `DRIVE_ROOT_FOLDER_ID` | GitHub Actions variable | ID of the "Margin of Error" Drive folder |
+| `FRED_API_KEY` | GitHub Actions secret (optional) | Enriches The Observatory with US monthly/quarterly FRED series. Absent → World Bank baseline only. Free key: fredaccount.stlouisfed.org/apikeys |
 
 To update `VERDICT_PASSWORD`: `npx wrangler secret put VERDICT_PASSWORD`
 
@@ -104,6 +106,7 @@ To update `VERDICT_PASSWORD`: `npx wrangler secret put VERDICT_PASSWORD`
 | Edit the profile page | `content/profile.md` (no rebuild needed, but deploy to go live) |
 | Add a personal piece | Drop `.md` in `content/articles/` + PDF in `public/pdfs/` → `git push` |
 | Publish a new Verdict case | Edit `content/verdict/verdict_cases.json` + add cross-post article → `git push` |
+| Edit The Observatory page | `src/pages/observatory/` (sections + `model.ts` toy engine). Refresh its data: `FRED_API_KEY=… node scripts/fetch-observatory.mjs` |
 
 ---
 

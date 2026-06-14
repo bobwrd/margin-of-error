@@ -2,7 +2,7 @@ This file provides guidance when working with code in this repository. The READM
 
 # Project Notes
 
-**Margin of Error** — a personal writing hub for articles, newsletter issues, a public profile, and **The Verdict** (AI policy intelligence database). Built as a Zo Site (Bun + Hono backend, React + Vite frontend).
+**Margin of Error** — a personal writing hub for articles, newsletter issues, a public profile, and three standalone products: **The Verdict** (AI policy intelligence database), **The Ledger** (MAS enforcement-action database), and **The Observatory** (an interactive explainer on AI, productivity and prices). Hosted on Cloudflare Workers + Static Assets + D1; React + Vite frontend, Hono API.
 
 ## The Verdict
 
@@ -43,6 +43,34 @@ node scripts/harvest_ledger.mjs    # pull the full MAS notice list from OpenSanc
 
 ### Coverage
 Curated set (~50 actions, 2016–2025) of the most significant, best-documented actions. Not yet the full register; `harvest_ledger.mjs` enumerates the rest for coding. Data is baked into `functions/generated/content.json` by `scripts/bake-content.mjs` at build time, same as articles and verdict cases.
+
+## The Observatory
+
+An interactive explainer on **AI, productivity and prices** at `/observatory`. Same standalone-product pattern as The Verdict and The Ledger: its own visual identity (teal-on-deep-slate, independent dark/light toggle in `localStorage["observatory-theme"]`), reached via a **teal pill button** (`src/components/ObservatoryButton.tsx`) next to the Verdict/Ledger buttons on the Home page (not in the top nav). Browser title: *"Margin of Error — AI, Productivity and Prices"*.
+
+Unlike Verdict/Ledger, it is **one long scrollable page** (not a multi-route section). The single route `/observatory` renders `ObservatoryIndex`, composed of five sections with anchor nav (Intro · Walkthrough · Data atlas · Lab · Methodology).
+
+### Page sections (`src/pages/observatory/`)
+- **Intro** (`sections/Intro.tsx`) — framing; states the core question; "not a forecast" disclaimer.
+- **Walkthrough** (`sections/Walkthrough.tsx`) — Step 1 micro-vs-macro (study bars vs live productivity growth); Step 2 an SVG channel-flow diagram with cost/demand/relative-price toggles; Step 3 three central-bank scenarios run through the toy model.
+- **Data atlas** (`sections/Atlas.tsx`) — country + time-range controls; three panels (prices, investment & labour, distribution); AI-milestone reference lines; graceful fallbacks when a series is missing.
+- **Lab** (`sections/Lab.tsx`) — four sliders driving the toy model live, with two-group real-wage output and an auto-generated plain-language readout.
+- **Methodology** (`sections/Methodology.tsx`) — sources, transformations, and "what this is not".
+
+`model.ts` is the shared deterministic macro engine (NK-flavoured: expectations, IS, Phillips, Taylor, Okun + a two-group wage split) used by both the Step-3 scenarios and the Lab. `shared.tsx` holds the Section/Card/Details/Eq helpers; `types.ts` holds the data types + `fetchObservatory()`. Math sits behind `Details` toggles.
+
+### Data pipeline
+- Dataset: `content/observatory/observatory.json` — baked into `content.json` like the other products.
+- **World Bank** (keyless, annual, all listed countries: USA/GBR/DEU/JPN/SGP) is the always-on baseline: inflation (`FP.CPI.TOTL.ZG`) and productivity (`SL.GDP.PCAP.EM.KD`).
+- **FRED** (needs `FRED_API_KEY`) enriches the US with monthly/quarterly series: headline/core CPI, core PCE, info-processing-equipment investment (`Y034RC1Q027SBEA`), information-sector employment (`USINFO`), software PPI (`PCU511210511210`, served as YoY), real median earnings (`LES1252881600Q`). When the key is absent, the page falls back to the World Bank baseline (`fred_enriched: false`).
+- Fetcher: `scripts/fetch-observatory.mjs` (defensive — skips any series that errors). Refreshed weekly by `.github/workflows/refresh-observatory.yml`, which commits the JSON and redeploys (same self-deploy pattern as `sync-drive.yml`).
+
+### API routes (in `worker.ts`)
+- `GET /api/observatory` — the full baked dataset (503 if unavailable).
+
+### Visual identity
+- Background `#0b1418` (dark) / `#f3faf8` (light); accent `#2dd4bf` / `#0d9488`
+- Chart palette `--obs-c1..c5`; CSS scoped under `.obs-section` / `.obs-section.obs-light` in `src/styles.css` (includes `.obs-range` slider styling)
 
 ### Removed pages
 
@@ -270,6 +298,7 @@ Three tables, auto-created on first run:
 | POST | `/api/likes/:type/:slug` | Increment like |
 | POST | `/api/contact` | Submit contact form |
 | POST | `/api/newsletter/signup` | Newsletter signup (no-op) |
+| GET | `/api/observatory` | The Observatory dataset (AI/productivity/prices) |
 
 ### Site config
 
@@ -347,7 +376,7 @@ const db = new Database("data.sqlite");
 
 ## Deployment
 
-The site is hosted on **Cloudflare Pages** (frontend) + **Pages Functions** (the `/api/*` backend in `functions/api/[[route]].ts`) + **Cloudflare D1** (database). Content is synced from Google Drive by a scheduled GitHub Action (`.github/workflows/sync-drive.yml`), which commits to `main` and triggers a Cloudflare rebuild.
+The site is hosted on **Cloudflare Pages** (frontend) + **Pages Functions** (the `/api/*` backend in `functions/api/[[route]].ts`) + **Cloudflare D1** (database). Content is synced from Google Drive by a scheduled GitHub Action (`.github/workflows/sync-drive.yml`), which commits to `main` and triggers a Cloudflare rebuild. A second scheduled action (`.github/workflows/refresh-observatory.yml`) re-fetches the Observatory dataset (World Bank + FRED) weekly and redeploys if it changed.
 
 Build: `npm run build` runs `scripts/bake-content.mjs` (bakes `content/` into `functions/generated/content.json`, since Workers have no filesystem) then `vite build` → `dist/`.
 
