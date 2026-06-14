@@ -118,16 +118,20 @@ async function main() {
         fredFirst(["CPILFESL"]),
         fredFirst(["PCEPILFE"]),
         fredFirst(["USINFO"]),
-        fredFirst(["PCU511210511210", "PCU5415154151"]),
+        fredFirst(["PCU511210511210", "PCU51125112"]),
         fredFirst(["LES1252881600Q"]),
-        fredFirst(["Y033RC1Q027SBEA", "B935RC1Q027SBEA", "A679RC1Q027SBEA"]),
+        // Information-processing equipment ($bn). NOT Y033 (that is ALL
+        // nonresidential equipment). Fallbacks: software, then IP products.
+        fredFirst(["Y034RC1Q027SBEA", "B985RC1Q027SBEA", "Y001RC1Q027SBEA"]),
       ]);
       const us = series.USA;
       if (cpi.length) us.headline_cpi_yoy = yoy(cpi);
       if (core.length) us.core_cpi_yoy = yoy(core);
       if (pce.length) us.core_pce_yoy = yoy(pce);
       if (info.length) us.info_employment = info;
-      if (soft.length) us.software_ppi = soft;
+      // Software PPI is an index level (Dec 1997=100); convert to YoY % so it
+      // shares the inflation axis sensibly.
+      if (soft.length) us.software_ppi = yoy(soft);
       if (earn.length) us.real_median_earnings = earn;
       if (itinv.length) us.it_investment = itinv;
       fredEnriched = Boolean(cpi.length || core.length || pce.length);

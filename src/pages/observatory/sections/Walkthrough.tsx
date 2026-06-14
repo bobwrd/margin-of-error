@@ -156,7 +156,8 @@ const NODE_VARS: { node: string; example: string }[] = [
   { node: "Unit costs", example: "cost per unit of output, markups" },
   { node: "Demand & investment", example: "non-residential IT investment" },
   { node: "Wages & profits", example: "labour share, real earnings by skill" },
-  { node: "Relative prices", example: "electricity, cloud, GPUs vs software" },
+  { node: "Inflation", example: "headline & core CPI, core PCE" },
+  { node: "Employment", example: "information-sector jobs, unemployment" },
 ];
 
 function FlowDiagram() {

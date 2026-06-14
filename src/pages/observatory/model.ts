@@ -247,7 +247,7 @@ export function labLabel(value: number): "low" | "medium" | "high" {
 
 // One-paragraph plain-language read of the current lab settings + result.
 export function describeLab(s: LabSliders, r: SimResult): string {
-  const fast = s.adoptionSpeed >= 0.6;
+  const adopt = s.adoptionSpeed >= 0.6 ? "fast" : s.adoptionSpeed >= 0.34 ? "moderate" : "slow";
   const wagesWeak = s.wageShare < 0.4;
   const hawkish = s.hawkishness >= 0.6;
   const replacing = s.labourReplace >= 0.6;
@@ -258,9 +258,11 @@ export function describeLab(s: LabSliders, r: SimResult): string {
 
   const parts: string[] = [];
   parts.push(
-    fast
+    adopt === "fast"
       ? "Fast AI adoption pushes productivity up quickly, which tends to pull inflation down"
-      : "Slow AI adoption spreads the productivity effect out, so disinflation is mild and gradual"
+      : adopt === "moderate"
+        ? "Moderate AI adoption feeds productivity through gradually, nudging inflation down"
+        : "Slow AI adoption spreads the productivity effect out, so disinflation is mild and gradual"
   );
   parts.push(
     hawkish
@@ -269,7 +271,7 @@ export function describeLab(s: LabSliders, r: SimResult): string {
   );
   let tail: string;
   if (replacing && wagesWeak) {
-    tail = `lower-skill real wages fall (index ends near ${lowEnd.toFixed(0)}) while gains accrue to profits and higher-skill workers`;
+    tail = `lower-skill real wages fall (index ends near ${lowEnd.toFixed(0)}) while the gains accrue mainly to profits`;
   } else if (replacing) {
     tail = "higher-skill workers capture most of the gains while lower-skill wages lag";
   } else if (wagesWeak) {

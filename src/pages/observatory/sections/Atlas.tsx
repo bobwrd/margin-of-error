@@ -170,7 +170,7 @@ export default function Atlas({
                 <Line type="monotone" dataKey="headline" name={priceMonthly ? "Headline CPI (YoY)" : "Inflation (annual %)"} stroke="var(--obs-c1)" strokeWidth={2.2} dot={false} connectNulls />
                 {priceMonthly && <Line type="monotone" dataKey="core" name="Core CPI (YoY)" stroke="var(--obs-c2)" strokeWidth={2} dot={false} connectNulls />}
                 {priceMonthly && <Line type="monotone" dataKey="corePce" name="Core PCE (YoY)" stroke="var(--obs-c3)" strokeWidth={2} dot={false} connectNulls />}
-                {priceMonthly && <Line type="monotone" dataKey="software" name="Software PPI" stroke="var(--obs-c5)" strokeWidth={1.6} strokeDasharray="4 3" dot={false} connectNulls />}
+                {priceMonthly && <Line type="monotone" dataKey="software" name="Software prices (YoY)" stroke="var(--obs-c5)" strokeWidth={1.6} strokeDasharray="4 3" dot={false} connectNulls />}
               </LineChart>
             </ResponsiveContainer>
           </div>
