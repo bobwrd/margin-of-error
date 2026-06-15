@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-14",
+  "generated": "2026-06-15",
   "fred_enriched": false,
   "default_country": "USA",
   "countries": [
@@ -137,31 +137,31 @@
       "gdp_per_worker": [
         {
           "date": "2000",
-          "value": 109932
+          "value": 109932.25
         },
         {
           "date": "2001",
-          "value": 111035
+          "value": 111034.53
         },
         {
           "date": "2002",
-          "value": 113397
+          "value": 113396.81
         },
         {
           "date": "2003",
-          "value": 116238
+          "value": 116237.53
         },
         {
           "date": "2004",
-          "value": 119149
+          "value": 119148.82
         },
         {
           "date": "2005",
-          "value": 121196
+          "value": 121196.23
         },
         {
           "date": "2006",
-          "value": 122255
+          "value": 122255.2
         },
         {
           "date": "2007",
@@ -169,71 +169,71 @@
         },
         {
           "date": "2008",
-          "value": 123986
+          "value": 123985.5
         },
         {
           "date": "2009",
-          "value": 125344
+          "value": 125344.45
         },
         {
           "date": "2010",
-          "value": 129284
+          "value": 129284.29
         },
         {
           "date": "2011",
-          "value": 130147
+          "value": 130147.26
         },
         {
           "date": "2012",
-          "value": 130909
+          "value": 130909.12
         },
         {
           "date": "2013",
-          "value": 132306
+          "value": 132306.49
         },
         {
           "date": "2014",
-          "value": 133282
+          "value": 133281.6
         },
         {
           "date": "2015",
-          "value": 135039
+          "value": 135038.96
         },
         {
           "date": "2016",
-          "value": 135265
+          "value": 135265.26
         },
         {
           "date": "2017",
-          "value": 136420
+          "value": 136420.19
         },
         {
           "date": "2018",
-          "value": 138621
+          "value": 138621.24
         },
         {
           "date": "2019",
-          "value": 140254
+          "value": 140253.58
         },
         {
           "date": "2020",
-          "value": 145800
+          "value": 145799.9
         },
         {
           "date": "2021",
-          "value": 149655
+          "value": 149654.67
         },
         {
           "date": "2022",
-          "value": 148654
+          "value": 148654.12
         },
         {
           "date": "2023",
-          "value": 150436
+          "value": 150436.45
         },
         {
           "date": "2024",
-          "value": 153544
+          "value": 153543.96
         }
       ]
     },
@@ -343,103 +343,103 @@
       "gdp_per_worker": [
         {
           "date": "2000",
-          "value": 91814
+          "value": 91814.2
         },
         {
           "date": "2001",
-          "value": 93075
+          "value": 93075.17
         },
         {
           "date": "2002",
-          "value": 93944
+          "value": 93943.6
         },
         {
           "date": "2003",
-          "value": 96018
+          "value": 96018.3
         },
         {
           "date": "2004",
-          "value": 97305
+          "value": 97304.82
         },
         {
           "date": "2005",
-          "value": 99037
+          "value": 99037.43
         },
         {
           "date": "2006",
-          "value": 100192
+          "value": 100191.58
         },
         {
           "date": "2007",
-          "value": 102351
+          "value": 102351.15
         },
         {
           "date": "2008",
-          "value": 101390
+          "value": 101389.8
         },
         {
           "date": "2009",
-          "value": 98280
+          "value": 98279.92
         },
         {
           "date": "2010",
-          "value": 100308
+          "value": 100307.63
         },
         {
           "date": "2011",
-          "value": 100639
+          "value": 100638.57
         },
         {
           "date": "2012",
-          "value": 101222
+          "value": 101221.51
         },
         {
           "date": "2013",
-          "value": 101705
+          "value": 101704.68
         },
         {
           "date": "2014",
-          "value": 102470
+          "value": 102469.97
         },
         {
           "date": "2015",
-          "value": 102842
+          "value": 102842.27
         },
         {
           "date": "2016",
-          "value": 103399
+          "value": 103399.45
         },
         {
           "date": "2017",
-          "value": 105576
+          "value": 105575.93
         },
         {
           "date": "2018",
-          "value": 105985
+          "value": 105985.06
         },
         {
           "date": "2019",
-          "value": 106175
+          "value": 106175.24
         },
         {
           "date": "2020",
-          "value": 96173
+          "value": 96172.9
         },
         {
           "date": "2021",
-          "value": 105286
+          "value": 105285.8
         },
         {
           "date": "2022",
-          "value": 108291
+          "value": 108290.95
         },
         {
           "date": "2023",
-          "value": 107342
+          "value": 107342.14
         },
         {
           "date": "2024",
-          "value": 107932
+          "value": 107932.04
         }
       ]
     },
@@ -549,103 +549,103 @@
       "gdp_per_worker": [
         {
           "date": "2000",
-          "value": 110739
+          "value": 110738.59
         },
         {
           "date": "2001",
-          "value": 112131
+          "value": 112130.59
         },
         {
           "date": "2002",
-          "value": 112474
+          "value": 112474.24
         },
         {
           "date": "2003",
-          "value": 112980
+          "value": 112979.62
         },
         {
           "date": "2004",
-          "value": 115960
+          "value": 115960.37
         },
         {
           "date": "2005",
-          "value": 115550
+          "value": 115549.95
         },
         {
           "date": "2006",
-          "value": 117199
+          "value": 117199.2
         },
         {
           "date": "2007",
-          "value": 118256
+          "value": 118256.21
         },
         {
           "date": "2008",
-          "value": 117711
+          "value": 117711.28
         },
         {
           "date": "2009",
-          "value": 111572
+          "value": 111572.24
         },
         {
           "date": "2010",
-          "value": 115039
+          "value": 115038.62
         },
         {
           "date": "2011",
-          "value": 118954
+          "value": 118953.66
         },
         {
           "date": "2012",
-          "value": 118067
+          "value": 118067.21
         },
         {
           "date": "2013",
-          "value": 117301
+          "value": 117300.55
         },
         {
           "date": "2014",
-          "value": 118668
+          "value": 118668.34
         },
         {
           "date": "2015",
-          "value": 119497
+          "value": 119496.71
         },
         {
           "date": "2016",
-          "value": 120307
+          "value": 120306.58
         },
         {
           "date": "2017",
-          "value": 122480
+          "value": 122479.57
         },
         {
           "date": "2018",
-          "value": 122737
+          "value": 122737.09
         },
         {
           "date": "2019",
-          "value": 122617
+          "value": 122616.68
         },
         {
           "date": "2020",
-          "value": 120092
+          "value": 120091.53
         },
         {
           "date": "2021",
-          "value": 124674
+          "value": 124673.86
         },
         {
           "date": "2022",
-          "value": 125525
+          "value": 125524.78
         },
         {
           "date": "2023",
-          "value": 123751
+          "value": 123751.08
         },
         {
           "date": "2024",
-          "value": 123472
+          "value": 123471.85
         }
       ]
     },
@@ -755,103 +755,103 @@
       "gdp_per_worker": [
         {
           "date": "2000",
-          "value": 76595
+          "value": 76595.17
         },
         {
           "date": "2001",
-          "value": 77337
+          "value": 77336.54
         },
         {
           "date": "2002",
-          "value": 78319
+          "value": 78318.84
         },
         {
           "date": "2003",
-          "value": 79730
+          "value": 79729.89
         },
         {
           "date": "2004",
-          "value": 81368
+          "value": 81367.88
         },
         {
           "date": "2005",
-          "value": 82495
+          "value": 82495.45
         },
         {
           "date": "2006",
-          "value": 83264
+          "value": 83263.92
         },
         {
           "date": "2007",
-          "value": 84102
+          "value": 84101.77
         },
         {
           "date": "2008",
-          "value": 83402
+          "value": 83402.49
         },
         {
           "date": "2009",
-          "value": 79865
+          "value": 79864.61
         },
         {
           "date": "2010",
-          "value": 83468
+          "value": 83467.65
         },
         {
           "date": "2011",
-          "value": 83543
+          "value": 83543.07
         },
         {
           "date": "2012",
-          "value": 84905
+          "value": 84905.33
         },
         {
           "date": "2013",
-          "value": 85998
+          "value": 85997.72
         },
         {
           "date": "2014",
-          "value": 85562
+          "value": 85562.26
         },
         {
           "date": "2015",
-          "value": 86598
+          "value": 86597.78
         },
         {
           "date": "2016",
-          "value": 86241
+          "value": 86240.91
         },
         {
           "date": "2017",
-          "value": 86700
+          "value": 86700.15
         },
         {
           "date": "2018",
-          "value": 85515
+          "value": 85515.47
         },
         {
           "date": "2019",
-          "value": 84299
+          "value": 84299.25
         },
         {
           "date": "2020",
-          "value": 81349
+          "value": 81349.27
         },
         {
           "date": "2021",
-          "value": 83620
+          "value": 83620.4
         },
         {
           "date": "2022",
-          "value": 83826
+          "value": 83825.9
         },
         {
           "date": "2023",
-          "value": 84723
+          "value": 84722.52
         },
         {
           "date": "2024",
-          "value": 84354
+          "value": 84353.79
         }
       ]
     },
@@ -961,103 +961,103 @@
       "gdp_per_worker": [
         {
           "date": "2000",
-          "value": 133639
+          "value": 133638.82
         },
         {
           "date": "2001",
-          "value": 128225
+          "value": 128225.17
         },
         {
           "date": "2002",
-          "value": 136242
+          "value": 136241.66
         },
         {
           "date": "2003",
-          "value": 144463
+          "value": 144462.56
         },
         {
           "date": "2004",
-          "value": 156169
+          "value": 156169.43
         },
         {
           "date": "2005",
-          "value": 160650
+          "value": 160650.43
         },
         {
           "date": "2006",
-          "value": 164209
+          "value": 164209.46
         },
         {
           "date": "2007",
-          "value": 170640
+          "value": 170640.01
         },
         {
           "date": "2008",
-          "value": 160759
+          "value": 160758.79
         },
         {
           "date": "2009",
-          "value": 158438
+          "value": 158438.14
         },
         {
           "date": "2010",
-          "value": 172100
+          "value": 172100.16
         },
         {
           "date": "2011",
-          "value": 177781
+          "value": 177780.55
         },
         {
           "date": "2012",
-          "value": 178621
+          "value": 178620.57
         },
         {
           "date": "2013",
-          "value": 184338
+          "value": 184338.33
         },
         {
           "date": "2014",
-          "value": 186222
+          "value": 186222.02
         },
         {
           "date": "2015",
-          "value": 186529
+          "value": 186529.46
         },
         {
           "date": "2016",
-          "value": 192039
+          "value": 192039.29
         },
         {
           "date": "2017",
-          "value": 201366
+          "value": 201366.33
         },
         {
           "date": "2018",
-          "value": 206940
+          "value": 206940.02
         },
         {
           "date": "2019",
-          "value": 204683
+          "value": 204683.22
         },
         {
           "date": "2020",
-          "value": 200255
+          "value": 200255.48
         },
         {
           "date": "2021",
-          "value": 224003
+          "value": 224002.69
         },
         {
           "date": "2022",
-          "value": 225785
+          "value": 225785.22
         },
         {
           "date": "2023",
-          "value": 219192
+          "value": 219191.68
         },
         {
           "date": "2024",
-          "value": 223022
+          "value": 223022.29
         }
       ]
     }
@@ -1074,13 +1074,13 @@
       "url": "https://data.worldbank.org/indicator/SL.GDP.PCAP.EM.KD"
     },
     {
-      "name": "FRED — CPI, Core CPI, Core PCE (added when FRED_API_KEY is set)",
-      "id": "CPIAUCSL/CPILFESL/PCEPILFE",
+      "name": "FRED — Headline CPI (CPIAUCSL), Core CPI (CPILFESL), Core PCE (PCEPILFE)",
+      "id": "FRED",
       "url": "https://fred.stlouisfed.org/"
     },
     {
-      "name": "FRED — Info-processing investment, Information-sector employment, Software PPI",
-      "id": "various",
+      "name": "FRED — Information-sector employment (USINFO), Software PPI, IT investment, real median earnings",
+      "id": "FRED",
       "url": "https://fred.stlouisfed.org/"
     }
   ]
