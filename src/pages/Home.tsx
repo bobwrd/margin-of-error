@@ -68,7 +68,7 @@ export default function Home() {
       {/* Thesis */}
       <div className="mb-12">
         <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-          I'm Arin — 17, studying economics and law. I'm trying to answer one question: where do formal
+          I'm Arin — 15, studying economics and law. I'm trying to answer one question: where do formal
           institutions — legal systems, economic policy, regulatory frameworks — fall short of the people
           they are supposed to serve, and why?
         </p>

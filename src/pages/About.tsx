@@ -215,6 +215,22 @@ export default function About() {
           </p>
         </section>
 
+        {/* More */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">More</h2>
+          <div className="flex flex-col gap-2">
+            <Link to="/why" className="text-sm text-warm-accent hover:underline">
+              Why this question — the origin of the institutional-gap question across all four projects →
+            </Link>
+            <Link to="/changed-my-mind" className="text-sm text-warm-accent hover:underline">
+              What I've changed my mind about — positions, evidence, and where I moved →
+            </Link>
+            <Link to="/changelog" className="text-sm text-warm-accent hover:underline">
+              Changelog — what has been added or changed, and when →
+            </Link>
+          </div>
+        </section>
+
       </div>
     </Layout>
   );

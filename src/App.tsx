@@ -12,6 +12,8 @@ const Others = lazy(() => import("./pages/Others"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 const About = lazy(() => import("./pages/About"));
 const WhyMOE = lazy(() => import("./pages/WhyMOE"));
+const ChangedMyMind = lazy(() => import("./pages/ChangedMyMind"));
+const Changelog = lazy(() => import("./pages/Changelog"));
 
 const VerdictShell = lazy(() =>
   import("./pages/verdict/VerdictLayout").then((m) => {
@@ -33,6 +35,7 @@ const VerdictIndex = lazy(() => import("./pages/verdict/VerdictIndex"));
 const VerdictCase = lazy(() => import("./pages/verdict/VerdictCase"));
 const VerdictCharts = lazy(() => import("./pages/verdict/VerdictCharts"));
 const VerdictAbout = lazy(() => import("./pages/verdict/VerdictAbout"));
+const VerdictScored = lazy(() => import("./pages/verdict/VerdictScored"));
 const VerdictSubmit = lazy(() => import("./pages/verdict/VerdictSubmit"));
 
 // The Ledger — MAS enforcement actions database. Same standalone-product
@@ -108,12 +111,15 @@ export default function App() {
 
             <Route path="/about" element={<About />} />
             <Route path="/why" element={<WhyMOE />} />
+            <Route path="/changed-my-mind" element={<ChangedMyMind />} />
+            <Route path="/changelog" element={<Changelog />} />
 
             <Route path="/verdict" element={<VerdictShell />}>
               <Route index element={<VerdictIndex />} />
               <Route path=":id" element={<VerdictCase />} />
               <Route path="charts" element={<VerdictCharts />} />
               <Route path="about" element={<VerdictAbout />} />
+              <Route path="how-we-score" element={<VerdictScored />} />
               <Route path="submit" element={<VerdictSubmit />} />
             </Route>
 

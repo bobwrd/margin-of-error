@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function VerdictAbout() {
   const sectionClass = "rounded-lg border p-6 mb-5";
   const sectionStyle = {
@@ -209,6 +211,23 @@ export default function VerdictAbout() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Worked example CTA */}
+      <div className={sectionClass} style={{ ...sectionStyle, borderColor: "var(--verdict-accent)" }}>
+        <div style={headingStyle}>See it in practice</div>
+        <p style={bodyStyle} className="mb-4">
+          The methodology is easier to follow with a real case. The worked example below walks through
+          every scoring decision for the EU AI Act — factor by factor, with the reasoning behind each score
+          and where the scoring could be wrong.
+        </p>
+        <Link
+          to="/verdict/how-we-score"
+          className="inline-block text-xs font-mono px-3 py-2 rounded transition-opacity hover:opacity-80"
+          style={{ color: "var(--verdict-bg)", backgroundColor: "var(--verdict-accent)" }}
+        >
+          How we score: EU AI Act →
+        </Link>
       </div>
     </div>
   );

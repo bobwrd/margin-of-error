@@ -95,7 +95,7 @@ export default function WhyMOE() {
           That is what this site is for.
         </p>
 
-        <div className="border-t border-border pt-6 mt-8">
+        <div className="border-t border-border pt-6 mt-8 space-y-2">
           <p className="text-sm">
             Currently working on:{" "}
             <Link to="/others/issue-002-india-labour" className="text-warm-accent hover:underline">
@@ -104,6 +104,12 @@ export default function WhyMOE() {
             {" "}and CivicAid MVP. The Observatory is live.{" "}
             <Link to="/observatory" className="text-warm-accent hover:underline">
               Try it →
+            </Link>
+          </p>
+          <p className="text-sm text-muted-foreground">
+            See also:{" "}
+            <Link to="/changed-my-mind" className="text-warm-accent hover:underline">
+              What I've changed my mind about →
             </Link>
           </p>
         </div>

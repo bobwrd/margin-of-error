@@ -82,6 +82,20 @@ export default function Methodology({ data }: { data: ObservatoryData | null }) 
             intuitive, and it will happily produce paths that no real economy would follow if you push the sliders to
             extremes. Treat every number as illustrative.
           </p>
+          <div className="mt-5 pt-4 border-t" style={{ borderColor: "var(--obs-border)" }}>
+            <a
+              href="/pdfs/observatory-model-note.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-mono hover:underline"
+              style={{ color: "var(--obs-accent)" }}
+            >
+              ↓ Download model note (PDF, 2 pages)
+            </a>
+            <p className="mt-1 text-xs" style={{ color: "var(--obs-muted)" }}>
+              Data sources, parameter table, one illustrative scenario worked through, and what the model cannot do.
+            </p>
+          </div>
         </Card>
       </div>
     </Section>

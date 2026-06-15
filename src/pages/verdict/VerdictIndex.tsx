@@ -379,6 +379,25 @@ export default function VerdictIndex() {
           {filtered.map((c) => <CaseCard key={c.case_id} c={c} />)}
         </div>
       )}
+
+      {/* Cross-links */}
+      <div
+        className="mt-16 pt-8 border-t text-sm"
+        style={{ borderColor: "var(--verdict-border)", color: "var(--verdict-muted)" }}
+      >
+        <p className="mb-2">Related work on Margin of Error:</p>
+        <div className="flex flex-wrap gap-4">
+          <a href="/observatory" className="hover:underline" style={{ color: "var(--verdict-accent)" }}>
+            The Observatory — how AI adoption flows through to prices and wages →
+          </a>
+          <a href="/others/access-to-justice-the-gap-nobody-measures" className="hover:underline" style={{ color: "var(--verdict-accent)" }}>
+            Access to Justice — The Gap Nobody Measures →
+          </a>
+          <a href="/why" className="hover:underline" style={{ color: "var(--verdict-accent)" }}>
+            Why this question →
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
