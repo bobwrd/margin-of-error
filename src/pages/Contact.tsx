@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import VerdictButton from "@/components/VerdictButton";
 import LedgerButton from "@/components/LedgerButton";
+import ObservatoryButton from "@/components/ObservatoryButton";
 import { submitContact } from "@/lib/api";
 
 interface FormData {
@@ -74,6 +75,7 @@ export default function Contact() {
         <div className="flex items-center gap-2">
           <VerdictButton />
           <LedgerButton />
+          <ObservatoryButton />
         </div>
       </div>
 
