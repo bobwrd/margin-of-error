@@ -141,11 +141,20 @@ export default function Home() {
           each case scored on a transparent five-factor methodology to make
           the policy landscape scannable and comparable across jurisdictions.
         </p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
           <strong className="text-foreground">The Ledger</strong> is a coded
           database of MAS (Monetary Authority of Singapore) enforcement
           actions, built to surface patterns in how Singapore's financial
           regulator actually exercises its powers.
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          <strong className="text-foreground">The Arena</strong> is an
+          interactive explorer on competition and efficiency — four chapters
+          covering how firm count affects price and quality, how tournament
+          incentives shape effort and sabotage, what concentration combined
+          with behavioural distortion produces, and what antitrust, consumer,
+          and firm-level policy each see. All closed-form IO models; no data
+          fetch.
         </p>
         <Link
           to="/about"
