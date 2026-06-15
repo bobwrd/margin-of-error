@@ -321,4 +321,86 @@ body {
     border: 2px solid var(--obs-bg);
     cursor: pointer;
   }
+
+  /* The Arena — competition & efficiency. Magenta/rose on ink-violet. */
+  .arena-section {
+    --arena-bg: #100e1b;
+    --arena-surface: #181428;
+    --arena-surface-2: #211a36;
+    --arena-border: rgba(251, 93, 143, 0.16);
+    --arena-border-hover: rgba(251, 93, 143, 0.42);
+    --arena-accent: #fb5d8f;
+    --arena-accent-2: #818cf8;
+    --arena-accent-dim: rgba(251, 93, 143, 0.1);
+    --arena-text: #ece8f5;
+    --arena-muted: #9890b5;
+    --arena-c1: #fb5d8f;
+    --arena-c2: #818cf8;
+    --arena-c3: #34d399;
+    --arena-c4: #fbbf24;
+    --arena-c5: #22d3ee;
+    --arena-warn: #fb7185;
+    --arena-good: #34d399;
+  }
+
+  .arena-section.arena-light {
+    --arena-bg: #f7f5fb;
+    --arena-surface: #ffffff;
+    --arena-surface-2: #efeaf7;
+    --arena-border: rgba(190, 24, 93, 0.16);
+    --arena-border-hover: rgba(190, 24, 93, 0.42);
+    --arena-accent: #be185d;
+    --arena-accent-2: #4f46e5;
+    --arena-accent-dim: rgba(190, 24, 93, 0.08);
+    --arena-text: #1c142a;
+    --arena-muted: #6a6088;
+    --arena-c1: #be185d;
+    --arena-c2: #4f46e5;
+    --arena-c3: #047857;
+    --arena-c4: #b45309;
+    --arena-c5: #0e7490;
+    --arena-warn: #e11d48;
+    --arena-good: #047857;
+  }
+
+  /* Arena range sliders — themed to the section accent. */
+  .arena-section .arena-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--arena-surface-2);
+    outline: none;
+  }
+  .arena-section .arena-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--arena-accent);
+    border: 2px solid var(--arena-bg);
+    cursor: pointer;
+    transition: transform 120ms;
+  }
+  .arena-section .arena-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+  .arena-section .arena-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--arena-accent);
+    border: 2px solid var(--arena-bg);
+    cursor: pointer;
+  }
+
+  /* Arena: respect reduced-motion by neutralising transitions/animations. */
+  @media (prefers-reduced-motion: reduce) {
+    .arena-section * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
 }

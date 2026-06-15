@@ -3,6 +3,7 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import VerdictButton from "@/components/VerdictButton";
 import LedgerButton from "@/components/LedgerButton";
 import ObservatoryButton from "@/components/ObservatoryButton";
+import ArenaButton from "@/components/ArenaButton";
 import { siteConfig } from "@/config/site";
 import { Link } from "react-router-dom";
 
@@ -62,6 +63,7 @@ export default function Home() {
           <VerdictButton />
           <LedgerButton />
           <ObservatoryButton />
+          <ArenaButton />
         </div>
       </div>
 

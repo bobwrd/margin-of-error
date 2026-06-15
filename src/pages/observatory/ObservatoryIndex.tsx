@@ -43,6 +43,9 @@ export default function ObservatoryIndex() {
           <a href="/verdict" className="hover:underline" style={{ color: "var(--obs-accent)" }}>
             The Verdict — tracking AI regulation as it happens →
           </a>
+          <a href="/arena" className="hover:underline" style={{ color: "var(--obs-accent)" }}>
+            The Arena — when competition helps and when it wastes →
+          </a>
           <a href="/others/access-to-justice-the-gap-nobody-measures" className="hover:underline" style={{ color: "var(--obs-accent)" }}>
             Access to Justice — The Gap Nobody Measures →
           </a>

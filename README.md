@@ -2,7 +2,7 @@ This file provides guidance when working with code in this repository. The READM
 
 # Project Notes
 
-**Margin of Error** — a personal writing hub for articles, newsletter issues, a public profile, and three standalone products: **The Verdict** (AI policy intelligence database), **The Ledger** (MAS enforcement-action database), and **The Observatory** (an interactive explainer on AI, productivity and prices). Hosted on Cloudflare Workers + Static Assets + D1; React + Vite frontend, Hono API.
+**Margin of Error** — a personal writing hub for articles, newsletter issues, a public profile, and four standalone products: **The Verdict** (AI policy intelligence database), **The Ledger** (MAS enforcement-action database), **The Observatory** (an interactive explainer on AI, productivity and prices), and **The Arena** (an interactive explorer on competition and efficiency). Hosted on Cloudflare Workers + Static Assets + D1; React + Vite frontend, Hono API.
 
 ## The Verdict
 
@@ -71,6 +71,32 @@ Unlike Verdict/Ledger, it is **one long scrollable page** (not a multi-route sec
 ### Visual identity
 - Background `#0b1418` (dark) / `#f3faf8` (light); accent `#2dd4bf` / `#0d9488`
 - Chart palette `--obs-c1..c5`; CSS scoped under `.obs-section` / `.obs-section.obs-light` in `src/styles.css` (includes `.obs-range` slider styling)
+
+## The Arena
+
+An interactive explorer on **competition and efficiency** at `/arena`. Same standalone-product pattern (own visual identity, independent dark/light toggle in `localStorage["arena-theme"]`), reached via a **rose pill button** (`src/components/ArenaButton.tsx`) next to the Verdict/Ledger/Observatory buttons on the Home page (not in the top nav). Browser title: *"Margin of Error — The Arena: Competition and Efficiency"*.
+
+Like The Observatory, it is **one long scroll-driven page**. The route `/arena` renders `ArenaIndex` (anchor nav: Intro · Firms · Lab · Outcomes · Lenses · Method); `/arena/methods` renders the long-form Tech Note `ArenaMethods`.
+
+Guiding question: *when does more competition raise efficiency, and when does it waste effort or hurt quality?* The angle is behavioural / industrial-organisation.
+
+### Page sections (`src/pages/arena/`)
+- **Intro** (`sections/Intro.tsx`) — framing and the core question.
+- **Chapter 1** (`sections/Chapter1.tsx`) — number of firms (1-12) vs price / quality / slack gauges. Auto-sweeps on scroll-in, then a slider; firm-strip visual.
+- **Chapter 2** (`sections/Chapter2.tsx`) — tournament-style effort lab: prize spread, monitoring, competitive pressure → productive / sabotage / rest, with measured-output-vs-true-efficiency wedge. 4-step autoplay sequence then interactive.
+- **Chapter 3** (`sections/Chapter3.tsx`) — market outcomes 2x2 (price, quality, innovation, surplus vs deadweight) over two sliders: concentration and behavioural distortion.
+- **Chapter 4** (`sections/Chapter4.tsx`) — three policy lenses (antitrust / consumer / firm) shading the same concentration-distortion plane; HHI proxy readout.
+- **Methodology** (`sections/Methodology.tsx`) — sources grouped by chapter, with one-line "what we borrowed" notes; links to the Tech Note.
+
+### Models and grounding
+- **No data fetch, no API route, no content file.** Every curve is a closed-form teaching function in `model.ts`. Numbers are rescaled to 0-100 indices; the *shape and direction* of each curve is anchored to published work, cited in comment blocks above each function and listed in the Methodology + `/arena/methods` Tech Note.
+- Anchors: Bresnahan-Reiss (1991), Aghion et al. (2005), Leibenstein (1966), Bertrand-Mullainathan (2003), Mankiw-Whinston (1986), Harbring-Irlenbusch (2011), Lazear (1989), Charness-Masclet-Villeval (2014), Ariely et al. (2009), De Loecker-Eeckhout-Unger (2020), Harberger (1954), Tullock (1967), Posner (1975), US Merger Guidelines (2010, 2023).
+- Two pieces are flagged as extrapolations beyond a clean published magnitude: the Chapter-2 choking threshold and the Chapter-4 symmetric concentration-to-HHI mapping.
+- `hooks.ts` holds `useReducedMotion`, `useScrollProgress`, `useEnterOnce`, `useAutoplay` (rAF-throttled, passive listeners). `prefers-reduced-motion` swaps scroll autoplay for click-to-play. `shared.tsx` mirrors the Observatory's Section/Card/Details/Eq/Slider helpers.
+
+### Visual identity
+- Background `#100e1b` (dark) / `#f7f5fb` (light); accent `#fb5d8f` / `#be185d`, secondary `#818cf8` / `#4f46e5`
+- Chart palette `--arena-c1..c5`; CSS scoped under `.arena-section` / `.arena-section.arena-light` in `src/styles.css` (includes `.arena-range` slider styling and a `prefers-reduced-motion` block)
 
 ### Removed pages
 

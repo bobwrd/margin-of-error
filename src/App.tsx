@@ -83,6 +83,28 @@ const ObservatoryShell = lazy(() =>
 const ObservatoryIndex = lazy(() => import("./pages/observatory/ObservatoryIndex"));
 const ObservatoryMethods = lazy(() => import("./pages/observatory/ObservatoryMethods"));
 
+// The Arena (/arena) — competition and efficiency. One long scroll-driven page
+// (intro -> four interactive chapters -> methodology) under its own
+// ink-violet/rose theme shell. recharts + heavy sections load on navigation.
+const ArenaShell = lazy(() =>
+  import("./pages/arena/ArenaLayout").then((m) => {
+    const { default: ArenaLayout, ArenaThemeProvider } = m;
+    return {
+      default: function ArenaShell() {
+        return (
+          <ArenaThemeProvider>
+            <ArenaLayout>
+              <Outlet />
+            </ArenaLayout>
+          </ArenaThemeProvider>
+        );
+      },
+    };
+  })
+);
+const ArenaIndex = lazy(() => import("./pages/arena/ArenaIndex"));
+const ArenaMethods = lazy(() => import("./pages/arena/ArenaMethods"));
+
 // Minimal fallback — pages fetch their own data, so the gap is brief.
 // Intentionally unstyled-but-themed so there's no flash of wrong colors.
 function RouteFallback() {
@@ -133,6 +155,11 @@ export default function App() {
             <Route path="/observatory" element={<ObservatoryShell />}>
               <Route index element={<ObservatoryIndex />} />
               <Route path="methods" element={<ObservatoryMethods />} />
+            </Route>
+
+            <Route path="/arena" element={<ArenaShell />}>
+              <Route index element={<ArenaIndex />} />
+              <Route path="methods" element={<ArenaMethods />} />
             </Route>
           </Routes>
         </Suspense>
