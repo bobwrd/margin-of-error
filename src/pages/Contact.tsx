@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import VerdictButton from "@/components/VerdictButton";
 import LedgerButton from "@/components/LedgerButton";
 import ObservatoryButton from "@/components/ObservatoryButton";
+import ArenaButton from "@/components/ArenaButton";
 import { submitContact } from "@/lib/api";
 
 interface FormData {
@@ -76,6 +77,7 @@ export default function Contact() {
           <VerdictButton />
           <LedgerButton />
           <ObservatoryButton />
+          <ArenaButton />
         </div>
       </div>
 

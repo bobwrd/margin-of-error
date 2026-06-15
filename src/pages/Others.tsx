@@ -2,6 +2,7 @@ import CategoryPage from "./CategoryPage";
 import VerdictButton from "@/components/VerdictButton";
 import LedgerButton from "@/components/LedgerButton";
 import ObservatoryButton from "@/components/ObservatoryButton";
+import ArenaButton from "@/components/ArenaButton";
 
 export default function Others() {
   return (
@@ -9,7 +10,7 @@ export default function Others() {
       category="other"
       title="Others"
       subtitle="Everything that doesn't fit the weekly briefing or a personal piece."
-      headingExtra={<span className="flex items-center gap-2"><VerdictButton /><LedgerButton /><ObservatoryButton /></span>}
+      headingExtra={<span className="flex items-center gap-2"><VerdictButton /><LedgerButton /><ObservatoryButton /><ArenaButton /></span>}
     />
   );
 }

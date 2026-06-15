@@ -15,6 +15,59 @@ export default function ChangedMyMind() {
 
       <div className="space-y-14 text-sm text-muted-foreground leading-relaxed max-w-prose">
 
+        {/* Entry 0 — Arena */}
+        <section>
+          <h2 className="text-lg font-semibold text-foreground mb-1">
+            On whether more competition always produces better outcomes
+          </h2>
+          <p className="text-xs text-muted-foreground mb-4">Updated June 2026</p>
+
+          <p className="mb-4">
+            My default assumption going into the IO literature was a clean version of the standard story:
+            more firms means more competition, more competition means lower prices and higher quality, and
+            policy should therefore make markets less concentrated wherever possible. The antitrust
+            instinct. It seemed robust.
+          </p>
+
+          <p className="mb-4">
+            Working through the empirical literature for The Arena broke that. The Bresnahan-Reiss result
+            is striking: most of the competitive discipline in a market arrives with the second and third
+            entrant. After that, adding more firms has diminishing returns on prices. The relationship is
+            not linear — it flattens fast. That alone complicates any simple "more competition = better"
+            rule, because it means the relevant question is whether you have one firm or a few, not
+            whether you have fifteen or twenty.
+          </p>
+
+          <p className="mb-4">
+            The innovation piece is stranger. Aghion et al. find an inverted-U between competition and
+            innovation: industries with intermediate concentration innovate more than industries that are
+            either monopolistic or intensely competitive. The mechanism is that competitive pressure raises
+            the return to escaping the pack, but only up to the point where firms still have enough margin
+            to fund R&D. Push competition hard enough and you kill the slack that innovation requires.
+            I had not expected the relationship to be non-monotonic.
+          </p>
+
+          <p className="mb-4">
+            Tournament theory made this more complicated still. Firms and regulators often use competition
+            as a motivational device — prize spreads between winners and losers are supposed to drive
+            effort. The Harbring and Irlenbusch experiments show that large prize spreads do increase
+            effort, but past a threshold they also induce sabotage. The same incentive structure that
+            raises productive effort can raise destructive effort proportionally. Whether competition
+            produces good outcomes depends on which lever dominates, and the answer varies by context.
+          </p>
+
+          <p>
+            I still think concentrated markets are usually worth scrutinising. But I no longer think the
+            direction of the effect is obvious without knowing where you are on the concentration spectrum,
+            what the innovation dynamics look like, and whether the behavioural response to competitive
+            pressure is primarily productive or adversarial. The Arena is an attempt to build intuition
+            about those trade-offs interactively — the same way the Observatory is for AI and macro.{" "}
+            <Link to="/arena" className="text-warm-accent hover:underline">
+              Try it →
+            </Link>
+          </p>
+        </section>
+
         {/* Entry 1 */}
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-1">

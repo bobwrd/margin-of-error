@@ -46,6 +46,34 @@ export default function About() {
           </ul>
         </section>
 
+        {/* The Arena */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">The Arena</h2>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            The Arena is an interactive explorer on competition and efficiency. It works through four
+            questions: how does the number of firms in a market affect price, quality, and slack? How do
+            tournament-style incentives shape effort and sabotage? What does the combination of market
+            concentration and behavioural distortion produce? And what do antitrust, consumer, and
+            firm-level policy lenses each see when they look at the same market?
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            Every curve is a closed-form teaching model anchored to published IO and experimental
+            literature — Bresnahan-Reiss on entry and prices, Aghion et al. on the competition-innovation
+            relationship, Harbring and Irlenbusch on tournament sabotage, De Loecker et al. on markups.
+            There is no data fetch; the goal is intuition about mechanisms, not calibrated forecasts.
+          </p>
+          <p className="text-xs text-muted-foreground mb-3">Started June 2026. No live data — all closed-form models.</p>
+          <p className="text-muted-foreground leading-relaxed">
+            <Link to="/arena/methods" className="text-warm-accent hover:underline">
+              Technical note →
+            </Link>
+            {" · "}
+            <Link to="/arena" className="text-warm-accent hover:underline">
+              Open The Arena →
+            </Link>
+          </p>
+        </section>
+
         {/* The Observatory */}
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Observatory</h2>

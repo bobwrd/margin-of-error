@@ -9,6 +9,7 @@ const entries: ChangeEntry[] = [
   {
     date: "June 2026",
     items: [
+      "The Arena launched: a scroll-driven interactive explorer on competition and efficiency. Four chapters — number of firms vs. price and quality, tournament effort lab, market-outcomes 2×2 over concentration and behavioural distortion, and three policy lenses — plus a full technical note at /arena/methods. All curves are closed-form teaching models anchored to published IO literature; no data fetch.",
       "Added 'Why this question' page — the origin of the institutional-gap question across all four projects.",
       "Rewrote About page: project dates, 'Currently reading' section, 'How this site is built' note.",
       "Observatory: added casual reader entry paragraph so you can interact before parsing the model framing.",
