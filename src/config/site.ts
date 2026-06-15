@@ -9,7 +9,8 @@ export const siteConfig = {
     { label: "Home", href: "/" },
     { label: "Weekly Briefing", href: "/weekly" },
     { label: "Personal Pieces", href: "/personal" },
-    { label: "Others", href: "/others" },
+    { label: "Analysis", href: "/others" },
     { label: "About", href: "/about" },
+    { label: "Why this?", href: "/why" },
   ],
 };

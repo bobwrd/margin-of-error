@@ -8,18 +8,18 @@ import { Link } from "react-router-dom";
 
 const highlights = [
   {
-    href: "/personal/us-economy-cheap-imports-china",
-    title: "Is the US economy harmed by cheap imports from China?",
+    href: "/observatory",
+    title: "The Observatory — AI, Productivity and Prices",
     summary:
-      "Cheap Chinese imports raise aggregate living standards but harm specific workers and create strategic vulnerabilities. What counts as harm has to be defined distributionally and geopolitically, not just by GDP.",
-    tag: "Personal Essay",
+      "An interactive sandbox tracing how AI adoption might flow through to inflation, wages, and who captures the gains. Pick a named scenario or move the sliders yourself. Built to build intuition, not to forecast.",
+    tag: "Interactive",
   },
   {
-    href: "/personal/on-the-end-of-globalisation",
-    title: "On the End of Globalisation",
+    href: "/verdict/1",
+    title: "EU AI Act — Full Entry into Force",
     summary:
-      "The era of frictionless global trade is not ending — it is fragmenting into blocs. What that means for smaller open economies like Singapore.",
-    tag: "Personal Essay",
+      "The world's first comprehensive AI regulation entered into force, establishing a risk-tiered framework with global implications for tech governance. Scored 87.3 EDI — the highest in the database.",
+    tag: "The Verdict",
   },
   {
     href: "/others/access-to-justice-the-gap-nobody-measures",
@@ -29,18 +29,18 @@ const highlights = [
     tag: "Analysis",
   },
   {
+    href: "/personal/us-economy-cheap-imports-china",
+    title: "Is the US economy harmed by cheap imports from China?",
+    summary:
+      "Cheap Chinese imports raise aggregate living standards but harm specific workers and create strategic vulnerabilities. What counts as harm has to be defined distributionally and geopolitically, not just by GDP.",
+    tag: "Personal Essay",
+  },
+  {
     href: "/others/issue-002-india-labour",
     title: "What Indian Labour Data Actually Shows",
     summary:
       "Early findings from working through the Periodic Labour Force Survey on sectoral employment trends. The informal sector is more durable than the standard narrative assumes.",
     tag: "Research Notes",
-  },
-  {
-    href: "/verdict/1",
-    title: "EU AI Act — Full Entry into Force",
-    summary:
-      "The world's first comprehensive AI regulation entered into force, establishing a risk-tiered framework with global implications for tech governance.",
-    tag: "The Verdict",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Header */}
-      <div className="mb-12 flex items-start justify-between gap-4 flex-wrap">
+      <div className="mb-6 flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-3xl font-bold text-foreground tracking-tight mb-1">
             {siteConfig.title}
@@ -65,9 +65,19 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Newsletter */}
-      <div className="mb-14">
-        <NewsletterSignup />
+      {/* Thesis */}
+      <div className="mb-12">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+          I'm Arin — 17, studying economics and law. I'm trying to answer one question: where do formal
+          institutions — legal systems, economic policy, regulatory frameworks — fall short of the people
+          they are supposed to serve, and why?
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          This site is where I work that out: through writing, coded databases, and a working economic sandbox.{" "}
+          <Link to="/why" className="text-warm-accent hover:underline">
+            Why this question →
+          </Link>
+        </p>
       </div>
 
       {/* Start Here */}
@@ -101,8 +111,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Newsletter */}
+      <div className="mb-14">
+        <NewsletterSignup />
+      </div>
+
       {/* About the project */}
-      <section className="mb-14">
+      <section className="mb-10">
         <h2 className="text-lg font-semibold text-foreground tracking-tight mb-3">
           What this is
         </h2>
@@ -111,6 +126,12 @@ export default function Home() {
           personal writing and research hub covering economics, law, and the
           space between formal systems and the people they affect. Essays,
           research notes, and a weekly digest live here.
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          <strong className="text-foreground">The Observatory</strong> is an
+          interactive explainer on AI, productivity and prices — a walkthrough
+          of the transmission channels, a live data atlas covering five countries,
+          and a toy model you can drive yourself. A way to explore mechanisms, not a forecast.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
           <strong className="text-foreground">The Verdict</strong> is a
@@ -124,12 +145,6 @@ export default function Home() {
           actions, built to surface patterns in how Singapore's financial
           regulator actually exercises its powers.
         </p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-          <strong className="text-foreground">The Observatory</strong> is an
-          interactive explainer on AI, productivity and prices — a walkthrough
-          of the channels from AI to inflation, a live data atlas, and a toy
-          model you can play with. A way to explore mechanisms, not a forecast.
-        </p>
         <Link
           to="/about"
           className="text-sm text-warm-accent hover:underline"
@@ -137,6 +152,14 @@ export default function Home() {
           Full project overview →
         </Link>
       </section>
+
+      {/* Footer status */}
+      <div className="border-t border-border pt-6 pb-2">
+        <p className="text-xs text-muted-foreground">
+          Last updated: June 2026. Currently working on: a quantitative paper on Indian sectoral employment
+          using PLFS data (2017–2024), and CivicAid (legal literacy tool for Singapore, MVP in progress).
+        </p>
+      </div>
     </Layout>
   );
 }

@@ -21,15 +21,19 @@ export default function Intro() {
           </p>
           <div className="mt-6 space-y-3 text-sm sm:text-base leading-relaxed" style={{ color: "var(--obs-muted)" }}>
             <p>
+              This is a working sandbox I built to trace how AI adoption might flow through to prices,
+              wages, and who captures the gains. Pick a named scenario or move the sliders directly —
+              no background reading required. The model details are there if you want them, tucked
+              behind <span className="font-mono" style={{ color: "var(--obs-accent)" }}>Details</span> toggles.
+            </p>
+            <p>
               This is not a forecast. It is a way to walk the channels that run from AI adoption to
-              prices and wages, look at the real series that would move if those channels were
-              active, and then play with a toy model to build intuition for the trade-offs.
+              prices and wages, look at the real series that would move if those channels were active,
+              and then play with a toy model to build intuition for the trade-offs.
             </p>
             <p>
               Read top to bottom: a short conceptual walkthrough, then a live data atlas, then a
-              sandbox you can drive yourself. Anywhere you see a{" "}
-              <span className="font-mono" style={{ color: "var(--obs-accent)" }}>Details</span> toggle,
-              the underlying assumptions and math are tucked behind it.
+              sandbox you can drive yourself.
             </p>
           </div>
 

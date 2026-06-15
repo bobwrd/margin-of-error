@@ -46,6 +46,26 @@ export default function About() {
           </ul>
         </section>
 
+        {/* The Observatory */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">The Observatory</h2>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            The Observatory is an interactive explainer on AI, productivity and prices. It traces the channels from AI
+            adoption to inflation, wages, and who captures the gains — a live data atlas covering five countries, three
+            named scenarios, and a toy macro model you can drive yourself with sliders.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            The model is deliberately simple and non-predictive. The goal is intuition about trade-offs, not a point
+            forecast. All the underlying assumptions are visible and adjustable.
+          </p>
+          <p className="text-xs text-muted-foreground mb-3">Started April 2026. Data refreshed weekly.</p>
+          <p className="text-muted-foreground leading-relaxed">
+            <Link to="/observatory" className="text-warm-accent hover:underline">
+              Open The Observatory →
+            </Link>
+          </p>
+        </section>
+
         {/* The Verdict */}
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Verdict</h2>
@@ -59,11 +79,18 @@ export default function About() {
             and policy synergy) to produce a single composite score: the EDI (Event Disruption Index). The methodology
             is fully transparent and designed to make comparisons across jurisdictions meaningful.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed mb-3">
             The database is updated weekly via an automated scan, with each new case fact-checked against primary
-            sources before being published.{" "}
+            sources before being published.
+          </p>
+          <p className="text-xs text-muted-foreground mb-3">Started March 2025. Updated weekly.</p>
+          <p className="text-muted-foreground leading-relaxed">
             <Link to="/verdict/about" className="text-warm-accent hover:underline">
               Full methodology →
+            </Link>
+            {" · "}
+            <Link to="/verdict" className="text-warm-accent hover:underline">
+              Browse cases →
             </Link>
           </p>
         </section>
@@ -81,6 +108,7 @@ export default function About() {
             searchable, comparable dataset — each action coded by sector, violation type, sanction, and outcome — so
             patterns in regulatory behaviour become visible.
           </p>
+          <p className="text-xs text-muted-foreground mb-3">Started January 2026. Updated as new actions are published.</p>
           <p className="text-muted-foreground leading-relaxed">
             <Link to="/ledger" className="text-warm-accent hover:underline">
               Browse The Ledger →
@@ -92,25 +120,31 @@ export default function About() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">CivicAid</h2>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            CivicAid is a legal literacy app for Singapore, currently in development. It is designed for people who
-            encounter legal problems — employment disputes, tenancy issues, consumer rights — but don't know where to
-            start or can't afford a lawyer.
+            CivicAid is a legal literacy tool I'm building for Singapore. It is designed for people who encounter legal
+            problems — employment disputes, tenancy issues, consumer rights — but don't know where to start or can't
+            afford a lawyer.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            The core premise is that legal information should be navigable without a law degree. CivicAid structures
-            Singapore's legal aid landscape, relevant statutes, and practical next-steps into something a non-expert
-            can actually use.
+            The premise is that legal information should be navigable without a law degree. CivicAid structures
+            Singapore's legal aid landscape, relevant statutes, and practical next steps into something a non-expert
+            can actually use. MVP in progress.
           </p>
         </section>
 
         {/* Research */}
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">Research</h2>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            I'm working on an economics paper analysing sectoral employment trends in India using PLFS
+            (Periodic Labour Force Survey) data from 2017 to 2024. The paper looks at structural shifts between formal
+            and informal sectors, across agriculture, manufacturing, and services, and how those shifts map onto policy
+            interventions over the period.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
-            I'm working on an economics research paper analysing sectoral employment trends in India using PLFS
-            (Periodic Labour Force Survey) data. The paper looks at how structural shifts in employment — particularly
-            the movement between formal and informal sectors, and across agriculture, manufacturing, and services —
-            map onto policy interventions over the last decade.
+            Early findings on informal sector persistence and non-uniform gender gaps are in the{" "}
+            <Link to="/others/issue-002-india-labour" className="text-warm-accent hover:underline">
+              research notes →
+            </Link>
           </p>
         </section>
 
@@ -151,6 +185,34 @@ export default function About() {
               Download CV
             </a>
           </div>
+        </section>
+
+        {/* Currently reading */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Currently reading</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Acemoglu and Restrepo on AI, automation, and the task model of labour. Working through
+            New Keynesian macro slowly — specifically how the standard model handles productivity shocks,
+            which is what the Observatory's toy engine is trying to approximate.
+          </p>
+        </section>
+
+        {/* How this site is built */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">How this site is built</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Vite + React + TypeScript, deployed on Cloudflare Workers with a D1 database for dynamic data.
+            Weekly content pipelines run automatically via GitHub Actions — the Observatory data refreshes
+            every week, The Verdict gets a new scan every Monday morning. Source is public on{" "}
+            <a
+              href="https://github.com/bobwrd/margin-of-error"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-warm-accent hover:underline"
+            >
+              GitHub →
+            </a>
+          </p>
         </section>
 
       </div>
