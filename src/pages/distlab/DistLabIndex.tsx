@@ -171,6 +171,197 @@ function Lab({ data }: { data: DistLabData }) {
           )}
         </div>
       </div>
+
+      {/* Download strip */}
+      <DownloadBar data={data} />
+    </div>
+  );
+}
+
+function triggerDownload(filename: string, content: string, mimeType: string) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function buildCSV(data: DistLabData): string {
+  const regimeMap = new Map(data.regime.map((r) => [`${r.country}__${r.year}`, r]));
+  const headers = [
+    "country", "country_name", "year",
+    "gdp_per_capita_ppp", "gni_per_capita", "gini", "top10_share",
+    "poverty_headcount", "education_years", "secondary_enrolment",
+    "education_spend_pct_gdp", "competitiveness_index", "wellbeing_index",
+    "tax_progressivity", "welfare_generosity", "minimum_wage_strength",
+    "labour_power", "education_spending", "trade_openness",
+    "informality", "structural",
+  ];
+  const rows = data.base.map((b) => {
+    const r = regimeMap.get(`${b.country}__${b.year}`);
+    return [
+      b.country,
+      `"${(data.country_names[b.country] || b.country).replace(/"/g, '""')}"`,
+      b.year,
+      b.gdp_per_capita_ppp ?? "",
+      b.gni_per_capita ?? "",
+      b.gini ?? "",
+      b.top10_share ?? "",
+      b.poverty_headcount ?? "",
+      b.education_years ?? "",
+      b.secondary_enrolment ?? "",
+      b.education_spend_pct_gdp ?? "",
+      b.competitiveness_index ?? "",
+      b.wellbeing_index ?? "",
+      r?.values.tax_progressivity ?? "",
+      r?.values.welfare_generosity ?? "",
+      r?.values.minimum_wage_strength ?? "",
+      r?.values.labour_power ?? "",
+      r?.values.education_spending ?? "",
+      r?.values.trade_openness ?? "",
+      r?.values.informality ?? "",
+      r?.values.structural ?? "",
+    ].join(",");
+  });
+  return [headers.join(","), ...rows].join("\n");
+}
+
+function buildHTML(data: DistLabData): string {
+  const regimeMap = new Map(data.regime.map((r) => [`${r.country}__${r.year}`, r]));
+  const fmt = (v: number | null | undefined) => (v == null ? "–" : String(v));
+  const fmtPct = (v: number | null | undefined) => (v == null ? "–" : `${(v * 100).toFixed(1)}%`);
+  const fmtReg = (v: number | null | undefined) => (v == null ? "–" : v.toFixed(3));
+
+  const tableRows = data.base.map((b) => {
+    const r = regimeMap.get(`${b.country}__${b.year}`);
+    return `<tr>
+      <td>${data.country_names[b.country] || b.country}</td>
+      <td>${b.country}</td>
+      <td>${b.year}</td>
+      <td>${fmt(b.gdp_per_capita_ppp)}</td>
+      <td>${fmt(b.gni_per_capita)}</td>
+      <td>${fmt(b.gini)}</td>
+      <td>${fmtPct(b.top10_share)}</td>
+      <td>${b.poverty_headcount != null ? b.poverty_headcount.toFixed(1) + "%" : "–"}</td>
+      <td>${fmt(b.education_years)}</td>
+      <td>${fmt(b.secondary_enrolment)}</td>
+      <td>${fmt(b.education_spend_pct_gdp)}</td>
+      <td>${fmt(b.competitiveness_index)}</td>
+      <td>${fmt(b.wellbeing_index)}</td>
+      <td>${fmtReg(r?.values.tax_progressivity)}</td>
+      <td>${fmtReg(r?.values.welfare_generosity)}</td>
+      <td>${fmtReg(r?.values.minimum_wage_strength)}</td>
+      <td>${fmtReg(r?.values.labour_power)}</td>
+      <td>${fmtReg(r?.values.education_spending)}</td>
+      <td>${fmtReg(r?.values.trade_openness)}</td>
+      <td>${fmtReg(r?.values.informality)}</td>
+      <td>${fmtReg(r?.values.structural)}</td>
+    </tr>`;
+  }).join("\n");
+
+  const sourceLinks = data.sources
+    .map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a>`)
+    .join(" &middot; ");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Distribution Lab — Data Export</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0b0f1f; color: #e8e6f0; padding: 2rem 1.5rem; }
+    h1 { font-size: 1rem; color: #a78bfa; letter-spacing: 0.15em; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .meta { font-size: 0.75rem; color: #6b6880; margin-bottom: 1.5rem; }
+    .wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.72rem; white-space: nowrap; }
+    thead th { background: #131627; color: #a78bfa; padding: 0.5rem 0.7rem; text-align: left; font-weight: 600; position: sticky; top: 0; border-bottom: 1px solid #2a2d45; }
+    tbody td { padding: 0.35rem 0.7rem; border-bottom: 1px solid #161929; color: #ccc8e2; }
+    tbody tr:nth-child(even) td { background: #0e1120; }
+    tbody tr:hover td { background: #171b2e; }
+    .sources { margin-top: 1.5rem; font-size: 0.72rem; color: #6b6880; }
+    .sources a { color: #a78bfa; text-decoration: none; }
+    .sources a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>The Distribution Lab — Data Export</h1>
+  <p class="meta">Generated ${data.generated} &middot; ${data.base.length} rows &middot; ${data.pool_countries.length} countries &middot; ${data.year_min}–${data.year_max} &middot; Regime values are normalised 0–1</p>
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Country</th><th>Code</th><th>Year</th>
+          <th>GDP/cap PPP</th><th>GNI/cap</th><th>Gini</th><th>Top-10% share</th>
+          <th>Poverty</th><th>Edu years</th><th>2° enrol.</th><th>Edu spend %</th>
+          <th>Competitiveness</th><th>Wellbeing</th>
+          <th>Tax prog.</th><th>Welfare</th><th>Min wage</th><th>Labour power</th>
+          <th>Edu spending</th><th>Trade open.</th><th>Informality</th><th>Structural</th>
+        </tr>
+      </thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+  </div>
+  <div class="sources"><strong>Sources:</strong> ${sourceLinks}</div>
+</body>
+</html>`;
+}
+
+function DownloadBar({ data }: { data: DistLabData }) {
+  const buttons = [
+    {
+      label: "CSV",
+      title: "Flat table: all country-years with base outcomes + regime index values",
+      action: () => triggerDownload("distlab-data.csv", buildCSV(data), "text/csv;charset=utf-8;"),
+    },
+    {
+      label: "JSON",
+      title: "Full dataset including mobility matrices, source metadata, and field-level provenance",
+      action: () => triggerDownload("distlab-data.json", JSON.stringify(data, null, 2), "application/json"),
+    },
+    {
+      label: "HTML",
+      title: "Self-contained styled table for offline reference",
+      action: () => triggerDownload("distlab-data.html", buildHTML(data), "text/html;charset=utf-8;"),
+    },
+  ];
+
+  return (
+    <div className="border-t shrink-0" style={{ borderColor: "var(--dl-border)" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center gap-3 flex-wrap">
+        <span className="text-[0.6rem] font-mono uppercase tracking-[0.2em]" style={{ color: "var(--dl-muted)", opacity: 0.6 }}>
+          Download data
+        </span>
+        {buttons.map(({ label, title, action }) => (
+          <button
+            key={label}
+            onClick={action}
+            title={title}
+            className="text-[0.65rem] font-mono px-2.5 py-1 rounded border transition-all duration-150"
+            style={{
+              borderColor: "var(--dl-border)",
+              color: "var(--dl-muted)",
+              backgroundColor: "transparent",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--dl-accent)";
+              (e.currentTarget as HTMLButtonElement).style.color = "var(--dl-accent)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--dl-border)";
+              (e.currentTarget as HTMLButtonElement).style.color = "var(--dl-muted)";
+            }}
+          >
+            ↓ {label}
+          </button>
+        ))}
+        <span className="text-[0.6rem] font-mono hidden sm:block" style={{ color: "var(--dl-muted)", opacity: 0.4 }}>
+          {data.base.length} rows · {data.pool_countries.length} countries · {data.year_min}–{data.year_max}
+        </span>
+      </div>
     </div>
   );
 }
