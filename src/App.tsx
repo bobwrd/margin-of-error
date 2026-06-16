@@ -105,6 +105,29 @@ const ArenaShell = lazy(() =>
 const ArenaIndex = lazy(() => import("./pages/arena/ArenaIndex"));
 const ArenaMethods = lazy(() => import("./pages/arena/ArenaMethods"));
 
+// The Distribution Lab (/lab) — inequality, mobility and wellbeing across five
+// archetype countries. Unlike the scroll-essay shape of the Observatory and the
+// Arena, this is a fixed full-screen app: a History/Playground mode toggle, three
+// panels, and a year scrubber, under its own gold/indigo theme shell.
+const DistLabShell = lazy(() =>
+  import("./pages/distlab/DistLabLayout").then((m) => {
+    const { default: DistLabLayout, DistLabThemeProvider } = m;
+    return {
+      default: function DistLabShell() {
+        return (
+          <DistLabThemeProvider>
+            <DistLabLayout>
+              <Outlet />
+            </DistLabLayout>
+          </DistLabThemeProvider>
+        );
+      },
+    };
+  })
+);
+const DistLabIndex = lazy(() => import("./pages/distlab/DistLabIndex"));
+const DistLabMethods = lazy(() => import("./pages/distlab/DistLabMethods"));
+
 // Minimal fallback — pages fetch their own data, so the gap is brief.
 // Intentionally unstyled-but-themed so there's no flash of wrong colors.
 function RouteFallback() {
@@ -160,6 +183,11 @@ export default function App() {
             <Route path="/arena" element={<ArenaShell />}>
               <Route index element={<ArenaIndex />} />
               <Route path="methods" element={<ArenaMethods />} />
+            </Route>
+
+            <Route path="/lab" element={<DistLabShell />}>
+              <Route index element={<DistLabIndex />} />
+              <Route path="methods" element={<DistLabMethods />} />
             </Route>
           </Routes>
         </Suspense>

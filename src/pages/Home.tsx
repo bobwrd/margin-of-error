@@ -4,6 +4,7 @@ import VerdictButton from "@/components/VerdictButton";
 import LedgerButton from "@/components/LedgerButton";
 import ObservatoryButton from "@/components/ObservatoryButton";
 import ArenaButton from "@/components/ArenaButton";
+import DistLabButton from "@/components/DistLabButton";
 import { siteConfig } from "@/config/site";
 import { Link } from "react-router-dom";
 
@@ -64,6 +65,7 @@ export default function Home() {
           <LedgerButton />
           <ObservatoryButton />
           <ArenaButton />
+          <DistLabButton />
         </div>
       </div>
 

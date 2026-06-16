@@ -403,4 +403,102 @@ body {
       animation-iteration-count: 1 !important;
     }
   }
+
+  /* The Distribution Lab — inequality, mobility, wellbeing. Gold/coral on deep indigo. */
+  .distlab-section {
+    --dl-bg: #0b0f1f;
+    --dl-surface: #131a30;
+    --dl-surface-2: #1b2440;
+    --dl-border: rgba(251, 191, 36, 0.15);
+    --dl-border-hover: rgba(251, 191, 36, 0.42);
+    --dl-accent: #fbbf24;
+    --dl-accent-2: #fb923c;
+    --dl-accent-dim: rgba(251, 191, 36, 0.10);
+    --dl-text: #eef1fb;
+    --dl-muted: #94a0c4;
+    /* sequential ramp for distribution / mobility intensity (low -> high) */
+    --dl-s1: #fde68a;
+    --dl-s2: #fcd34d;
+    --dl-s3: #fbbf24;
+    --dl-s4: #fb923c;
+    --dl-s5: #ea580c;
+    /* categorical chart palette */
+    --dl-c1: #fbbf24;
+    --dl-c2: #38bdf8;
+    --dl-c3: #34d399;
+    --dl-c4: #f472b6;
+    --dl-c5: #a78bfa;
+    --dl-warn: #fb7185;
+    --dl-good: #34d399;
+  }
+
+  .distlab-section.distlab-light {
+    --dl-bg: #f6f4ff;
+    --dl-surface: #ffffff;
+    --dl-surface-2: #ece9fb;
+    --dl-border: rgba(180, 83, 9, 0.18);
+    --dl-border-hover: rgba(180, 83, 9, 0.45);
+    --dl-accent: #b45309;
+    --dl-accent-2: #c2410c;
+    --dl-accent-dim: rgba(180, 83, 9, 0.08);
+    --dl-text: #161a2e;
+    --dl-muted: #5a6285;
+    --dl-s1: #fde68a;
+    --dl-s2: #fbbf24;
+    --dl-s3: #f59e0b;
+    --dl-s4: #ea580c;
+    --dl-s5: #9a3412;
+    --dl-c1: #b45309;
+    --dl-c2: #0369a1;
+    --dl-c3: #047857;
+    --dl-c4: #be185d;
+    --dl-c5: #6d28d9;
+    --dl-warn: #e11d48;
+    --dl-good: #047857;
+  }
+
+  /* Distribution Lab range sliders — themed to the section accent. */
+  .distlab-section .dl-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--dl-surface-2);
+    outline: none;
+  }
+  .distlab-section .dl-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--dl-accent);
+    border: 2px solid var(--dl-bg);
+    cursor: pointer;
+    transition: transform 120ms;
+  }
+  .distlab-section .dl-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+  .distlab-section .dl-range:disabled::-webkit-slider-thumb {
+    background: var(--dl-muted);
+    cursor: not-allowed;
+  }
+  .distlab-section .dl-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--dl-accent);
+    border: 2px solid var(--dl-bg);
+    cursor: pointer;
+  }
+
+  /* Distribution Lab: respect reduced-motion. */
+  @media (prefers-reduced-motion: reduce) {
+    .distlab-section * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
 }

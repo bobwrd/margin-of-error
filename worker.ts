@@ -40,7 +40,8 @@ app.use("*", async (c, next) => {
     p === "/api/profile" ||
     p.startsWith("/api/verdict/cases") ||
     p.startsWith("/api/ledger") ||
-    p.startsWith("/api/observatory")
+    p.startsWith("/api/observatory") ||
+    p.startsWith("/api/distlab")
   ) {
     c.header("Cache-Control", "public, max-age=300, stale-while-revalidate=3600");
   }
@@ -57,6 +58,7 @@ type Baked = {
   ledgerCsv: string;
   ledgerCodebook: string;
   observatory: Record<string, unknown> | null;
+  distlab: Record<string, unknown> | null;
 };
 const CONTENT = baked as Baked;
 
@@ -456,6 +458,15 @@ app.get("/ledger/actions/:id", (c) => {
 app.get("/observatory", (c) => {
   if (!CONTENT.observatory) return c.json({ error: "Observatory data unavailable" }, 503);
   return c.json(CONTENT.observatory);
+});
+
+// ---------------------------------------------------------------------------
+// The Distribution Lab (inequality / mobility / wellbeing) — baked dataset,
+// read-only. Built by scripts/distlab/build-distlab.mjs (WDI + curated sources).
+// ---------------------------------------------------------------------------
+app.get("/distlab", (c) => {
+  if (!CONTENT.distlab) return c.json({ error: "Distribution Lab data unavailable" }, 503);
+  return c.json(CONTENT.distlab);
 });
 
 export default app;

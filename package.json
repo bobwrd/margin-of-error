@@ -4,6 +4,9 @@
   "scripts": {
     "clear-cache": "rm -rf node_modules/.vite",
     "bake": "node scripts/bake-content.mjs",
+    "distlab:fetch": "node scripts/distlab/fetch-wdi.mjs",
+    "distlab:parse": "node scripts/distlab/parse-sources.mjs",
+    "distlab:build": "node scripts/distlab/parse-sources.mjs && node scripts/distlab/build-distlab.mjs",
     "dev": "bun run clear-cache && NODE_ENV=development bun run --hot server.ts",
     "build": "node scripts/bake-content.mjs && vite build",
     "preview": "vite preview",

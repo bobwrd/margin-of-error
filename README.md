@@ -98,6 +98,40 @@ Guiding question: *when does more competition raise efficiency, and when does it
 - Background `#100e1b` (dark) / `#f7f5fb` (light); accent `#fb5d8f` / `#be185d`, secondary `#818cf8` / `#4f46e5`
 - Chart palette `--arena-c1..c5`; CSS scoped under `.arena-section` / `.arena-section.arena-light` in `src/styles.css` (includes `.arena-range` slider styling and a `prefers-reduced-motion` block)
 
+## The Distribution Lab
+
+An interactive on **inequality, mobility and wellbeing** across five archetype countries at `/lab`. Same standalone-product pattern (own visual identity, independent dark/light toggle in `localStorage["distlab-theme"]`), reached via a **gold/amber pill button** (`src/components/DistLabButton.tsx`) next to the Verdict/Ledger/Observatory/Arena buttons on the Home page (not in the top nav). Browser title: *"Margin of Error — The Distribution Lab"*.
+
+Unlike the Observatory and the Arena (long scroll-essays), the Lab is a **fixed full-screen app**: a History/Playground mode toggle, a regime bar, three panels, and a bottom strip (year scrubber in History, evidence in Playground). Time window 1990–2020. The route `/lab` renders `DistLabIndex`; `/lab/methods` renders the technical note `DistLabMethods`.
+
+### Two modes
+- **History** — pick a country; the year scrubber drives three panels in sync: distribution (Lorenz from Gini, Gini, top-10% share, poverty headcount), education mobility (3x3 heatmap), and macro/wellbeing (GDP/GNI, schooling, enrolment, education spend, competitiveness, HDI). A regime bar shows 8 discretised dimensions for that country-year (solid dots = observed, hollow = interpolated).
+- **Playground** — the regime bar becomes 8 sliders. Moving them runs a transparent kernel-weighting map over all observed country-years (`mapping.ts`) and shows the weighted-mean outcomes, the effective number of backing episodes, the top contributing country-years (evidence drawer), and an explicit extrapolation warning + desaturation when no close analogue exists. Dimensions can be locked.
+
+### The 8 regime dimensions
+tax progressivity, welfare generosity, minimum wage strength, labour power, education spending, trade openness, informality, structural mix (services share). Each is a raw metric (or blend) min-max normalised across the country pool and bucketed into 5 levels.
+
+### Data pipeline
+- Dataset: `content/distlab/distlab.json` — baked into `content.json` like the other products.
+- **Real observed sources** (raw CSVs committed in `content/distlab/raw/sources/`, parsed by `scripts/distlab/parse-sources.mjs` → `raw/sources.json`):
+  - GNI per capita, wellbeing (HDI) and mean years of schooling — UNDP Human Development Report (`HDRFull.csv`), all 15 countries, full annual 1990–2020.
+  - Social expenditure %GDP — OECD SOCX (2010–2020, OECD members).
+  - Union density + bargaining coverage — OECD/AIAS ICTWSS (long annual series, OECD members).
+  - Minimum-to-average wage ratio — OECD MIN2AVE (2015–2020, OECD members).
+  - Mobility — GDIM (`GDIM_2023_03.csv`): absolute upward mobility (MU050) + intergenerational correlation (COR), cohorts 1960/1970/1980, all five visible countries.
+- **Still curated** (no usable real series in the provided files): top-10% income **share** (the WID export is average top-10% income, not a share) and the top marginal tax rate (OECD tax file is a 2025-only snapshot). These stay on `content/distlab/seed.json` anchors.
+- **WDI-only macro fields** (GDP per capita PPP, Gini, poverty, education spend, secondary enrolment, trade, sector shares, self-employment, tax revenue, GDP per worker): curated benchmark anchors until `npm run distlab:fetch` is run on a networked machine (`scripts/distlab/fetch-wdi.mjs` → `raw/wdi.json`).
+- Per-year provenance: real source > live WDI pull > curated anchor; gaps between observed years are interpolated and flagged. Each cell keeps the source it came from (e.g. real ICTWSS union density 1990–2020 alongside curated pre-2010 social spend).
+- Build: `scripts/distlab/build-distlab.mjs` (`npm run distlab:build` runs the parser first), interpolates to annual, builds indices, writes `distlab.json` + construction notes. Five countries are shown; ten more are calibration-only (populate the Playground analogue space).
+- Mapping engine `src/pages/distlab/mapping.ts` is pure and unit-tested in `mapping.test.ts` (`bun test src/pages/distlab/mapping.test.ts`).
+
+### API routes (in `worker.ts`)
+- `GET /api/distlab` — the full baked dataset (503 if unavailable).
+
+### Visual identity
+- Background `#0b0f1f` (dark) / `#f6f4ff` (light); accent `#fbbf24` / `#b45309`, secondary `#fb923c` / `#c2410c`
+- Sequential ramp `--dl-s1..s5` (distribution/mobility intensity), categorical `--dl-c1..c5`; CSS scoped under `.distlab-section` / `.distlab-section.distlab-light` in `src/styles.css` (includes `.dl-range` slider styling and a `prefers-reduced-motion` block)
+
 ### Removed pages
 
 - `Tools` — the curated tools directory at `/tools` was removed; component deleted, route removed from `App.tsx`, nav entry removed. The Verdict button is the replacement entry point for non-writing content.

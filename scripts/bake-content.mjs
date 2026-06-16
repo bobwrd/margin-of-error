@@ -24,6 +24,7 @@ const LEDGER_ACTIONS_PATH = join(ROOT, "content", "ledger", "ledger_actions.json
 const LEDGER_CSV_PATH = join(ROOT, "content", "ledger", "enforcement_actions.csv");
 const LEDGER_CODEBOOK_PATH = join(ROOT, "content", "ledger", "codebook.md");
 const OBSERVATORY_PATH = join(ROOT, "content", "observatory", "observatory.json");
+const DISTLAB_PATH = join(ROOT, "content", "distlab", "distlab.json");
 const OUT_DIR = join(ROOT, "functions", "generated");
 const OUT_PATH = join(OUT_DIR, "content.json");
 
@@ -45,6 +46,7 @@ async function bake() {
     ledgerCsv: "",
     ledgerCodebook: "",
     observatory: null,
+    distlab: null,
   };
 
   // Articles
@@ -87,6 +89,15 @@ async function bake() {
       out.observatory = JSON.parse(await readFile(OBSERVATORY_PATH, "utf8"));
     } catch (e) {
       console.warn("[bake] observatory.json is not valid JSON, skipping:", e.message);
+    }
+  }
+
+  // Distribution Lab (inequality / mobility / wellbeing dataset)
+  if (await exists(DISTLAB_PATH)) {
+    try {
+      out.distlab = JSON.parse(await readFile(DISTLAB_PATH, "utf8"));
+    } catch (e) {
+      console.warn("[bake] distlab.json is not valid JSON, skipping:", e.message);
     }
   }
 
