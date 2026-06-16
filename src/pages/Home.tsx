@@ -149,7 +149,7 @@ export default function Home() {
           actions, built to surface patterns in how Singapore's financial
           regulator actually exercises its powers.
         </p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
           <strong className="text-foreground">The Arena</strong> is an
           interactive explorer on competition and efficiency — four chapters
           covering how firm count affects price and quality, how tournament
@@ -157,6 +157,14 @@ export default function Home() {
           with behavioural distortion produces, and what antitrust, consumer,
           and firm-level policy each see. All closed-form IO models; no data
           fetch.
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          <strong className="text-foreground">The Distribution Lab</strong> covers
+          five countries from 1990 to 2020. History mode shows observed distributional
+          and wellbeing data alongside an eight-dimension regime bar. Playground mode
+          maps slider configurations to outcomes via Gaussian kernel weighting over
+          465 real country-years — surfacing which episodes back each estimate and
+          flagging when no close analogue exists.
         </p>
         <Link
           to="/about"

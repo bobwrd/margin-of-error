@@ -46,6 +46,34 @@ export default function About() {
           </ul>
         </section>
 
+        {/* The Distribution Lab */}
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">The Distribution Lab</h2>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            The Distribution Lab covers five countries (United States, Sweden, India, Brazil, Nigeria) from 1990 to 2020,
+            across two modes. History mode shows observed distributional and wellbeing data alongside an eight-dimension
+            regime bar — welfare generosity, labour power, tax progressivity, minimum wage, education spending, trade
+            openness, informality, structural mix. Playground mode maps slider configurations to outcomes via Gaussian
+            kernel weighting over 465 observed country-years, surfacing which real episodes back each estimate and
+            flagging when no close analogue exists.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            The question it is trying to answer: does institutional configuration predict distributional outcomes —
+            Gini, top-10% income share, poverty headcount, education mobility — and how much does structural context
+            condition that relationship? Data: World Bank WDI, WID, UNDP HDR, OECD SOCX and ICTWSS, GDIM.
+          </p>
+          <p className="text-xs text-muted-foreground mb-3">Started June 2026. Data covers 1990–2020.</p>
+          <p className="text-muted-foreground leading-relaxed">
+            <Link to="/lab/methods" className="text-warm-accent hover:underline">
+              Methods note →
+            </Link>
+            {" · "}
+            <Link to="/lab" className="text-warm-accent hover:underline">
+              Open The Distribution Lab →
+            </Link>
+          </p>
+        </section>
+
         {/* The Arena */}
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Arena</h2>
@@ -248,7 +276,7 @@ export default function About() {
           <h2 className="text-xl font-semibold text-foreground mb-3">More</h2>
           <div className="flex flex-col gap-2">
             <Link to="/why" className="text-sm text-warm-accent hover:underline">
-              Why this question — the origin of the institutional-gap question across all four projects →
+              Why this question — the origin of the institutional-gap question across all five projects →
             </Link>
             <Link to="/changed-my-mind" className="text-sm text-warm-accent hover:underline">
               What I've changed my mind about — positions, evidence, and where I moved →

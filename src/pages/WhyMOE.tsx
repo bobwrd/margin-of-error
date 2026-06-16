@@ -69,6 +69,23 @@ export default function WhyMOE() {
         </p>
 
         <p>
+          The Distribution Lab came out of a gap I noticed after the Observatory was built. The Observatory
+          traces aggregate effects — wages, inflation, who captures the gains between capital and labour. It
+          says nothing about what sets the shape of the income distribution in the first place: the Gini, the
+          top-10% share, who ends up below the poverty line.
+        </p>
+
+        <p>
+          That question is upstream of the AI-and-wages question. Knowing that AI raises wages in aggregate
+          tells you little if the distribution of those wages is already highly concentrated. What determines
+          the distribution? Welfare generosity, labour market strength, tax progressivity, minimum wage
+          floor — the institutional levers — are the obvious candidates. Whether they actually predict
+          distributional outcomes across different structural contexts is harder and not obviously answered
+          by the standard story. The Lab is an attempt to look at that empirically: what did distribution
+          look like in real country-years with similar institutional configurations?
+        </p>
+
+        <p>
           These projects are not a unified research agenda. They are a set of attempts to take the same
           underlying question seriously in different domains: where does the formal system fall short, and
           why, and what would you need to know to answer that precisely rather than impressionistically?
@@ -101,8 +118,8 @@ export default function WhyMOE() {
             <Link to="/others/issue-002-india-labour" className="text-warm-accent hover:underline">
               PLFS research paper on Indian sectoral employment →
             </Link>
-            {" "}and CivicAid MVP. The Observatory is live.{" "}
-            <Link to="/observatory" className="text-warm-accent hover:underline">
+            {" "}and CivicAid MVP. The Distribution Lab is live.{" "}
+            <Link to="/lab" className="text-warm-accent hover:underline">
               Try it →
             </Link>
           </p>

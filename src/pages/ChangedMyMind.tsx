@@ -15,6 +15,45 @@ export default function ChangedMyMind() {
 
       <div className="space-y-14 text-sm text-muted-foreground leading-relaxed max-w-prose">
 
+        {/* Entry — Distribution Lab */}
+        <section>
+          <h2 className="text-lg font-semibold text-foreground mb-1">
+            On what policy levers actually predict in distribution data
+          </h2>
+          <p className="text-xs text-muted-foreground mb-4">Updated June 2026</p>
+
+          <p className="mb-4">
+            My assumption before working through the cross-country data was that three regime dimensions
+            would dominate distributional outcomes: welfare generosity, labour power, and tax progressivity.
+            The Nordic-vs-liberal model story. Set those three high enough and inequality comes down.
+          </p>
+
+          <p className="mb-4">
+            Two things pushed against that. First, poverty headcount is largely a development-stage
+            variable. GDP per capita and structural mix — services share, informality — predict it better
+            than any of the welfare-state dimensions. Countries with similar welfare generosity scores can
+            sit 15 percentage points apart on poverty headcount depending on where they are in structural
+            transition. The lever matters less than the starting position.
+          </p>
+
+          <p className="mb-4">
+            Second, Gini and top-10% share do respond to welfare regime, but within-group variance is
+            high. A slider configuration in the Playground matching Sweden circa 2000 still produces wide
+            uncertainty because the analogue pool contains episodes from countries with similar formal
+            settings and different outcomes. The regime indices capture contemporaneous policy choices; they
+            do not capture path dependence, and path dependence turns out to matter a lot.
+          </p>
+
+          <p>
+            I still think welfare and labour institutions reduce inequality. But the effect is conditional
+            on structural context in ways that make the standard story incomplete. The Distribution Lab makes
+            that visible — and it is not a reassuring result if you wanted a clean policy prescription.{" "}
+            <Link to="/lab" className="text-warm-accent hover:underline">
+              Try it →
+            </Link>
+          </p>
+        </section>
+
         {/* Entry 0 — Arena */}
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-1">

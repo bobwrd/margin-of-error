@@ -9,8 +9,10 @@ const entries: ChangeEntry[] = [
   {
     date: "June 2026",
     items: [
+      "The Distribution Lab launched: a fixed full-screen app covering five countries (US, Sweden, India, Brazil, Nigeria) from 1990 to 2020. History mode shows observed regime and outcome data; Playground maps slider configurations to outcomes via Gaussian kernel weighting over 465 real country-years. Covers distribution (Gini, top-10% share, poverty), education mobility (GDIM), and macro and wellbeing indicators. Data: WDI, WID, UNDP HDR, OECD SOCX and ICTWSS, GDIM. Methods at /lab/methods.",
+      "Distribution Lab: added CSV, JSON, and HTML data downloads below the timeline strip. Client-side generation from the loaded dataset — 465 rows, 15 countries, 1990–2020.",
       "The Arena launched: a scroll-driven interactive explorer on competition and efficiency. Four chapters — number of firms vs. price and quality, tournament effort lab, market-outcomes 2×2 over concentration and behavioural distortion, and three policy lenses — plus a full technical note at /arena/methods. All curves are closed-form teaching models anchored to published IO literature; no data fetch.",
-      "Added 'Why this question' page — the origin of the institutional-gap question across all four projects.",
+      "Added 'Why this question' page — the origin of the institutional-gap question across all five projects.",
       "Rewrote About page: project dates, 'Currently reading' section, 'How this site is built' note.",
       "Observatory: added casual reader entry paragraph so you can interact before parsing the model framing.",
       "Verdict: added cross-links to Observatory and essays at the bottom of the case index.",
