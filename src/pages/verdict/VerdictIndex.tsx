@@ -242,9 +242,11 @@ export default function VerdictIndex() {
           The Verdict
         </h1>
         <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "var(--verdict-muted)" }}>
-          A structured database of AI-related court rulings, regulatory decisions, and major corporate actions —
-          scored for legal weight, societal effect, and economic reach. Each case is computed using a reproducible
-          methodology; scores are provisional and shift as the database grows.
+          A methodology-driven index of AI-related court rulings, regulatory decisions, and major corporate actions —
+          each case scored on five factors to produce an Enforcement-Driven Index (EDI). The scoring framework is
+          transparent and fully documented; scores are normalised across the full database, so they shift as more
+          cases are added. Built for cross-jurisdictional comparison: the EDI is what makes it possible to ask
+          which decisions actually matter, not just which ones made the news.
         </p>
       </div>
 

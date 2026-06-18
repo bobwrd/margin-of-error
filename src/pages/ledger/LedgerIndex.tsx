@@ -149,10 +149,12 @@ export default function LedgerIndex() {
           The Ledger
         </h1>
         <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "var(--ledger-muted)" }}>
-          A structured, coded record of formal enforcement actions taken by the Monetary Authority of Singapore —
-          penalties, prohibition orders, criminal referrals, and licence revocations, tagged by firm type, violation
-          category, statute, and penalty size. Built from MAS's own notices so the data is citable and auditable.
-          Coverage is a curated set, not yet the full register; see Methodology.
+          A hand-built database of formal enforcement actions taken by the Monetary Authority of Singapore —
+          penalties, prohibition orders, criminal referrals, and licence revocations, coded by sector, violation
+          category, statute, and penalty size. Built from MAS's own notices; all entries are citable and auditable.
+          The structure is what makes it novel: it surfaces patterns over time in who gets penalised for what —
+          analysis that is not possible from the raw press releases. Coverage is a curated set, not yet the full
+          register.
         </p>
       </div>
 

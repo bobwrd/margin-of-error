@@ -72,12 +72,16 @@ export default function Home() {
       {/* Thesis */}
       <div className="mb-12">
         <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-          I'm Arin — 15, studying economics and law. I'm trying to answer one question: where do formal
-          institutions — legal systems, economic policy, regulatory frameworks — fall short of the people
-          they are supposed to serve, and why?
+          I'm Arin — 15, studying economics and law. The question running through everything here:
+          where do formal institutions — legal systems, economic policy, regulatory frameworks — fall
+          short of the people they are supposed to serve, and why?
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          This site is where I work that out: through writing, coded databases, and a working economic sandbox.{" "}
+          Margin of Error is a self-directed research project working toward that question across five
+          subprojects. It combines three things: hand-built structured databases drawn from primary
+          regulatory sources, interactive economic models grounded in published theory, and analysis
+          of how institutions operate in practice. The work draws on data collection, basic econometrics,
+          model implementation, and full-stack development. It is still evolving.{" "}
           <Link to="/why" className="text-warm-accent hover:underline">
             Why this question →
           </Link>
@@ -126,45 +130,55 @@ export default function Home() {
           What this is
         </h2>
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-          <strong className="text-foreground">Margin of Error</strong> is a
-          personal writing and research hub covering economics, law, and the
-          space between formal systems and the people they affect. Essays,
-          research notes, and a weekly digest live here.
+          <strong className="text-foreground">Margin of Error</strong> is an
+          ongoing research project combining economics, law, and coding. The
+          central question — where formal institutions fall short and why — runs
+          across five subprojects, each with its own data, methods, and scope.
+          Together they cover AI governance, financial regulation, market structure,
+          macroeconomic transmission channels, and income distribution. New work
+          is added as the question opens into new domains.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-          <strong className="text-foreground">The Observatory</strong> is an
-          interactive explainer on AI, productivity and prices — a walkthrough
-          of the transmission channels, a live data atlas covering five countries,
-          and a toy model you can drive yourself. A way to explore mechanisms, not a forecast.
+          <strong className="text-foreground">The Observatory</strong> is a
+          toy macro model tracing how AI adoption flows through to productivity,
+          wages, prices, and markups — built to develop intuition about
+          transmission channels, not to produce a forecast. Live World Bank and
+          FRED data sit alongside the model so you can see which real series
+          would move if those channels were active. Connected to ongoing debates
+          about automation, labour share, and the wage-profit split.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
           <strong className="text-foreground">The Verdict</strong> is a
-          structured database of AI-related legal and regulatory events —
-          each case scored on a transparent five-factor methodology to make
-          the policy landscape scannable and comparable across jurisdictions.
+          methodology-driven index of AI-related legal and regulatory events —
+          each case scored on five factors to produce an Enforcement-Driven
+          Index (EDI), designed to make cross-jurisdictional comparison rigorous
+          and reproducible. The scoring framework is fully transparent and
+          documented. The database updates weekly.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-          <strong className="text-foreground">The Ledger</strong> is a coded
-          database of MAS (Monetary Authority of Singapore) enforcement
-          actions, built to surface patterns in how Singapore's financial
-          regulator actually exercises its powers.
+          <strong className="text-foreground">The Ledger</strong> is a
+          hand-built database of MAS (Monetary Authority of Singapore)
+          enforcement actions — coded by sector, violation type, sanction, and
+          outcome. The novel contribution: it surfaces summary statistics and
+          patterns over time in who gets penalised for what, which is not
+          visible from the raw press releases alone.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-          <strong className="text-foreground">The Arena</strong> is an
-          interactive explorer on competition and efficiency — four chapters
-          covering how firm count affects price and quality, how tournament
-          incentives shape effort and sabotage, what concentration combined
-          with behavioural distortion produces, and what antitrust, consumer,
-          and firm-level policy each see. All closed-form IO models; no data
-          fetch.
+          <strong className="text-foreground">The Arena</strong> is built on
+          standard industrial organisation models — Bertrand and Cournot
+          competition, Aghion-style innovation curves, Harbring-Irlenbusch
+          tournament incentives — structured into four chapters covering firm
+          count and price, effort and sabotage, market outcomes, and policy
+          lenses. Closed-form models you can drive yourself; no data fetch.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-          <strong className="text-foreground">The Distribution Lab</strong> covers
-          five countries from 1990 to 2020. History mode shows observed distributional
-          and wellbeing data alongside an eight-dimension regime bar. Playground mode
-          maps slider configurations to outcomes via Gaussian kernel weighting over
-          465 real country-years — surfacing which episodes back each estimate and
-          flagging when no close analogue exists.
+          <strong className="text-foreground">The Distribution Lab</strong> is
+          grounded in a cross-country panel of 465 country-years from 1990 to
+          2020. History mode shows observed distributional and wellbeing data
+          alongside an eight-dimension regime bar. Playground mode maps
+          institutional configurations to outcomes via Gaussian kernel weighting
+          over the observed analogue pool — surfacing which real country-years
+          back each estimate and flagging when no close analogue exists.
         </p>
         <Link
           to="/about"

@@ -21,19 +21,22 @@ export default function Intro() {
           </p>
           <div className="mt-6 space-y-3 text-sm sm:text-base leading-relaxed" style={{ color: "var(--obs-muted)" }}>
             <p>
-              This is a working sandbox I built to trace how AI adoption might flow through to prices,
-              wages, and who captures the gains. Pick a named scenario or move the sliders directly —
-              no background reading required. The model details are there if you want them, tucked
-              behind <span className="font-mono" style={{ color: "var(--obs-accent)" }}>Details</span> toggles.
+              This is a working sandbox for tracing how AI adoption might flow through to productivity,
+              wages, prices, and markups. Pick a named scenario or move the sliders directly. The model
+              details are behind{" "}
+              <span className="font-mono" style={{ color: "var(--obs-accent)" }}>Details</span>{" "}
+              toggles if you want them.
             </p>
             <p>
-              This is not a forecast. It is a way to walk the channels that run from AI adoption to
-              prices and wages, look at the real series that would move if those channels were active,
-              and then play with a toy model to build intuition for the trade-offs.
+              This is not a forecast. It is a structured way to walk the transmission channels — from
+              AI adoption through productivity, to wages and inflation, to who captures the gains between
+              capital and labour. Live World Bank and FRED data sit alongside the model to show what
+              the relevant series look like in the real economy. The questions connect to ongoing debates
+              about automation, labour share, and the wage-profit split of productivity gains.
             </p>
             <p>
-              Read top to bottom: a short conceptual walkthrough, then a live data atlas, then a
-              sandbox you can drive yourself.
+              Read top to bottom: a conceptual walkthrough of the channels, then a live data atlas
+              across five countries, then the sandbox.
             </p>
           </div>
 

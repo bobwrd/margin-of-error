@@ -20,22 +20,29 @@ export default function About() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">Margin of Error</h2>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            Margin of Error is a personal writing and research hub. The central question it is trying to answer is:
-            where do formal institutions — legal systems, economic policy, regulatory frameworks — fall short of the
-            people they are supposed to serve, and why?
+            Margin of Error is a self-directed, multi-year research project combining economics, law, and coding.
+            The central question running across all five subprojects: where do formal institutions — legal systems,
+            economic policy, regulatory frameworks — fall short of the people they are supposed to serve, and why?
           </p>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            That question shows up across three types of content:
+            The project brings together three kinds of work: hand-built structured databases drawn from primary
+            regulatory sources, interactive economic models grounded in published theory, and analysis of how
+            institutions actually operate in practice. The writing, the models, and the databases are different
+            approaches to the same underlying question — applied across AI governance, financial regulation,
+            market structure, macroeconomic transmission, and income distribution.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            The writing itself takes three forms:
           </p>
           <ul className="space-y-2 text-muted-foreground">
             <li>
-              <strong className="text-foreground">Personal essays</strong> — longer, more argued pieces on specific
+              <strong className="text-foreground">Personal essays</strong> — longer, argued pieces on specific
               economic or legal questions. These usually start with a research question, engage with the evidence, and
               land somewhere opinionated. Most have an accompanying PDF.
             </li>
             <li>
               <strong className="text-foreground">Weekly briefing</strong> — a short weekly digest synthesising
-              developments across three broad themes: development and access to justice; everyday microeconomics;
+              developments across three themes: development and access to justice; everyday microeconomics;
               and technology, AI, and political economy. Auto-generated from a curated set of sources and published
               every Saturday.
             </li>
@@ -50,17 +57,20 @@ export default function About() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Distribution Lab</h2>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The Distribution Lab covers five countries (United States, Sweden, India, Brazil, Nigeria) from 1990 to 2020,
-            across two modes. History mode shows observed distributional and wellbeing data alongside an eight-dimension
-            regime bar — welfare generosity, labour power, tax progressivity, minimum wage, education spending, trade
-            openness, informality, structural mix. Playground mode maps slider configurations to outcomes via Gaussian
-            kernel weighting over 465 observed country-years, surfacing which real episodes back each estimate and
-            flagging when no close analogue exists.
+            The Distribution Lab is grounded in a cross-country panel of 465 country-years across five countries
+            (United States, Sweden, India, Brazil, Nigeria) from 1990 to 2020. History mode shows observed
+            distributional and wellbeing data alongside an eight-dimension regime bar — welfare generosity, labour
+            power, tax progressivity, minimum wage, education spending, trade openness, informality, structural mix.
+            Playground mode maps institutional configurations to outcomes via Gaussian kernel weighting over the
+            observed analogue pool, surfacing which real country-years back each estimate and flagging when no close
+            match exists.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The question it is trying to answer: does institutional configuration predict distributional outcomes —
+            The research question: does institutional configuration predict distributional outcomes —
             Gini, top-10% income share, poverty headcount, education mobility — and how much does structural context
-            condition that relationship? Data: World Bank WDI, WID, UNDP HDR, OECD SOCX and ICTWSS, GDIM.
+            condition that relationship? The kernel-weighting method is what makes it possible to answer that
+            empirically rather than impressionistically: instead of asserting a relationship, it surfaces
+            the actual analogue episodes from the data. Sources: World Bank WDI, WID, UNDP HDR, OECD SOCX and ICTWSS, GDIM.
           </p>
           <p className="text-xs text-muted-foreground mb-3">Started June 2026. Data covers 1990–2020.</p>
           <p className="text-muted-foreground leading-relaxed">
@@ -78,17 +88,19 @@ export default function About() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Arena</h2>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The Arena is an interactive explorer on competition and efficiency. It works through four
-            questions: how does the number of firms in a market affect price, quality, and slack? How do
-            tournament-style incentives shape effort and sabotage? What does the combination of market
-            concentration and behavioural distortion produce? And what do antitrust, consumer, and
-            firm-level policy lenses each see when they look at the same market?
+            The Arena is an interactive explorer on competition and efficiency built on standard
+            industrial organisation models. Four chapters, four research questions: how does the number
+            of firms in a market affect price, quality, and slack? How do tournament-style incentives
+            shape effort and sabotage? What does the combination of market concentration and behavioural
+            distortion produce? And what do antitrust, consumer, and firm-level policy lenses each see
+            when they look at the same market?
           </p>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            Every curve is a closed-form teaching model anchored to published IO and experimental
-            literature — Bresnahan-Reiss on entry and prices, Aghion et al. on the competition-innovation
-            relationship, Harbring and Irlenbusch on tournament sabotage, De Loecker et al. on markups.
-            There is no data fetch; the goal is intuition about mechanisms, not calibrated forecasts.
+            Every curve is a closed-form model anchored to published IO and experimental literature —
+            Bresnahan-Reiss on entry and prices, Aghion et al. on competition and innovation,
+            Harbring and Irlenbusch on tournament sabotage, De Loecker et al. on markups.
+            All closed-form models you can drive yourself with sliders; there is no data fetch.
+            The goal is intuition about mechanisms, not calibrated forecasts.
           </p>
           <p className="text-xs text-muted-foreground mb-3">Started June 2026. No live data — all closed-form models.</p>
           <p className="text-muted-foreground leading-relaxed">
@@ -106,13 +118,18 @@ export default function About() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Observatory</h2>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The Observatory is an interactive explainer on AI, productivity and prices. It traces the channels from AI
-            adoption to inflation, wages, and who captures the gains — a live data atlas covering five countries, three
-            named scenarios, and a toy macro model you can drive yourself with sliders.
+            The Observatory is a toy macro model of how AI adoption flows through to productivity, wages, prices,
+            and markups — built to develop intuition about transmission channels rather than produce a forecast.
+            Live World Bank and FRED data sit alongside the model across five countries, so you can see which real
+            series would move if those channels were active. Three named scenarios and a fully adjustable sandbox
+            let you work through the trade-offs yourself.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The model is deliberately simple and non-predictive. The goal is intuition about trade-offs, not a point
-            forecast. All the underlying assumptions are visible and adjustable.
+            The model is deliberately simple and all assumptions are visible. The questions it is structured around
+            connect directly to ongoing debates in the automation and labour-share literature — particularly how
+            the wage-profit split of productivity gains, and the speed of monetary policy response, shape the
+            distributional outcome. It engages with Acemoglu and Restrepo's task model and New Keynesian treatments
+            of productivity shocks.
           </p>
           <p className="text-xs text-muted-foreground mb-3">Started April 2026. Data refreshed weekly.</p>
           <p className="text-muted-foreground leading-relaxed">
@@ -126,18 +143,21 @@ export default function About() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Verdict</h2>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The Verdict is a structured, scored database of AI-related legal and regulatory events. The question it is
-            trying to answer is: across all the laws, court decisions, and agency actions that are reshaping AI
-            governance globally, which ones actually matter — and how much?
+            The Verdict is a methodology-driven index of AI-related legal and regulatory events — court rulings,
+            regulatory decisions, and major corporate actions. The central question: across everything reshaping
+            AI governance globally, which decisions actually matter and how much?
           </p>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            Each case is scored on five factors (legislative impact, sectoral effect, enforcement risk, sanction force,
-            and policy synergy) to produce a single composite score: the EDI (Event Disruption Index). The methodology
-            is fully transparent and designed to make comparisons across jurisdictions meaningful.
+            Each case is scored on five factors (legal instrument, societal effect, economic reach, structural
+            force, and political salience) and combined geometrically into an Enforcement-Driven Index (EDI).
+            The EDI is what makes cross-jurisdictional comparison possible — most AI governance commentary
+            treats all regulatory events as equally significant; the transparent scoring framework is what
+            allows that to be tested rather than assumed. The methodology is fully documented and each score
+            includes an uncertainty band from a three-scenario sensitivity analysis.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The database is updated weekly via an automated scan, with each new case fact-checked against primary
-            sources before being published.
+            The database updates weekly via an automated scan; each new case is fact-checked against primary
+            sources before publication.
           </p>
           <p className="text-xs text-muted-foreground mb-3">Started March 2025. Updated weekly.</p>
           <p className="text-muted-foreground leading-relaxed">
@@ -155,14 +175,16 @@ export default function About() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">The Ledger</h2>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            The Ledger is a coded database of enforcement actions taken by the MAS (Monetary Authority of Singapore),
-            Singapore's central bank and financial regulator. The question it is trying to answer is: how does the MAS
-            actually use its powers in practice — against whom, for what, and with what consequences?
+            The Ledger is a hand-built database of enforcement actions taken by the MAS (Monetary Authority of
+            Singapore), Singapore's central bank and financial regulator. The question it is trying to answer:
+            how does the MAS actually use its powers in practice — against whom, for what, and with what consequences?
           </p>
           <p className="text-muted-foreground leading-relaxed mb-3">
-            Enforcement actions are often buried in press releases and notices. The Ledger structures them into a
-            searchable, comparable dataset — each action coded by sector, violation type, sanction, and outcome — so
-            patterns in regulatory behaviour become visible.
+            Enforcement actions are published as press releases with no cross-case structure. The Ledger codes each
+            action by sector, violation type, sanction, and outcome — making it possible to surface summary statistics,
+            year-on-year patterns, and cross-sector comparisons from the public record for the first time. The novel
+            contribution is not the data itself but the structure: who gets penalised for what, and how that has
+            shifted over time.
           </p>
           <p className="text-xs text-muted-foreground mb-3">Started January 2026. Updated as new actions are published.</p>
           <p className="text-muted-foreground leading-relaxed">
@@ -209,8 +231,9 @@ export default function About() {
           <h2 className="text-xl font-semibold text-foreground mb-3">About me</h2>
           <p className="text-muted-foreground leading-relaxed mb-5">
             I'm Arin Jain, currently in IB Year 1. I study economics and law and am interested in the gap between how
-            institutions are designed and how they actually function — especially for people who have least access to
-            them.
+            institutions are designed and how they actually function — especially for people who have the least access
+            to them. Margin of Error has been running since early 2025. The technical side covers data work in Python
+            and R, basic econometrics, interactive model implementation in TypeScript, and full-stack web development.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a

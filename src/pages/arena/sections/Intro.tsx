@@ -21,19 +21,20 @@ export default function Intro() {
           </p>
           <div className="mt-6 space-y-3 text-sm sm:text-base leading-relaxed" style={{ color: "var(--arena-muted)" }}>
             <p>
-              This is an interactive arena, not an essay. Drag a slider and the firms, the prices, the
-              workers' effort all move with it. The point is to feel where more competition helps and
-              where it tips into waste.
+              This is an interactive model environment, not an essay. Move a slider and the firms, the
+              prices, the workers' effort all shift with it. The point is to feel where more competition
+              helps and where it tips into waste.
             </p>
             <p>
-              Every curve here is a simple teaching model, but the shapes are not made up. They follow
-              published work on competition, tournaments, and market structure. The sources are listed at
-              the bottom; the numbers are rescaled so the visuals stay readable.
+              Every curve here is a closed-form model anchored to published industrial organisation work —
+              Bertrand and Cournot on firm count and price, Aghion et al. on competition and innovation,
+              Harbring and Irlenbusch on tournament incentives and sabotage, De Loecker et al. on markups.
+              The numbers are rescaled for readability; the shapes are not made up.
             </p>
             <p>
-              Four chapters, top to bottom: how many firms is too many, what competition does to effort
-              inside a team, how structure and behaviour shape market outcomes, and how different
-              referees read the same map.
+              Four chapters: how many firms is too many, what competition does to effort inside a team,
+              how market structure and behavioural distortion combine, and how antitrust, consumer, and
+              firm-level policy lenses read the same evidence differently.
             </p>
           </div>
 
