@@ -12,8 +12,8 @@ on:
     # Times are UTC. SGT = UTC+8.
     # 08:30 UTC (16:30 SGT) — after the 15:00 SGT Daily Brief.
     - cron: "30 8 * * *"
-    # 16:30 UTC Sat (00:30 SGT Sun) — after the Sat 23:59 SGT Weekly Digest.
-    - cron: "30 16 * * 6"
+    # 17:30 UTC Sat (01:30 SGT Sun) — after the Sat 23:59 SGT Weekly Digest (buffer increased to 90 min).
+    - cron: "30 17 * * 6"
     # 01:00 UTC Mon (09:00 SGT Mon) — after the 08:00 SGT Verdict Radar.
     - cron: "0 1 * * 1"
   workflow_dispatch: {} # allow manual runs from the Actions tab
