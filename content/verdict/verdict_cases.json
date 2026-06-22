@@ -19,16 +19,16 @@
       "DP": 8.55,
       "DR": 8.75,
       "ABS": 8.65,
-      "EDI": 8.54,
+      "EDI": 8.96,
       "uncertainty_band": [
-        1.19,
+        1.69,
         10
       ],
       "tier": "Seismic",
       "scenario_scores": {
         "conservative": 10,
         "structural": 10,
-        "balanced": 1.19
+        "balanced": 1.69
       }
     },
     "sources": [
@@ -60,14 +60,14 @@
       "DP": 7,
       "DR": 7.4,
       "ABS": 7.2,
-      "EDI": 6.14,
+      "EDI": 6.58,
       "uncertainty_band": [
         1,
         10
       ],
       "tier": "Major",
       "scenario_scores": {
-        "conservative": 7.64,
+        "conservative": 8.06,
         "structural": 10,
         "balanced": 1
       }
@@ -102,14 +102,14 @@
       "DP": 7.55,
       "DR": 6.95,
       "ABS": 7.24,
-      "EDI": 6.22,
+      "EDI": 6.66,
       "uncertainty_band": [
         1,
         10
       ],
       "tier": "Major",
       "scenario_scores": {
-        "conservative": 7.05,
+        "conservative": 7.48,
         "structural": 10,
         "balanced": 1
       }
@@ -144,15 +144,15 @@
       "DP": 6,
       "DR": 5.8,
       "ABS": 5.9,
-      "EDI": 3.99,
+      "EDI": 4.46,
       "uncertainty_band": [
         1,
-        7.27
+        7.7
       ],
-      "tier": "Marginal",
+      "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 5.5,
-        "structural": 7.27,
+        "conservative": 5.95,
+        "structural": 7.7,
         "balanced": 1
       }
     },
@@ -186,15 +186,15 @@
       "DP": 7.45,
       "DR": 6,
       "ABS": 6.69,
-      "EDI": 5.29,
+      "EDI": 5.75,
       "uncertainty_band": [
         1,
-        8.87
+        9.27
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 6.48,
-        "structural": 8.87,
+        "conservative": 6.91,
+        "structural": 9.27,
         "balanced": 1
       }
     },
@@ -228,15 +228,15 @@
       "DP": 5.25,
       "DR": 4.65,
       "ABS": 4.94,
-      "EDI": 2.41,
+      "EDI": 2.89,
       "uncertainty_band": [
         1,
-        4.48
+        4.94
       ],
       "tier": "Marginal",
       "scenario_scores": {
-        "conservative": 3.3,
-        "structural": 4.48,
+        "conservative": 3.78,
+        "structural": 4.94,
         "balanced": 1
       }
     },
@@ -272,15 +272,15 @@
       "DP": 6.55,
       "DR": 6.9,
       "ABS": 6.72,
-      "EDI": 5.36,
+      "EDI": 5.81,
       "uncertainty_band": [
         1,
-        9.23
+        9.64
       ],
       "tier": "Moderate",
       "scenario_scores": {
-        "conservative": 6.85,
-        "structural": 9.23,
+        "conservative": 7.28,
+        "structural": 9.64,
         "balanced": 1
       }
     },
@@ -315,15 +315,15 @@
       "DP": 4.8,
       "DR": 4.65,
       "ABS": 4.72,
-      "EDI": 2.05,
+      "EDI": 2.54,
       "uncertainty_band": [
         1,
-        4.03
+        4.49
       ],
       "tier": "Marginal",
       "scenario_scores": {
-        "conservative": 2.91,
-        "structural": 4.03,
+        "conservative": 3.39,
+        "structural": 4.49,
         "balanced": 1
       }
     },
@@ -335,6 +335,135 @@
       "https://www.europarl.europa.eu/RegData/etudes/ATAG/2026/785670/EPRS_ATA(2026)785670_EN.pdf",
       "https://www.bruegel.org/sites/default/files/2026-03/PB%2005%202026.pdf",
       "https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/oecd-due-diligence-guidance-for-responsible-ai_7831bb49/41671712-en.pdf"
+    ],
+    "contributor": "arshade",
+    "status": "published"
+  },
+  {
+    "case_id": 9,
+    "title": "EU AI Act — Code of Practice on Transparency of AI-Generated Content",
+    "date": "2026-06-10",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The European Commission published a Code of Practice on transparency for AI-generated content, giving providers and deployers a voluntary route toward Article 50 compliance before 2 August 2026.",
+    "legal_mechanism": "Article 50 of Regulation (EU) 2024/1689 sets the binding transparency rules for AI-generated content and chatbots. The Commission’s Code of Practice on Transparency of AI-Generated Content is voluntary, but it translates those obligations into practical steps for marking, labeling, and detection. The Commission says the code will go through an adequacy assessment by the AI Board, with Article 50 obligations applying from 2 August 2026 and a transition period for systems already on the market ending on 2 December 2026. The related implementation package also includes Commission guidance on Article 50 scope and a sign-up process for providers and deployers that want to align early.",
+    "economic_consequence": "The immediate cost is operational rather than punitive: content platforms, chatbot vendors, and synthetic-media tools need labeling workflows, provenance checks, detection tooling, and user-facing notices. The code lowers some legal uncertainty, but it also makes transparency work harder to avoid. Smaller firms may feel the burden most because they have to add compliance steps before they have scale. The upside is that a clearer EU-wide template is easier to build against than a patchwork of national expectations.",
+    "scores": {
+      "LI": 4,
+      "SE": 8,
+      "ER": 5,
+      "SF": 3,
+      "PS": 8
+    },
+    "computed": {
+      "DP": 5.8,
+      "DR": 5.05,
+      "ABS": 5.41,
+      "EDI": 3.66,
+      "uncertainty_band": [
+        1,
+        6.02
+      ],
+      "tier": "Marginal",
+      "scenario_scores": {
+        "conservative": 4.87,
+        "structural": 6.02,
+        "balanced": 1
+      }
+    },
+    "sources": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content",
+      "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-code-practice-marking-and-labelling-ai-generated-content",
+      "https://digital-strategy.ec.europa.eu/en/library/how-sign-code-practice-transparency-ai-generated-content",
+      "https://www.europarl.europa.eu/RegData/etudes/BRIE/2026/782651/EPRS_BRI%282026%29782651_EN.pdf",
+      "https://www.bruegel.org/first-glance/deregulating-artificial-intelligence-will-not-boost-eu-tech-markets",
+      "https://www.oecd.org/en/publications/towards-a-common-reporting-framework-for-ai-incidents_f326d4ac-en.html"
+    ],
+    "contributor": "arshade",
+    "status": "published"
+  },
+  {
+    "case_id": 10,
+    "title": "New York — Synthetic Performer Disclosure Law Takes Effect",
+    "date": "2026-06-09",
+    "decision_type": "regulatory",
+    "jurisdiction": "New York",
+    "summary": "New York's synthetic performer disclosure law took effect, requiring commercial ads that use AI-generated synthetic performers to disclose that fact and exposing violators to civil penalties.",
+    "legal_mechanism": "New York General Business Law §396-b, as amended by A8887B/S8420, took effect on 9 June 2026. Commercial advertisements that intentionally include a synthetic performer and are produced with actual knowledge must conspicuously disclose that fact. The statute carves out expressive works and audio or translation-only uses, and it imposes civil penalties of $1,000 for a first violation and $5,000 for each later violation.",
+    "economic_consequence": "The immediate burden falls on advertisers, agencies, and media buyers that use synthetic performers in commercial creative. They now need disclosure review, asset-level labelling, and internal sign-off rules. The law is narrow, but it still adds friction to AI-assisted ad production and gives regulators a clean enforcement hook if labels are missing. The carve-outs limit the hit for film, TV, and other expressive work promotions.",
+    "scores": {
+      "LI": 5,
+      "SE": 4,
+      "ER": 7,
+      "SF": 3,
+      "PS": 5
+    },
+    "computed": {
+      "DP": 4.55,
+      "DR": 5.1,
+      "ABS": 4.82,
+      "EDI": 2.69,
+      "uncertainty_band": [
+        1,
+        5.25
+      ],
+      "tier": "Marginal",
+      "scenario_scores": {
+        "conservative": 4.29,
+        "structural": 5.25,
+        "balanced": 1
+      }
+    },
+    "sources": [
+      "https://www.governor.ny.gov/news/governor-hochul-announces-first-nation-law-requiring-disclosure-when-advertisements-include-ai",
+      "https://www.nysenate.gov/legislation/bills/2025/A8887/amendment/B",
+      "https://www.nysenate.gov/legislation/bills/2025/A606/amendment/A",
+      "https://apnews.com/article/new-york-ai-law-hochul-synthetic-performers-e433625bfb61c8abeab0d619869192ed",
+      "https://www.mcdermottlaw.com/insights/new-yorks-synthetic-performer-disclosure-law-what-advertisers-need-to-know/",
+      "https://www.retailconsumerproductslaw.com/2026/06/synthetic-performers-real-consequences-implications-of-trailblazing-new-york-ai-ad-law/"
+    ],
+    "contributor": "arshade",
+    "status": "published"
+  },
+  {
+    "case_id": 11,
+    "title": "EU Commission — EUROPA Consortium Wins Frontier AI Grand Challenge",
+    "date": "2026-06-19",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The European Commission picked EUROPA as the winner of its Frontier AI Grand Challenge, a step tied to Europe’s broader push for a cloud and AI stack of its own.",
+    "legal_mechanism": "Commission policy announcement tied to the Cloud and AI Development Act proposal (COM/2026/502 final) and the EU’s broader AI international-relations strategy. The prize itself is not binding law, but it is part of the Commission’s industrial-policy stack for strengthening Europe’s cloud and AI ecosystem and steering compute, model, and procurement capacity toward trusted European projects.",
+    "economic_consequence": "The immediate effect is signaling, not compliance. It gives a selected European consortium legitimacy and keeps pressure on Brussels to back public compute, model development, and procurement. If the project turns into real capacity, it could reduce Europe’s dependence on foreign frontier models. If it stalls, the prize will be just a press release with a nicer logo.",
+    "scores": {
+      "LI": 3,
+      "SE": 7,
+      "ER": 4,
+      "SF": 3,
+      "PS": 7
+    },
+    "computed": {
+      "DP": 4.8,
+      "DR": 4.9,
+      "ABS": 4.85,
+      "EDI": 4.0,
+      "uncertainty_band": [
+        1.0,
+        7.0
+      ],
+      "tier": "Moderate",
+      "scenario_scores": {
+        "conservative": 4.5,
+        "structural": 5.2,
+        "balanced": 1.0
+      }
+    },
+    "sources": [
+      "https://digital-strategy.ec.europa.eu/en/news/commission-selects-europa-consortium-winner-frontier-ai-grande-challenge-project-build-european-open-source-frontier-ai-model",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-international-relations",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2026:502:FIN",
+      "https://www.reuters.com/legal/government/g7-leaders-discuss-trusted-partners-access-cutting-edge-us-ai-models-sources-say-2026-06-16/",
+      "https://www.bruegel.org/first-glance/achieve-tech-sovereignty-europe-must-not-mimic-its-rivals"
     ],
     "contributor": "arshade",
     "status": "published"
