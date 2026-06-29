@@ -2,7 +2,7 @@ This file provides guidance when working with code in this repository. The READM
 
 # Project Notes
 
-**Margin of Error** — a personal writing hub for articles, newsletter issues, a public profile, and four standalone products: **The Verdict** (AI policy intelligence database), **The Ledger** (MAS enforcement-action database), **The Observatory** (an interactive explainer on AI, productivity and prices), and **The Arena** (an interactive explorer on competition and efficiency). Hosted on Cloudflare Workers + Static Assets + D1; React + Vite frontend, Hono API.
+**Margin of Error** — a personal writing hub for articles, newsletter issues, a public profile, and six standalone products: **The Verdict** (AI policy intelligence database), **The Ledger** (MAS enforcement-action database), **The Observatory** (an interactive explainer on AI, productivity and prices), **The Arena** (an interactive explorer on competition and efficiency), **The Distribution Lab** (an interactive on inequality, mobility and wellbeing), and **The Docket** (a backlog map, bottleneck index, case-tracking dashboard prototype, and India–Singapore comparison for Indian court delays). Hosted on Cloudflare Workers + Static Assets + D1; React + Vite frontend, Hono API.
 
 ## The Verdict
 
@@ -131,6 +131,36 @@ tax progressivity, welfare generosity, minimum wage strength, labour power, educ
 ### Visual identity
 - Background `#0b0f1f` (dark) / `#f6f4ff` (light); accent `#fbbf24` / `#b45309`, secondary `#fb923c` / `#c2410c`
 - Sequential ramp `--dl-s1..s5` (distribution/mobility intensity), categorical `--dl-c1..c5`; CSS scoped under `.distlab-section` / `.distlab-section.distlab-light` in `src/styles.css` (includes `.dl-range` slider styling and a `prefers-reduced-motion` block)
+
+## The Docket
+
+An interactive subproject on **Indian court backlogs** at `/docket`. Same standalone-product pattern (emerald-on-deep-forest identity, independent dark/light toggle in `localStorage["docket-theme"]`), reached via an **emerald pill button** (`src/components/DocketButton.tsx`) next to the other subproject buttons on the Home page (not in the top nav). Browser title: *"The Docket — Indian Court Backlogs · Margin of Error"*.
+
+Like The Observatory and The Arena, it is a **scroll-driven page** (anchor nav: Intro · Backlog · Bottlenecks · Tracker · India vs SG · Method). The route `/docket` renders `DocketIndex`; `/docket/methods` renders the technical note `DocketMethods`.
+
+### Page sections (`src/pages/docket/`)
+- **Intro** (`sections/Intro.tsx`) — framing, stat strip (49.6M pending, 30% vacancy, etc.), chapter nav.
+- **Backlog Map** (`sections/BacklogMap.tsx`) — court-level summary cards; interactive horizontal bar chart (pending by state, top 15, toggle: total / civil / criminal); trend line chart (2015–2024, toggle: total / breakdown by level); civil-vs-criminal progress bars; filing-vs-disposal gap.
+- **Bottlenecks** (`sections/Bottlenecks.tsx`) — Backlog Severity Index table for 18 states, sortable by any factor; radar chart for selected state; five factor breakdown bars; tier definitions; six bottleneck explanation cards.
+- **Tracker** (`sections/Tracker.tsx`) — fully interactive case-tracking dashboard prototype with pre-loaded illustrative cases; add/filter/resolve/expand; summary stats (open, resolved, urgent, adjourned, avg age). Pure React state — no persistence.
+- **India–Singapore** (`sections/IndoSing.tsx`) — 10-dimension grouped bar chart; click-to-expand detail panel for each dimension; cost-of-delays table; three feasibility-ranked reform recommendations.
+- **Methodology** (`sections/Methodology.tsx`) — inline scope, data sources, and limitations.
+
+### Data (`src/pages/docket/model.ts`)
+**No API, no data fetch, no content file.** All data is hand-built inline:
+- `statePending[]` — pending cases (thousands) by state with civil/criminal split and avg case age
+- `trendData[]` — total pending by year (2015–2024) broken down by court level
+- `courtLevels[]` — three court levels with sanctioned/actual judges, vacancy %, avg disposal, filing/disposal rates
+- `bottleneckData[]` — 18 states × 5 factor scores + composite BSI + tier
+- `comparisonData[]` — 10 India–Singapore dimensions with qualitative scores (0–100)
+- `sampleCases[]` — 8 illustrative tracker cases
+
+Sources: NJDG, eCourts project annual reports, Ministry of Law & Justice Annual Report 2022-23, DAKSH India court monitoring reports, Supreme Court Annual Report 2022-23, Singapore Judiciary Statistics 2023, eLitigation Annual Report 2023.
+
+### Visual identity
+- Background `#090f0a` (dark) / `#f0faf3` (light); accent `#34d399` / `#059669`
+- Severity colours: crit `#f87171`, high `#fb923c`, mod `#fbbf24`, low `#34d399`
+- CSS scoped under `.docket-section` / `.docket-section.docket-light` in `src/styles.css`
 
 ### Removed pages
 

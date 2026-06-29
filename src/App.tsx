@@ -128,6 +128,29 @@ const DistLabShell = lazy(() =>
 const DistLabIndex = lazy(() => import("./pages/distlab/DistLabIndex"));
 const DistLabMethods = lazy(() => import("./pages/distlab/DistLabMethods"));
 
+// The Docket (/docket) — Indian court backlogs. A scroll-driven essay with
+// interactive charts (backlog by state, trend over time), a bottleneck scoring
+// index, a prototype citizen case-tracking dashboard, and an India–Singapore
+// comparison, under its own emerald/forest theme shell.
+const DocketShell = lazy(() =>
+  import("./pages/docket/DocketLayout").then((m) => {
+    const { default: DocketLayout, DocketThemeProvider } = m;
+    return {
+      default: function DocketShell() {
+        return (
+          <DocketThemeProvider>
+            <DocketLayout>
+              <Outlet />
+            </DocketLayout>
+          </DocketThemeProvider>
+        );
+      },
+    };
+  })
+);
+const DocketIndex = lazy(() => import("./pages/docket/DocketIndex"));
+const DocketMethods = lazy(() => import("./pages/docket/DocketMethods"));
+
 // Minimal fallback — pages fetch their own data, so the gap is brief.
 // Intentionally unstyled-but-themed so there's no flash of wrong colors.
 function RouteFallback() {
@@ -188,6 +211,11 @@ export default function App() {
             <Route path="/lab" element={<DistLabShell />}>
               <Route index element={<DistLabIndex />} />
               <Route path="methods" element={<DistLabMethods />} />
+            </Route>
+
+            <Route path="/docket" element={<DocketShell />}>
+              <Route index element={<DocketIndex />} />
+              <Route path="methods" element={<DocketMethods />} />
             </Route>
           </Routes>
         </Suspense>

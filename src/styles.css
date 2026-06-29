@@ -501,4 +501,58 @@ body {
       animation-iteration-count: 1 !important;
     }
   }
+
+  /* The Docket — Indian court backlogs. Emerald on deep forest. */
+  .docket-section {
+    --docket-bg: #090f0a;
+    --docket-surface: #111e12;
+    --docket-surface-2: #182a1a;
+    --docket-border: rgba(52, 211, 153, 0.16);
+    --docket-border-hover: rgba(52, 211, 153, 0.42);
+    --docket-accent: #34d399;
+    --docket-accent-dim: rgba(52, 211, 153, 0.10);
+    --docket-text: #e4f5ef;
+    --docket-muted: #6fa882;
+    /* severity colours */
+    --docket-crit: #f87171;   /* red-400 */
+    --docket-high: #fb923c;   /* orange-400 */
+    --docket-mod:  #fbbf24;   /* amber-400 */
+    --docket-low:  #34d399;   /* emerald-400 (same as accent) */
+    /* chart palette */
+    --docket-c1: #34d399;
+    --docket-c2: #38bdf8;
+    --docket-c3: #f472b6;
+    --docket-c4: #fbbf24;
+    --docket-c5: #a78bfa;
+  }
+
+  .docket-section.docket-light {
+    --docket-bg: #f0faf3;
+    --docket-surface: #ffffff;
+    --docket-surface-2: #e4f5eb;
+    --docket-border: rgba(5, 122, 85, 0.18);
+    --docket-border-hover: rgba(5, 122, 85, 0.42);
+    --docket-accent: #059669;
+    --docket-accent-dim: rgba(5, 150, 105, 0.08);
+    --docket-text: #0a2318;
+    --docket-muted: #2d6b4f;
+    --docket-crit: #dc2626;
+    --docket-high: #ea580c;
+    --docket-mod:  #b45309;
+    --docket-low:  #059669;
+    --docket-c1: #059669;
+    --docket-c2: #0369a1;
+    --docket-c3: #be185d;
+    --docket-c4: #b45309;
+    --docket-c5: #6d28d9;
+  }
+
+  /* Docket: respect reduced-motion. */
+  @media (prefers-reduced-motion: reduce) {
+    .docket-section * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
 }

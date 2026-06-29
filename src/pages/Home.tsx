@@ -5,10 +5,18 @@ import LedgerButton from "@/components/LedgerButton";
 import ObservatoryButton from "@/components/ObservatoryButton";
 import ArenaButton from "@/components/ArenaButton";
 import DistLabButton from "@/components/DistLabButton";
+import DocketButton from "@/components/DocketButton";
 import { siteConfig } from "@/config/site";
 import { Link } from "react-router-dom";
 
 const highlights = [
+  {
+    href: "/docket",
+    title: "The Docket — Indian Court Backlogs",
+    summary:
+      "49 million pending cases. India's courts are the most backlogged in the world. This subproject maps the delays by state, scores the structural bottlenecks, and builds a prototype citizen case-tracking dashboard — plus an India–Singapore comparison that shows what digital court infrastructure could look like.",
+    tag: "Interactive",
+  },
   {
     href: "/observatory",
     title: "The Observatory — AI, Productivity and Prices",
@@ -66,6 +74,7 @@ export default function Home() {
           <ObservatoryButton />
           <ArenaButton />
           <DistLabButton />
+          <DocketButton />
         </div>
       </div>
 
@@ -77,7 +86,7 @@ export default function Home() {
           short of the people they are supposed to serve, and why?
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          Margin of Error is a self-directed research project working toward that question across five
+          Margin of Error is a self-directed research project working toward that question across six
           subprojects. It combines three things: hand-built structured databases drawn from primary
           regulatory sources, interactive economic models grounded in published theory, and analysis
           of how institutions operate in practice. The work draws on data collection, basic econometrics,
@@ -133,10 +142,10 @@ export default function Home() {
           <strong className="text-foreground">Margin of Error</strong> is an
           ongoing research project combining economics, law, and coding. The
           central question — where formal institutions fall short and why — runs
-          across five subprojects, each with its own data, methods, and scope.
+          across six subprojects, each with its own data, methods, and scope.
           Together they cover AI governance, financial regulation, market structure,
-          macroeconomic transmission channels, and income distribution. New work
-          is added as the question opens into new domains.
+          macroeconomic transmission channels, income distribution, and judicial
+          efficiency. New work is added as the question opens into new domains.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
           <strong className="text-foreground">The Observatory</strong> is a
@@ -171,7 +180,7 @@ export default function Home() {
           count and price, effort and sabotage, market outcomes, and policy
           lenses. Closed-form models you can drive yourself; no data fetch.
         </p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
           <strong className="text-foreground">The Distribution Lab</strong> is
           grounded in a cross-country panel of 465 country-years from 1990 to
           2020. History mode shows observed distributional and wellbeing data
@@ -179,6 +188,15 @@ export default function Home() {
           institutional configurations to outcomes via Gaussian kernel weighting
           over the observed analogue pool — surfacing which real country-years
           back each estimate and flagging when no close analogue exists.
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          <strong className="text-foreground">The Docket</strong> maps India's
+          49-million-case court backlog — pending cases by state, court level, and
+          case type — scores the structural bottlenecks driving those numbers
+          (judge vacancies, low digitalization, routine adjournments), and builds
+          a working prototype of what a citizen-facing case-tracking dashboard
+          could look like. An India–Singapore comparison asks whether better data
+          infrastructure — not more judges — could meaningfully move the needle.
         </p>
         <Link
           to="/about"
