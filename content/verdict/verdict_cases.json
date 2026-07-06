@@ -467,5 +467,97 @@
     ],
     "contributor": "arshade",
     "status": "published"
+  },
+  {
+    "case_id": 12,
+    "title": "EU AI Act — Advisory Forum Convenes Its Kick-off Meeting",
+    "date": "2026-06-22",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The Commission opened the AI Act Advisory Forum's work, bringing 174 experts and stakeholders into the enforcement pipeline for classification and standards questions.",
+    "legal_mechanism": "Article 67 of Regulation (EU) 2024/1689 creates the Advisory Forum as a general advisory body to the Commission and the AI Board. The forum complements the Scientific Panel under Article 68 and supports implementation, standardisation, and enforcement. The Commission says 174 members were selected from more than 700 applications, with two-year renewable terms.",
+    "economic_consequence": "No new compliance duty, but a firmer enforcement stack. Firms facing borderline GPAI or high-risk classification questions now have a more formal place where technical disputes, standards gaps, and implementation issues are surfaced early, which should cut some ambiguity and close off easy readings.",
+    "scores": {
+      "LI": 3,
+      "SE": 7,
+      "ER": 4,
+      "SF": 3,
+      "PS": 8
+    },
+    "computed": {
+      "DP": 4.8,
+      "DR": 4.7,
+      "ABS": 4.75,
+      "EDI": 2.6,
+      "uncertainty_band": [
+        1,
+        4.5
+      ],
+      "tier": "Marginal",
+      "scenario_scores": {
+        "conservative": 3.4,
+        "structural": 4.5,
+        "balanced": 1
+      }
+    },
+    "sources": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-act-governance-and-enforcement",
+      "https://digital-strategy.ec.europa.eu/en/news/ai-act-advisory-forum-convenes-its-kick-meeting",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-advisory-forum",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-scientific-panel",
+      "https://www.europarl.europa.eu/RegData/etudes/ATAG/2026/785670/EPRS_ATA(2026)785670_EN.pdf",
+      "https://www.bruegel.org/sites/default/files/2026-03/PB%2005%202026.pdf",
+      "https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/oecd-due-diligence-guidance-for-responsible-ai_7831bb49/41671712-en.pdf"
+    ],
+    "contributor": "arshade",
+    "status": "published"
+  },
+  {
+    "case_id": 13,
+    "title": "EU AI Act — Digital Omnibus Final Green Light",
+    "date": "2026-06-29",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The Council gave final green light to the AI Act Digital Omnibus, delaying key high-risk obligations and adding bans on sexual deepfakes and AI-generated CSAM.",
+    "legal_mechanism": "Council adoption of the Regulation on the simplification of the implementation of harmonised rules on artificial intelligence (Digital Omnibus on AI), amending Regulation (EU) 2024/1689. The package delays stand-alone high-risk AI obligations to 2 December 2027 and product-linked systems to 2 August 2028, postpones regulatory sandboxes to 2 August 2027, shortens the transparency transition for AI-generated content to 2 December 2026, clarifies AI Office competences for GPAI systems, and limits overlap with sectoral legislation. The act enters into force three days after publication in the Official Journal.",
+    "economic_consequence": "The delay gives hiring, education, critical infrastructure, and other Annex III sectors more runway before full high-risk obligations bite. The tighter transparency window and the new deepfake and CSAM bans shift work immediately onto generative-AI vendors, moderation teams, and product counsel. For companies with EU users, the practical trade-off is simple: less pressure on conformity assessments now, more pressure on provenance, labels, and abuse controls now.",
+    "scores": {
+      "LI": 8,
+      "SE": 8,
+      "ER": 8,
+      "SF": 7,
+      "PS": 8
+    },
+    "computed": {
+      "DP": 8.0,
+      "DR": 7.65,
+      "ABS": 7.82,
+      "EDI": 7.94,
+      "uncertainty_band": [
+        1.62,
+        10.0
+      ],
+      "tier": "Major",
+      "scenario_scores": {
+        "conservative": 9.45,
+        "structural": 10.0,
+        "balanced": 1.62
+      }
+    },
+    "sources": [
+      "https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/",
+      "https://data.consilium.europa.eu/doc/document/PE-30-2026-INIT/en/pdf",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-act-governance-and-enforcement",
+      "https://www.europarl.europa.eu/news/en/press-room/20260316IPR38219/meps-support-postponement-of-certain-rules-on-artificial-intelligence",
+      "https://www.europarl.europa.eu/news/en/press-room/20260427IPR42011/ai-act-deal-on-simplification-measures-ban-on-nudifier-apps",
+      "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-act-standardisation",
+      "https://www.bruegel.org/policy-brief/right-balance-how-fix-european-union-artificial-intelligence-regulation",
+      "https://www.oecd.org/en/publications/oecd-due-diligence-guidance-for-responsible-ai_41671712-en/full-report/component-4.html"
+    ],
+    "contributor": "arshade",
+    "status": "published"
   }
 ]
