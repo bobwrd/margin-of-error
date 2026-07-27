@@ -559,5 +559,96 @@
     ],
     "contributor": "arshade",
     "status": "published"
+  },
+  {
+    "case_id": 14,
+    "title": "EU AI Act — Commission Gets a Procedural Rulebook for GPAI Enforcement",
+    "date": "2026-07-21",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The Commission adopted detailed procedures for evaluating general-purpose AI models and opening fine proceedings against providers under Articles 92 and 101 of the AI Act.",
+    "legal_mechanism": "Commission Implementing Regulation (EU) 2026/1755, published in the Official Journal on 21 July 2026, sets detailed arrangements for Commission evaluations under Article 92 of Regulation (EU) 2024/1689 and procedural safeguards for possible fines under Article 101. It specifies technical access conditions, independent-expert involvement, interim measures, preliminary findings, provider observations, confidentiality handling, and limitation periods.",
+    "economic_consequence": "Providers of general-purpose AI models must be able to support regulator access beyond a public API, potentially including internal systems, source code, model weights, hosting infrastructure, and system-state inspection. The rulebook increases preparation and audit costs but makes the path to interim market measures or fines more predictable. Article 101 fines can reach 3% of worldwide annual turnover or €15 million, whichever is higher.",
+    "scores": {
+      "LI": 10,
+      "SE": 7,
+      "ER": 10,
+      "SF": 8,
+      "PS": 8
+    },
+    "computed": {
+      "DP": 47.5,
+      "DR": 62.0,
+      "ABS": 54.24,
+      "EDI": 48.28,
+      "uncertainty_band": [
+        28.0,
+        65.0
+      ],
+      "tier": "Major",
+      "scenario_scores": {
+        "conservative": 56.0,
+        "structural": 65.0,
+        "balanced": 28.0
+      }
+    },
+    "sources": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202601755",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-act-governance-and-enforcement",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://www.europarl.europa.eu/thinktank/en/document/EPRS_BRI(2026)787211",
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-92",
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-101",
+      "https://futureoflife.org/document/feedback-on-evaluations-and-enforcement-proceedings-the-ai-act",
+      "https://intelligence.dlapiper.com/artificial-intelligence?t=08-enforcement&c=EU"
+    ],
+    "contributor": "arshade",
+    "status": "published"
+  },
+  {
+    "case_id": 15,
+    "title": "EU AI Act — Transparency Guidelines Set the 2 August Clock",
+    "date": "2026-07-20",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The Commission published guidance on Article 50, clarifying how providers and deployers must disclose AI interaction and label synthetic content from 2 August 2026.",
+    "legal_mechanism": "The Commission published guidelines and a Q&A on Article 50 of Regulation (EU) 2024/1689. From 2 August 2026, providers must disclose direct AI interaction and add machine-readable marks to synthetic audio, image, video, and text. Deployers must disclose deepfakes, certain AI-generated public-interest text, and specified emotion-recognition or biometric-categorisation uses. A limited transition applies to marking systems already on the market before 2 August 2026 until 2 December 2026.",
+    "economic_consequence": "Providers, publishers, platforms, agencies, and deployers must map where synthetic content reaches people, implement visible and machine-readable disclosure, and document substantive human review or editorial control where they rely on an exception. The guidance reduces interpretive room ahead of the deadline, while non-compliance can expose an undertaking to fines of up to €15 million or 3% of worldwide annual turnover, subject to the Act’s rules and proportionality.",
+    "scores": {
+      "LI": 10,
+      "SE": 10,
+      "ER": 7,
+      "SF": 8,
+      "PS": 8
+    },
+    "computed": {
+      "DP": 51.5,
+      "DR": 68.8,
+      "ABS": 59.54,
+      "EDI": 25.45,
+      "uncertainty_band": [
+        13.45,
+        37.45
+      ],
+      "tier": "Moderate",
+      "scenario_scores": {
+        "conservative": 31.0,
+        "structural": 37.45,
+        "balanced": 13.45
+      }
+    },
+    "sources": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-guidelines-transparency-obligations-providers-and-deployers-certain-ai-systems",
+      "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act",
+      "https://www.europarl.europa.eu/thinktank/en/document/EPRS_BRI(2026)787211",
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-act-governance-and-enforcement",
+      "https://intelligence.dlapiper.com/artificial-intelligence?t=08-enforcement&c=EU",
+      "https://futureoflife.org/document/feedback-on-evaluations-and-enforcement-proceedings-the-ai-act"
+    ],
+    "contributor": "arshade",
+    "status": "published"
   }
 ]
