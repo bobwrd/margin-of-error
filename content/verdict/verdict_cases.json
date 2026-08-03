@@ -650,5 +650,40 @@
     ],
     "contributor": "arshade",
     "status": "published"
+  },
+  {
+    "case_id": 16,
+    "title": "EU AI Act — Enforcement and Article 50 Transparency Rules Begin",
+    "date": "2026-08-02",
+    "decision_type": "regulatory",
+    "jurisdiction": "European Union",
+    "summary": "The European Commission’s AI Office and national authorities began enforcing the AI Act as Article 50 transparency duties took effect, requiring disclosure of AI interaction and labelling of synthetic content.",
+    "legal_mechanism": "Application and enforcement of Regulation (EU) 2024/1689. Article 50 requires providers of directly interactive AI systems to inform people they are interacting with AI and providers of systems generating synthetic audio, image, video or text to make outputs machine-readable and detectable as artificially generated or manipulated. Deployers must disclose specified emotion-recognition and biometric-categorisation uses, deepfakes, and certain AI-generated public-interest text. From 2 August 2026, the Commission’s AI Office and national authorities supervise and enforce the Act; Article 50 breaches can attract penalties under the Act, including up to €15 million or 3% of worldwide annual turnover for applicable information obligations.",
+    "economic_consequence": "Consumer AI providers, media organisations, publishers, platforms, agencies, employers, and other deployers must map where AI interaction or synthetic content reaches people, then add visible notices, machine-readable marks, and evidence of compliance. The immediate burden is operational rather than a new product ban: changes to interfaces, content pipelines, provenance systems, vendor contracts, records, and review processes. The Commission’s code gives signatories a recognised way to demonstrate compliance, while firms using other methods may need to justify their adequacy separately to market-surveillance authorities. The rule creates a common EU baseline for disclosure but leaves technical choices partly dependent on feasibility and the state of the art.",
+    "scores": {
+      "LI": 10,
+      "SE": 10,
+      "ER": 7,
+      "SF": 8,
+      "PS": 8
+    },
+    "computed": {
+      "raw": 8.6,
+      "DP": 86.0,
+      "DR": 84.0,
+      "EDI": 39.09,
+      "uncertainty_band": "Medium ±12",
+      "tier": "Major"
+    },
+    "sources": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august",
+      "https://www.europarl.europa.eu/RegData/etudes/BRIE/2025/779259/EPRS_BRI(2025)779259_EN.pdf",
+      "https://digital-strategy.ec.europa.eu/en/policies/ai-act-governance-and-enforcement",
+      "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content",
+      "https://www.bruegel.org/policy-brief/right-balance-how-fix-european-union-artificial-intelligence-regulation"
+    ],
+    "contributor": "arshade",
+    "status": "published"
   }
 ]
